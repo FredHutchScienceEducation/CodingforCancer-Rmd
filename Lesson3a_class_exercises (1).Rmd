@@ -1,0 +1,44 @@
+---
+title: "Lesson 3a In-class exercises"
+author: "Gabrielle Ferra"
+date: '2023-08-03'
+output: html_document
+---
+
+# Data: Effect of vitamin C on odontoblast growth in guinea pig teet
+
+Scientists treated guinea pigs with low or high dose vitamin C (via orange juice) for a set period of time and then measured the odontoblast (cells responsible for repairing/maintaing the dentin in your tooth) length (in picometeres)
+
+Source: Crampton, E. W. (1947). The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition, 33(5), 491â€“504. doi: 10.1093/jn/33.5.491.
+
+# Just run this portion to load the data
+This code chunk will create the datasets we will be using for these problems (no need to understand this code at this point in the course)
+
+```{r}
+# run me
+TG = ToothGrowth
+low_dose = TG[which(TG$supp == "OJ" & TG$dose == 1), "len"]
+high_dose = TG[which(TG$supp == "OJ" & TG$dose == 2), "len"]
+
+```
+
+
+# Practicing vector operations and functions
+
+## Instructions:
+Work in your small groups and complete the following:
+
+* Use the functions we've learned so far to determine the following about the `low_dose` and `high_dose` vectors:
+    * Do both high and lose dose sets have the same length and class?
+    * What is the mean and median of both groups?
+    * What is the third animal in the low dose group?
+    * What is the last animal in the high dose group?
+    * Save the first through fifth animal in the low dose group to a new variable called `low_dose_subset`
+    * What is the mean of the `low_dose_subset`? Is it higher or lower than the mean of the entire low dose group?
+
+```{r}
+# add your code here
+
+```
+
+Feel free to add additional code chunks if that is helpful.
