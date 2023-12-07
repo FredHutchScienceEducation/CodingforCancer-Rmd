@@ -1,0 +1,66 @@
+- Class: meta
+  Course: Coding for Cancer
+  Lesson: Basic Data Types
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "R has a few basic data types (types of information/data), these are characters, numerics, integers, and logicals"
+ 
+- Class: txt
+  Output: 'Characters are enclosed in double quotes like "apple" '
+  
+- Class: mult_question
+  Output: 'what type of data is "hello world"? '
+  AnswerChoices: Characters;Numeric;Integer;Logical
+  AnswerTests: omnitest(correctVal="Characters")
+  Hint: 'Characters are enclosed in double quotes'
+  
+- Class: txt
+  Output: "Numerics and Integers can be used for calculations but strings or logicals cannot"
+  
+- Class: txt
+  Output: "Numerics are any real number or decimals while integers are whole numbers"
+  
+- Class: mult_question
+  Output: "what type of data is 3?"
+  AnswerChoices: Characters;Numeric;Integer;Logical
+  AnswerTests: omnitest(correctVal= "Integer")
+  Hint: "Remember numerics have decimals, integers do not"
+  
+- Class: txt
+  Output: "Logicals store either TRUE or FALSE"
+  
+- Class: mult_question
+  Output: "what type of data is 3.14?"
+  AnswerChoices: Characters;Numeric;Integer;Logical
+  AnswerTests: omnitest(correctVal= "Numeric")
+  Hint: "what data type has decimals?"
+ 
+- Class: mult_question
+  Output: 'what type of data would "3.14" be?'
+  AnswerChoices: Characters;Numeric;Integer;Logical
+  AnswerTests: omnitest(correctVal= "Characters")
+  Hint: 'what data type has " " ?'
+  
+- Class: txt
+  Output: "Variables are like storage containers for R data types. We can assign the values of variables by using <-"
+  
+- Class: cmd_question
+  Output: 'Assign the character "yellow" to the variable colorOne'
+  AnswerTests: omnitest(correctExpr= 'colorOne <- "yellow" ', correctVal= "yellow")
+  Hint: "<- is the assignment operator"
+
+- Class: txt
+  Output: "when you assign a value to a variable you should see it appear in the Environment window (top right panel)"
+
+- Class: mult_question
+  Output: "do you see the variable you just assigned a value to in your Environment window?"
+  AnswerChoices: Yes;No
+  AnswerTests: omnitest(correctVal= "Yes")
+  Hint: "the Environment window is the top right panel in Posit cloud, you might need to change tabs from History or Connections"
+  
+- Class: txt
+  Output: "great work!"
