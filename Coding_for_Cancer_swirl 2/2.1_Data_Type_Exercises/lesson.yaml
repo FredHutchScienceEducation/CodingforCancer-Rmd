@@ -1,0 +1,114 @@
+- Class: meta
+  Course: Coding_for_Cancer_swirl
+  Lesson: Lesson 2a Exercises
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: mult_question
+  Output: "which of these is not a data type in R?"
+  AnswerChoices: numerics; logical/boolean; character; irrational; integer
+  CorrectAnswer: irrational
+  AnswerTests: omnitest(correctVal="irrational")
+
+- Class: mult_question
+  Output: "which data type is TRUE?"
+  AnswerChoices: numerics; character; logical/boolean; integer
+  CorrectAnswer: logical/boolean
+  AnswerTests: omnitest(correctVal="logical/boolean")
+  Hint: "which one is not a number or any words?"
+  
+- Class: txt
+  Output: "for the following text entry questions answer in all lowercase (it's case sensitive)"
+
+- Class: text_question
+  Output: 'what is the data type that is words enclosed in " " '
+  CorrectAnswer: characters
+  AnswerTests: omnitest(correctVal='characters')
+  Hint: "the other name for this is Strings"
+  
+- Class: text_question
+  Output: "what is the assignment operator?"
+  CorrectAnswer: <-
+  AnswerTests: omnitest(correctVal="<-")
+  Hint: "what is the symbol used to assign values to objects?"
+  
+- Class: txt
+  Output: "now let's practice assigning and re-assigning objects in R"
+  
+- Class: cmd_question
+  Output: "create an object called agge that contains 16"
+  CorrectAnswer: agge <- 16
+  AnswerTests: omnitest(correctExpr="agge <- 16")
+  Hint: "what is the assignment operator?"
+  
+- Class: txt
+  Output: "whoops we made a typo!"
+  
+- Class: cmd_question
+  Output: "reassign agge to a new object called age to correct the typo"
+  CorrectAnswer: age <- agge
+  AnswerTests: omnitest(correctExpr="age <- agge")
+  Hint: "create a new object called age, assign it agge"
+
+- Class: txt
+  Output: "as you assign and re-assign check your Environment pane to make sure these changes go through"
+
+- Class: cmd_question
+  Output: "calculate the age in days by multiplying it by 365 (let's ignore leap years)"
+  CorrectAnswer: age*365
+  AnswerTests: omnitest(correctExpr="age*365", correctVal=5840)
+  Hint: "* is the operator for multiplication"
+  
+- Class: txt
+  Output: "now we are going to do some more practice assigning values to objects and using them"
+  
+- Class: cmd_question
+  Output: "create an object called mass, assign it 47.5"
+  CorrectAnswer: mass <- 47.5
+  AnswerTests: omnitest(correctExpr= "mass <- 47.5")
+  Hint: "what is the assignment operator?"
+  
+- Class: cmd_question
+  Output: "create an object called width, assign it 122"
+  CorrectAnswer: width <- 122
+  AnswerTests: omnitest(correctExpr="width <- 122")
+  Hint: "what is the assignment operator?"
+  
+- Class: txt
+  Output: "when assigning and re-assigning, you can reference already existing objects"
+  
+- Class: cmd_question
+  Output: "reassign mass with the new value mass*2.0"
+  CorrectAnswer: mass <- mass*2.0
+  AnswerTests: omnitest(correctExpr= "mass <- mass*2.0")
+  Hint: "how do we overwrite an assignment?"
+  
+- Class: txt
+  Output: "remember to check your Environment pane"
+  
+- Class: cmd_question
+  Output: "reassign width with the new value width-20"
+  CorrectAnswer: width <- width-20
+  AnswerTests: omnitest(correctExpr= "width <- width - 20")
+  Hint: "overwriting is done by...?"
+  
+- Class: cmd_question
+  Output: "create a new object called mass_index, assign it the value mass/width"
+  CorrectAnswer: mass_index <- mass/width
+  AnswerTests: omnitest(correctExpr="mass_index <- mass/width")
+  Hint: "what does this operator <- do?"
+  
+- Class: txt
+  Output: "amazing job assigning and re-assigning objects!"
+  
+- Class: text_question
+  Output: "what data type is stored in mass_index?"
+  CorrectAnswer: numerics
+  AnswerTests: omnitest(correctVal="numerics")
+  Hint: "if you can't remember the value check your Environment pane"
+
+- Class: txt
+  Output: "nice work!"
+  

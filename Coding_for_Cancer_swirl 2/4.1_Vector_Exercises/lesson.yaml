@@ -1,0 +1,142 @@
+- Class: meta
+  Course: Coding for Cancer swirl
+  Lesson: Lesson 3a Exercise
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: text_question
+  Output: "what did we learn today that can store multiple values?"
+  CorrectAnswer: vectors
+  AnswerTests: omnitest(correctVal="vectors")
+  Hint: "the main topic of today's lesson"
+  
+- Class: text_question
+  Output: "what is the name of the position of an element in a vector?"
+  CorrectAnswer: "index"
+  AnswerTests: omnitest(correctVal="index")
+  Hint: "this is the number that's assigned to each element, you can use it to access elements in vectors"
+  
+- Class: text_question
+  Output: "what is the operator (symbol) used to access elements within vectors? "
+  CorrectAnswer: "[]"
+  AnswerTests: (correctVal="[]")
+  Hint: "this symbol is called the accessor"
+  
+- Class: txt
+  Output: "let's try making a vector to practice"
+  
+- Class: cmd_question
+  Output: 'make a vector called organs with these values ("lung", "prostate", "breast")'
+  CorrectAnswer: organs <- c("lung", "prostate", "breast")
+  AnswerTests: omnitest(correctExpr='organs <- c("lung", "prostate", "breast")')
+  Hint: "the function for making vectors is c()"
+
+- Class: cmd_question
+  Output: "how many values are in organs? use the function from class to calculate"
+  CorrectAnswer: length(organs)
+  AnswerTests: omnitest(correctExpr="length(organs)", correctVal="3")
+  Hint: "the function for determining length of a vector is length()"
+
+- Class: cmd_question
+  Output: "what type of data is in organs? use the function from class to determine"
+  CorrectAnswer: class(organs)
+  AnswerTests: omnitest(correctExpr="class(organs)", correctVal="character")
+  Hint: "the function for determining vector data type is class()"
+
+- Class: cmd_question
+  Output: 'add "ovaries" to the end of the vector organs'
+  CorrectAnswer: organs <- c(organs, "ovaries")
+  AnswerTests: omnitest(correctExpr= 'organs <- c(organs, "ovaries")')
+  Hint: "is the new value going to the beginning or end of the vector?"
+  
+- Class: txt
+  Output: "now that we have the basics, let's get some practice with more complicated vectors"
+  
+- Class: txt
+  Output: "we're going to import a more complicated data set, copy the next three lines of code and run it (don't worry about understanding this for now)"
+  
+- Class: cmd_question
+  Output: "copy this and run it: TG = ToothGrowth"
+  CorrectAnswer: TG = ToothGrowth
+  AnswerTests: omnitest(correctExpr="TG = ToothGrowth")
+  
+- Class: cmd_question 
+  Output: 'copy and run: low_dose=TG[which(TG$supp=="OJ"&TG$dose==1),"len"]'
+  CorrectAnswer: low_dose = TG[which(TG$supp == "OJ" & TG$dose == 1), "len"]
+  AnswerTests: omnitest(correctExpr= 'low_dose = TG[which(TG$supp == "OJ" & TG$dose == 1), "len"]')
+  
+- Class: cmd_question
+  Output: 'copy and run: high_dose=TG[which(TG$supp=="OJ"&TG$dose==2),"len"]'
+  CorrectAnswer: high_dose = TG[which(TG$supp == "OJ" & TG$dose == 2), "len"]
+  AnswerTests: omnitest(correctExpr=' high_dose = TG[which(TG$supp == "OJ" & TG$dose == 2), "len"]')
+  
+- Class: txt
+  Output: "remember you don't need to understand the syntax of the code you just ran, just know it imported a bigger dataset"
+  
+- Class: txt
+  Output: "look in your Environment pane to see this dataset"
+  
+- Class: txt
+  Output: "the data you just imported is from the paper Effect of vitamin C on odontoblast growth in guinea pig teet"
+  
+- Class: txt
+  Output: "Scientists treated guinea pigs with low or high dose vitamin C (via orange juice) for a set period of time and then measured the odontoblast (cells responsible for repairing/maintaing the dentin in your tooth) length (in picometeres)"
+
+- Class: txt
+  Output: "Source: Crampton, E. W. (1947). The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition, 33(5), 491â€“504. doi: 10.1093/jn/33.5.491."
+  
+- Class: cmd_question
+  Output: "how many elements are in low_dose?"
+  CorrectAnswer: length(low_dose)
+  AnswerTests: omnitest(correctExpr="length(low_dose)", correctVal="10")
+  
+- Class: cmd_question
+  Output: "how about high_dose?"
+  CorrectAnswer: length(high_dose)
+  AnswerTests: omnitest(correctExpr="length(high_dose)", correctVal="10")
+  
+- Class: cmd_question
+  Output: "what is the mean of low_dose?"
+  CorrectAnswer: mean(low_dose)
+  AnswerTests: omnitest(correctExpr="mean(low_dose)", correctVal="22.7")
+  Hint: "the function for mean is mean()"
+  
+- Class: cmd_question
+  Output: "what about the mean of high_dose?"
+  CorrectAnswer: mean(high_dose)
+  AnswerTests: omnitest(correctExpr="mean(high_dose)", correctVal="26.06")
+  
+- Class: cmd_question
+  Output: "what is the 5th element in low_dose?"
+  CorrectAnswer: low_dose[5]
+  AnswerTests: omnitest(correctExpr="low_dose[5]", correctVal="20")
+  Hint: "the accessor operator is []"
+  
+- Class: cmd_question
+  Output: "subset the first THROUGH fifth element of low_dose"
+  CorrectAnswer: low_dose[1:5]
+  AnswerTests: omnitest(correctExpr='low_dose[1:5]')
+  Hint: ", is the operator for AND, : is the operator for THROUGH"
+
+- Class: cmd_question
+  Output: "create a new variable called low_dose_subset and assing it the subset you created above"
+  CorrectAnswer: low_dose_subset <- low_dose[1:5]
+  AnswerTests: omnitest(correctExpr= "low_dose_subset <- low_dose[1:5]")
+  Hint: "the assignment operator is <-"
+
+- Class: cmd_question
+  Output: "what is the mean of low_dose_subset?"
+  CorrectAnswer: mean(low_dose_subset)
+  AnswerTests: omnitest(correctExpr="mean(low_dose_subset)")
+
+- Class: mult_question
+  Output: "is the mean of low_dose_subset higher or lower than the mean of low_dose?"
+  CorrectAnswer: higher
+  AnswerChoices: higher;lower;same
+  AnswerTests: omnitest(correctVal="higher")
+  Hint: "scroll up to find the mean of low_dose you calcuated before"
+
+- Class: txt
+  Output: "nice work creating and using vectors!"
