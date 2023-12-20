@@ -118,4 +118,4 @@
   AnswerTests: omnitest(correctExpr = "weight_kg", correctVal = 100)
   
 - Class: txt
-  Output: "Great job! The secret word today is penguins"
+  Output: "Great job! The secret word today is 'penguins' "
