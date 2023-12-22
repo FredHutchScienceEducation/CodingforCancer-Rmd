@@ -1,0 +1,47 @@
+---
+title: "Lesson 5a Challenge problems"
+author: "Magdalena Russell & Katherine Brower"
+date: '2023-08-08'
+output: html_document
+---
+
+All exercises use the clinical data object we made earlier:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+Create a new object from clinical called demographics_BLCA that includes only the height, bmi, gender, ethnicity, and race.
+
+```{r}
+# your code here...
+
+```
+
+Code as many ways to select the columns of barcode, project_id, tissue_or_organ_of_origin, primary_diagnosis, and sample_type from the clinical object. Hint there are 6 ways!
+
+```{r}
+# your code here...
+
+```
+
+Create a new object from clinical called demographics_BLCA_current_smokers that includes only the height, bmi, gender, ethnicity, and race. However, restrict data such that only current smokers are included (hint: relevant column is called Tobacco.smoking.history).
+
+```{r}
+# your code here...
+
+```
+
+
+Create a new object from clinical called demographics_BCLA_mutation_count that includes only the height, bmi, gender, ethnicity, race, and count.ERCC2.signature.mutations. However, restrict the data that only patients with presence of prostate cancer are included (hint: relevant column is called Presence.of.prostate.cancer)
+
+Once you have made the dataset, calculate the mean count of ERCC2 signature mutations of the patients (hint: relavent column is count.ERCC2.signature.mutations)
+``` {r}
+#your code here...
+
+#calculate the mean count of ERCC2 signature mutations:
+```

@@ -1,0 +1,39 @@
+---
+title: "Lesson 5b Challenge problems"
+author: "Magdalena Russell & Katherine Brower"
+date: '2022-08-08'
+output: html_document
+---
+
+All exercises use the clinical object we created in previous lessons:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+There is a column “gender” in clinical; its name is not quite accurate. We would like to rename this column. Using mutate(), code a way to correct the column header to the more appropriate name “sex” (hint: we can use the minus sign (-) within select to remove columns). Save the new dataframe as “clinical_corrected”.
+
+```{r}
+# your code here...
+
+```
+
+The column pack_years_smoked represents the values “pack years” for each patient. One pack year corresponds to the number of years a person has smoked one pack per day. For example, 2 pack years means a person smoked a pack a day for 2 years. Risk for cancer is particularly high for people with 20 pack years and more. Using pipes, determine the number of patients with at least 20 pack years.
+
+```{r}
+# your code here...
+
+```
+
+Continuing with the above, how many 20 pack year patients are female and have Stage III cancer at the start of the study?
+
+```{r}
+# your code here...
+
+```
+
+
