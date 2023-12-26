@@ -1,0 +1,30 @@
+- Class: meta
+  Course: Coding for Cancer swirl
+  Lesson: 3.2 Functions Challenge Problems
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the challenge problems for the Functions lesson!"
+  
+- Class: txt
+  Output: "lets start the extra practice for the many functions in R"
+  
+- Class: txt
+  Output: "we are going to practice looking up new functions"
+  
+- Class: cmd_question
+  Output: "we have a new function called trunc, use the help feature to look up this function"
+  CorrectAnswer: ?trunc
+  AnswerTests: omnitest(correctExpr = "?trunc")
+  Hint: "the help feature is ?"
+  
+- Class: mult_question
+  Output: "what is the argument of the function trunc"
+  AnswerChoices: single numeric; multiple numerics; strings; logicals
+  CorrectAnswer: single numeric
+  AnswerTests: omnitest(correctVal= "single numeric")
+
+

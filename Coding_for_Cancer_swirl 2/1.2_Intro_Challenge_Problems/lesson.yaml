@@ -1,0 +1,79 @@
+- Class: meta
+  Course: Coding for Cancer swirl
+  Lesson: 1.2 Intro Challenge Problems
+  Author: Hanako Osuga 
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+  
+- Class: txt
+  Output: "welcome to the challenge problems for the Intro to R lesson"
+  
+- Class: txt
+  Output: "this is in no way required, it is meant for additional practice with R"
+  
+- Class: txt
+  Output: "let's practice assigning values"
+  
+- Class: cmd_question
+  Output: "make an object called message and assign it 'congrats!' "
+  CorrectAnswer: "message <- 'congrats' "
+  AnswerTests: omnitest(correctExpr = "message <- 'congrats'")
+
+- Class: txt
+  Output: "R can also be used for more complicated calcuations, let's calcualte how many times a heart beats in a year"
+  
+- Class: txt
+  Output: "a normal resting heart rate for adults ranges from 60 - 100 beats per minute"
+
+- Class: cmd_question
+  Output: "first let's make an object called lower_range and assign it 60"
+  CorrectAnswer: "lower_range <- 60"
+  AnswerTests: omnitest(correctExpr="lower_range <- 60")
+  
+- Class: cmd_question
+  Output: "now let's do the same for the upper range of heartbeats (reminder the upper range is 100 beats per minute)"
+  CorrectAnswer: "upper_range <- 100"
+  AnswerTests: omnitest(correctExpr= "upper_range <- 100")
+  Hint: "assign 100 to upper_range"
+  
+- Class: cmd_question
+  Output: "now we need to calculate how many minutes in a year, let's start by multiplying 60 by 24 to get the number of minutes in a day and assign it to mins_day"
+  CorrectAnswer: "mins_day <- 60 *24"
+  AnswerTests: omnitest(correctExpr = "mins_day <- 60 * 24")
+  Hint: "you can do this all in one line"
+  
+- Class: cmd_question
+  Output: "now we can multiply mins_day by 365 to get the total minutes in a year, assign this to mins_year"
+  CorrectAnswer: "mins_year <- mins_day * 365"
+  AnswerTests: omnitest(correctExpr= "mins_year <- mins_day *365")
+
+- Class: cmd_question
+  Output: "now we can mutliply lower_range by mins_year to get the lower range of heart beats per year, and assign it to lower_bpy"
+  CorrectAnswer: "lower_bpy <- lower_range*mins_year"
+  AnswerTests: omnitest(correctExpr= "lower_bpy <- lower_range*mins_year")
+
+- Class: cmd_question
+  Output: "do the same for upper_range, assign it upper_bpy"
+  CorrectAnswer: "upper_bpy <- upper_range*mins_year"
+  AnswerTests: omnitest(correctExpr="upper_bpy <- upper_range*mins_year")
+  
+- Class: text_question
+  Output: "what is the range of heartbeats per year for an adult? (format: lower range - upper range, no commas)"
+  CorrectAnswer: "31536000 - 52560000"
+  AnswerTests: omnitest(correctVal= "31536000 - 52560000")
+  Hint: "look in your environment pane for stored values"
+  
+- Class: cmd_question
+  Output: "what is the difference between the upper and lower range of heartbeats per year? calculate this without re-typign the numbers"
+  CorrectAnswer: "upper_bpy - lower_bpy"
+  AnswerTests: omnitest(correctExpr = "upper_bpy - lower_bpy")
+  Hint: "use your stored values"
+  
+- Class: cmd_question
+  Output: "print message"
+  CorrectAnswer: message
+  AnswerTests: omnitest(correctExpr = "message")
+  
+- Class: txt
+  Output: "great job with the challenge problems!"
