@@ -1,10 +1,13 @@
 - Class: meta
   Course: Coding for Cancer swirl
   Lesson: 6.1 Data Frames Exercise
-  Author: your name goes here
+  Author: Hanako Osuga
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Fred Hutch Cancer Center
   Version: 2.4.5
 
 - Class: txt
   Output: "welcome to the Data Frames lesson class exercises!"
+  
+- Class: txt
+  Output: "today we will do more practice with larger data frames"
