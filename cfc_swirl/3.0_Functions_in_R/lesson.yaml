@@ -72,7 +72,7 @@
   Output: "Switching the order doesn't change when you use argument labels (ex: x= and digits =)"
   
 - Class: cmd_question
-  Output: "Now let's try removing the argument labels (x= and digits =)"
+  Output: "Now let's try removing the argument labels (x= and digits =) from your last line of code"
   CorrectAnswer: 0
   AnswerTests: omnitest(correctExpr="round(0, 3.14)", correctVal= 0)
   
