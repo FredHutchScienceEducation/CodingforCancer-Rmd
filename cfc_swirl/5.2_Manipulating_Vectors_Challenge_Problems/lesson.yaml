@@ -1,0 +1,70 @@
+- Class: meta
+  Course: Coding for Cancer swirl
+  Lesson: 5.2_Manipulating_Vectors_Challenge_Problems
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+  
+- Class: txt
+  Output: "welcome to 5.2 Manipulaitng Vectors Challenge Problems"
+  
+- Class: txt
+  Output: "this is meant to act as additional practice with manipulating more complicated vectors"
+  
+
+- Class: txt
+  Output: "we're going to import a more complicated data set, copy the next three lines of code and run it (don't worry about understanding this for now)"
+  
+- Class: cmd_question
+  Output: "copy this and run it: TG = ToothGrowth"
+  CorrectAnswer: TG = ToothGrowth
+  AnswerTests: omnitest(correctExpr="TG = ToothGrowth")
+  
+- Class: cmd_question 
+  Output: 'copy and run: low_dose=TG[which(TG$supp=="OJ"&TG$dose==1),"len"]'
+  CorrectAnswer: low_dose = TG[which(TG$supp == "OJ" & TG$dose == 1), "len"]
+  AnswerTests: omnitest(correctExpr= 'low_dose = TG[which(TG$supp == "OJ" & TG$dose == 1), "len"]')
+  
+- Class: cmd_question
+  Output: 'copy and run: high_dose=TG[which(TG$supp=="OJ"&TG$dose==2),"len"]'
+  CorrectAnswer: high_dose = TG[which(TG$supp == "OJ" & TG$dose == 2), "len"]
+  AnswerTests: omnitest(correctExpr=' high_dose = TG[which(TG$supp == "OJ" & TG$dose == 2), "len"]')
+  
+- Class: txt
+  Output: "remember you don't need to understand the syntax of the code you just ran, just know it imported a bigger dataset"
+  
+- Class: txt
+  Output: "look in your Environment pane to see this dataset"
+  
+- Class: txt
+  Output: "the data you just imported is from the paper Effect of vitamin C on odontoblast growth in guinea pig teet"
+  
+- Class: txt
+  Output: "Scientists treated guinea pigs with low or high dose vitamin C (via orange juice) for a set period of time and then measured the odontoblast (cells responsible for repairing/maintaing the dentin in your tooth) length (in picometeres)"
+
+- Class: txt
+  Output: "Source: Crampton, E. W. (1947). The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition, 33(5), 491â€“504. doi: 10.1093/jn/33.5.491."
+
+- Class: txt
+  Output: "this is the same dataset as 4.2 Vector Challenge Problems"
+  
+- Class: cmd_question
+  Output: "what is the third animal in the low dose group?"
+  CorrectAnswer: low_dose[3]
+  AnswerTests: omnitest(correctExpr= "low_dose[3]", correctVal=23.6)
+  Hint: "what can we use to access values stored in vectors?"
+
+- Class: cmd_question
+  Output: "what is the last animal in the high dose group? do this in 1 line of code"
+  CorrectAnswer: high_dose[length(high_dose)]
+  AnswerTests: omnitest(correctExpr="high_dose[length(high_dose)]", correctVal=23)
+  Hint: "use the length() function to find the length of high dose"
+  
+- Class: txt
+  Output: "after collecting the data, you found out that the two animals above had health issues and should be removed from the data"
+  
+- Class: cmd_question
+  Output: "save low_dose to a new name fixed_low, then set the values that correspond this animal to NA"
+  CorrectAnswer: 
+
