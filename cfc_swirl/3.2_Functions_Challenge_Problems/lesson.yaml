@@ -52,6 +52,13 @@
 - Class: txt
   Output: "in this program, we also have resources and coding help sheets available for you in Google Classroom"
   
-- Class: 
+- Class: txt
+  Output: "in a seperate window, open up Google Classroom and find the Coding Helpsheet for this week"
 
-
+- Class: mult_question
+  Output: "what is the very last function in the Functions section of the Coding Helpsheet?"
+  AnswerChoices: sqrt; round; substr; max
+  CorrectAnswer: substr
+  AnswerTests: omnitest(correctVal="substr")
+  Hint: "go to the Week 1 Coding Helpsheet in Google Classroom"
+  
