@@ -31,14 +31,14 @@
   Output: "now lets try googling this function"
   
 - Class: txt
-  Output: "search trunc R docs in Google"
+  Output: "search 'trunc R docs' in Google"
   
 - Class: mult_question
   Output: "do you see the search result from Rdocumentation.org?"
   AnswerChoices: yes; no; huh?
   CorrectAnswer: yes
   AnswerTests: omnitest(correctVal= "yes")
-  Hint: "make sure R docs is in your search"
+  Hint: "make sure 'R docs' is in your search"
   
 - Class: txt
   Output: "this is the official R website with documentation with every R function"
@@ -46,3 +46,12 @@
 - Class: txt
   Output: "you can use this or other websites with user information like Stack Exchange whenever you need a refresher on fucntions"
   
+- Class: txt
+  Output: "there are many resources available when learning how to code"
+
+- Class: txt
+  Output: "in this program, we also have resources and coding help sheets available for you in Google Classroom"
+  
+- Class: 
+
+
