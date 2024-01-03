@@ -89,5 +89,4 @@
   Output: "So argument order doesn't matter as much when you use labels, but if you don't you have to be mindful of argument order (the order the arguments are entered)"
 
 - Class: txt
-  Output: "awesome job!"
-  
+  Output: "awesome job! the secret word today is 'Fluorine'"
