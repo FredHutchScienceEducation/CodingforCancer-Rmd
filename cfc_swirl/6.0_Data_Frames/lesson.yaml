@@ -5,3 +5,12 @@
   Type: Standard
   Organization: Fred Hutch Cancer Center
   Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the Data Frames lesson!"
+
+- Class: txt
+  Output: ""
+
+
+
