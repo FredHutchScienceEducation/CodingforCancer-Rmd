@@ -183,3 +183,9 @@
   
 - Class: txt
   Output: "great job! you were able to subset your vectors based on conditions and remove all the NAs from your vector!"
+  
+- Class: txt
+  Output: "the secret word today is 'Nitrogen'"
+  
+- Class: txt
+  Output: "go back and look at all the secret words this week to find a hidden message!"
