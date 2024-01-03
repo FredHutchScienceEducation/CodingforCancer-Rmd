@@ -1,6 +1,6 @@
 - Class: meta
   Course: Coding for Cancer
-  Lesson: Intro to R
+  Lesson: 1.0 Intro to R
   Author: Hanako Osuga
   Type: Standard
   Organization: Fred Hutch Cancer Center
@@ -118,4 +118,4 @@
   AnswerTests: omnitest(correctExpr = "weight_kg", correctVal = 100)
   
 - Class: txt
-  Output: "Great job! The secret word today is 'penguins' "
+  Output: "Great job! The secret word today is 'Radon' "
