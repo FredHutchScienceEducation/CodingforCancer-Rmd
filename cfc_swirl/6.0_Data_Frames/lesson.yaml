@@ -17,7 +17,7 @@
   Hint: "data frames are useful because they do what with the variables we are interested in?"
 
 - Class: mult_question
-  Output: "what does each column in a data frame cintain?"
+  Output: "what does each column in a data frame contain?"
   AnswerChoices: a data set; a data point; a variable; a number
   CorrectAnswer: a variable
   AnswerTests: omnitest(correctVal = "a variable")

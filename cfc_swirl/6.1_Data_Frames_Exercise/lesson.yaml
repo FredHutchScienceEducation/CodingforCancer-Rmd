@@ -39,13 +39,6 @@
   CorrectAnswer: download.file("https://raw.githubusercontent.com/FredHutchSciEd/CodingforCancer/main/clinical.csv","data/clinical.csv")
   AnswerTests: omnitest(correctExpr= 'download.file("https://raw.githubusercontent.com/FredHutchSciEd/CodingforCancer/main/clinical.csv", "data/clinical.csv")')
   
-- Class: mult_question
-  Output: "did you download the data from Github?"
-  AnswerChoices: yes; no
-  CorrectAnswer: yes
-  AnswerTests: omnitest(correctVal= "yes")
-  Hint: 'go back and copy and run the previous command to download the data'
-
 - Class: txt
   Output: "now that you downloaded the data, lets import it in to R and assign it to an object"
 
@@ -59,22 +52,22 @@
   Output: "you need to input the file you want it to read, in our case it's the clinical.csv file we saved in the data directory"
 
 - Class: cmd_question
-  Output: "use the read.csv() function, on data/clinical.csv, assign it to a new onject called clinical"
-
-- Class: cmd_question
-  Output: "use the read.csv() function on 'data/clinical.csv', assign this to an object called clinical"
+  Output: "in one line, use the read.csv() function on data/clinical.csv and assign that to a new variable called clinical"
   CorrectAnswer: clinical <- read.csv("data/clinical.csv")
   AnswerTests: omnitest(correctExpr= "clinical <- read.csv('data/clinical.csv')")
-  Hint: "put 'data/clinical.csv' into the function as the argument"
-
-
-
-
+  Hint: "put 'data/clinical.csv' into the function"
+ 
 - Class: cmd_question
   Output: "view the data you just downloaded using the View() function"
   CorrectAnswer: View(clinical)
   AnswerTests: omnitest(correctExpr="View(clinical)")
   Hint: "make sure that the V is capitalized"
+
+- Class: mult_question
+  Output: "did a new window open with the data frame?"
+  AnswerChoices: yes; no
+  CorrectAnswer: yes
+  AnswerTests: omnitest(correctVal='yes')
   
 - Class: txt
   Output: "you can assess the size of the data frame using the function dim(data_frame_name)"
@@ -92,7 +85,7 @@
   Output: "how many rows are in clinical?"
   AnswerChoices: 433; 79; 82; 1
   CorrectAnswer: 433
-  AnswerTests: omnitest(correctVal=433)
+  AnswerTests: omnitest(correctVal= '433')
   Hint: "what is the first number that was returned in your previous command?"
   
 - Class: txt
@@ -136,16 +129,52 @@
   CorrectAnswer: rownames(clinical)
   AnswerTests: omnitest(correctExpr="rownames(clinical)")
   Hint: "the argument should be our data frame"
-  
+   
 - Class: txt
   Output: "from this you should see sequential numnbers"
   
 - Class: txt
   Output: "these are the sample numbers for each sample, which is why you just see numbers"
 
+- Class: txt
+  Output: "if you want to see an overview of a data frame you can use the function str(data_frame_name)"
   
-  
+- Class: cmd_question
+  Output: "try getting an overview of clinical"
+  CorrectAnswer: str(clinical)
+  AnswerTests: omnitest(correctExpr="str(clinical)")
+  Hint: "put in the name of our data frame into the function"
 
+- Class: txt
+  Output: "this function gets you the structure of your data frame"
+  
+- Class: txt
+  Output: "take a look at the output, you should see the header name, type of data stored, examples of values etc"
+
+- Class: txt
+  Output: "or if you want an overview of the data frame you can use the function summary(data_frame_name)"
+
+- Class: cmd_question
+  Output: "ask R for a summary of clinical"
+  CorrectAnswer: summary(clinical)
+  AnswerTests: omnitest(correctExpr="summary(clinical)")
+  Hint: "add clinical into the function"
+
+- Class: txt
+  Output: "this gets you summary statistics of each column"
+
+- Class: txt
+  Output: "take a look at the output, you'll see that it gives you the legnth and class of each column"
+
+- Class: txt
+  Output: "for numerical columns, it also calcualted the Min, Median, Mean, Max, and quartiles"
+
+- Class: mult_question
+  Output: "what is the median year of diagnosis?"
+  AnswerChoices: 1999; 2013; 2010, 2011
+  CorrectAnswer: 2011
+  AnswerTests: omnitest(correctVal="2011")
+  Hint: "look at the summary statistics from your previous command"
 
 
 
