@@ -176,7 +176,9 @@
   AnswerTests: omnitest(correctVal="2011")
   Hint: "look at the summary statistics from your previous command"
 
-
+- Class: txt
+  Output: "good job getting started with data frames!"
+  
 
 
   
