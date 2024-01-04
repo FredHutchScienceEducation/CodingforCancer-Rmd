@@ -40,3 +40,33 @@
   CorrectAnswer: download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")
   AnswerTests: omnitest(correctExpr= 'download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")')
   
+- Class: mult_question
+  Output: "did you download the data from Github?"
+  AnswerChoices: yes; no
+  CorrectAnswer: yes
+  AnswerTests: omnitest(correctVal= "yes")
+  Hint: 'go back and copy and run the previous command to download the data'
+
+- Class: txt
+  Output: "now that you downloaded the data, lets import it in to R and assign it to an object"
+
+- Class: txt
+  Output: "to do this we will use the read.csv() function"
+  
+- Class: txt
+  Output: "this function reads a file that is in a table format (like a spreadsheet) and creates a data frame"
+  
+- Class: txt
+  Output: "you need to input the file you want it to read, in our case it's the clinical.csv file we saved in the data directory"
+
+- Class: cmd_question
+  Output: "use the read.csv() function on 'data/clinical.csv', assign this to an object called clinical"
+  CorrectAsnwer: clinical <- read.csv("data/clinical.csv")
+  AnswerTests: omnitest(correctExpr= 'clinical <- read.csv("data/clinical.csv)'
+  Hint: "put 'data/clinical.csv' into the function as the argument"
+  
+  
+  
+  
+  
+
