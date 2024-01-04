@@ -36,9 +36,9 @@
   Output: "now we are going to download the data from a website called Github"
 
 - Class: cmd_question
-  Output: 'run this command, download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")'
-  CorrectAnswer: download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")
-  AnswerTests: omnitest(correctExpr= 'download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")')
+  Output: 'run this command, download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv", "data/clinical.csv")'
+  CorrectAnswer: download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv","data/clinical.csv")
+  AnswerTests: omnitest(correctExpr= 'download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv", "data/clinical.csv")')
   
 - Class: mult_question
   Output: "did you download the data from Github?"
@@ -60,13 +60,14 @@
   Output: "you need to input the file you want it to read, in our case it's the clinical.csv file we saved in the data directory"
 
 - Class: cmd_question
+  Output: "use the read.csv() function, on data/clinical.csv, assign it to a new onject called clinical"
+
+- Class: cmd_question
   Output: "use the read.csv() function on 'data/clinical.csv', assign this to an object called clinical"
-  CorrectAsnwer: clinical <- read.csv("data/clinical.csv")
-  AnswerTests: omnitest(correctExpr= 'clinical <- read.csv("data/clinical.csv)'
+  CorrectAnswer: clinical <- read.csv("data/clinical.csv")
+  AnswerTests: omnitest(correctExpr= 'clinical <- read.csv("data/clinical.csv")')
   Hint: "put 'data/clinical.csv' into the function as the argument"
   
-  
-  
-  
-  
+
+
 
