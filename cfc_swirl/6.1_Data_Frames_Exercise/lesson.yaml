@@ -18,7 +18,6 @@
 - Class: txt
   Output: "the function dir.create('folder_name') creates a folder in your current working directory (the folder you are currently working in) called data"
 
-  
 - Class: cmd_question
   Output: "make a new directory called 'data' using the function"
   CorrectAnswer: dir.create('data')
@@ -65,10 +64,101 @@
 - Class: cmd_question
   Output: "use the read.csv() function on 'data/clinical.csv', assign this to an object called clinical"
   CorrectAnswer: clinical <- read.csv("data/clinical.csv")
-  AnswerTests: omnitest(correctExpr= 'clinical <- read.csv("data/clinical.csv")')
+  AnswerTests: omnitest(correctExpr= "clinical <- read.csv('data/clinical.csv')")
   Hint: "put 'data/clinical.csv' into the function as the argument"
 
 
 
 
+- Class: cmd_question
+  Output: "view the data you just downloaded using the View() function"
+  CorrectAnswer: View(clinical)
+  AnswerTests: omnitest(correctExpr="View(clinical)")
+  Hint: "make sure that the V is capitalized"
+  
+- Class: txt
+  Output: "you can assess the size of the data frame using the function dim(data_frame_name)"
+  
+- Class: txt
+  Output: "this will tell you the number of rows and columns in your data frame"
+
+- Class: cmd_question
+  Output: "get the dimesnions of clinical"
+  CorrectAnswer: dim(clinical)
+  AnswerTests: omnitest(correctExpr="dim(clinical)")
+  Hint: "put our data frame name, clinical, in as the argument"
+  
+- Class: mult_question
+  Output: "how many rows are in clinical?"
+  AnswerChoices: 433; 79; 82; 1
+  CorrectAnswer: 433
+  AnswerTests: omnitest(correctVal=433)
+  Hint: "what is the first number that was returned in your previous command?"
+  
+- Class: txt
+  Output: "you can preview the first few rows using the function head(data_frame_name)"
+
+- Class: cmd_question
+  Output: "get the first few rows of clinical"
+  CorrectAnswer: head(clinical)
+  AnswerTests: omnitest(correctExpr="head(clinical)")
+  Hint: "put our data frame name, clinical, in as the argument"
+  
+- Class: cmd_question
+  Output: "you can see the last three rows of your data frame using the function tail(data_frame_name, n=3)"
+  CorrectAnswer: tail(clinical, n=3)
+  AnswerTests: omnitest(correctExpr="tail(clinical, n=3)")
+  Hint: "put our data frame name, clinical, in as the argument"
+  
+- Class: txt
+  Output: "you can view column names using the function colnames(data_frame_name)"
+
+- Class: cmd_question
+  Output: "view the column names in clinical"
+  CorrectAnswer: colnames(clinical)
+  AnswerTests: omnitest(correctExpr="colnames(clinical)")
+  Hint: "what's the name of our data frame?"
+
+- Class: txt
+  Output: "this is a data frame with information on different bladder cancer tissue samples"
+  
+- Class: txt
+  Output: "from the column names you can see the type of data that was collected for each sample"
+  
+- Class: txt
+  Output: "this includes stuff like the sample type, age at diagnosis, and information on specific gene expression"
+  
+- Class: txt
+  Output: "to view the row names, use the function rownames(data_frame_name)"
+  
+- Class: cmd_question
+  Output: "view the row names in clinical"
+  CorrectAnswer: rownames(clinical)
+  AnswerTests: omnitest(correctExpr="rownames(clinical)")
+  Hint: "the argument should be our data frame"
+  
+- Class: txt
+  Output: "from this you should see sequential numnbers"
+  
+- Class: txt
+  Output: "these are the sample numbers for each sample, which is why you just see numbers"
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
 
