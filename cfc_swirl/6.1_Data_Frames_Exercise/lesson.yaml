@@ -7,12 +7,36 @@
   Version: 2.4.5
 
 - Class: txt
-  Output: "welcome to the Data Frames lesson class exercises!"
+  Output: "welcome to the Data Frames class exercises!"
   
 - Class: txt
-  Output: "today we will do more practice with larger data frames"
+  Output: "lets practice downloading a data frame and importing it"
   
 - Class: txt
-  Output: "we will download the Tooth Growth data frame again"
+  Output: "before we download the data for the file, lets make the directory (aka a folder)"
+
+- Class: txt
+  Output: "the function dir.create('folder_name') creates a folder in your current working directory (the folder you are currently working in) called data"
+
   
+- Class: cmd_question
+  Output: "make a new directory called 'data' using the function"
+  CorrectAnswer: dir.create('data')
+  AnswerTests: omnitest(correctExpr="dir.create('data')")
+  Hint: "fill in 'folder_name' with 'data'"
+
+- Class: mult_question
+  Output: "you should see a new folder in your Files tab named data, do you see the folder?"
+  AnswerChoices: yes; no
+  CorrectAnswer: 'yes'
+  AnswerTests: omnitest(correctVal="yes")
+  Hint: "check the Files tab in the the Plots, Packages, and Help pane"
+  
+- Class: txt 
+  Output: "now we are going to download the data from a website called Github"
+
+- Class: cmd_question
+  Output: 'run this command, download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")'
+  CorrectAnswer: download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")
+  AnswerTests: omnitest(correctExpr= 'download.file("https://github.com/FredHutchSciEd/CodingforCancer/blob/2755efb71899ce4f1c0a2f12dd224280600e5ebf/clinical.csv")')
   
