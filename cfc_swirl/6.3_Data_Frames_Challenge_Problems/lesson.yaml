@@ -1,0 +1,88 @@
+- Class: meta
+  Course: cfc_swirl
+  Lesson: 6.3 Data Frames Challenge Problems
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the Data Frames Challenge Problems!"
+  
+- Class: txt
+  Output: "as always, this isnt required but is just more practice with the topics we learned!"
+  
+- Class: txt
+  Output: "for this set of practice problems we are going to use the ToothGrowth dataset"
+
+- Class: cmd_question
+  Output: "run this to access the dataset: TG <- ToothGrowth"
+  CorrectAnswer: TG <- ToothGrowth
+  AnswerTests: omnitest(correctExpr= "TG <- ToothGrowth")
+
+- Class: cmd_question
+  Output: "get the dimension of TG"
+  CorrectAnswer: dim(TG)
+  AnswerTests: omnitest(correctExpr = "dim(TG)")
+  Hint: "the function for dimensions is dim()"
+  
+- Class: cmd_question
+  Output: "view the dataset"
+  CorrectAnswer: View(TG)
+  AnswerTests: omnitest(correctExpr = "View(TG)")
+  Hint: "the function for dimensions is dim()"
+  
+- Class: cmd_question
+  Output: "extract first 4 lines of TG"
+  CorrectAnswer: head(TG, n=4)
+  AnswerTests: omnitest(correctExpr ="head(TG, n=4)")
+  Hint: "the function for extracting the first few lines is head()"
+  
+- Class: cmd_question
+  Output: "extract the last 3 lines of TG"
+  CorrectAnswer: tail(TG, n=3)
+  AnswerTests: omnitest(correctExpr = "tail(TG, n=3")
+  Hint: "the function for extracting the last few lines is tail() "
+
+- Class: cmd_question
+  Output: "get the names of the columns of TG"
+  CorrectAnswer: colnames(TG)
+  AnswerTests: omnitest(correctExpr = "colnames(TG)")
+  Hint: "the function for column names is colnames()"
+
+- Class: txt
+  Output: "lets use our columns to do some analysis"
+  
+- Class: cmd_question
+  Output: "calculate the median of len in TG, dont forget to remove NAs"
+  CorrectAnswer: median(TG$len, na.rm= TRUE)
+  AnswerTests: omnitest(correctExpr = "median(TG$len, na.rm=TRUE)")
+  Hint: "check your coding help sheet or Google for the function"
+  
+- Class: cmd_question
+  Output: "calculate the mean of len, dont forget to remove NAs"
+  CorrectAnswer: mean(TG$len, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr = "mean(TG$len, na.rm = TRUE)")
+  Hint: "check your coding help sheet or Google for the function!"
+
+- Class: cmd_quesiton
+  Output: "what was the lowest dose given in TG?"
+  CorrectAsnwer: min(TG$dose, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr = "min(TG$dose, na.rm = TRUE)")
+  Hint: "check your coding help sheet or Google for the function!"
+
+- Class: cmd_question
+  Output: "what was the highest dose given in TG"
+  CorrectAnswer: max(TG$dose, na.rm = TRUE)
+  AnswerTests: omnitest(correctExpr = "max(TG$dose, na.rm = TRUE)")
+  Hint: "check your coding help sheet or Google for the function!"
+
+- Class: txt
+  Output: "lets check these statustics against what R can provide us through the summary statistics"
+
+- Class: cmd_question
+  Output: "get some summary statistics of TG"
+  CorrectAnswer: summary(TG)
+  AnswerTests: omnitest(correctExpr = 'summary(TG)')
+  Hint: "the function for summary statistics is summary()"
+
