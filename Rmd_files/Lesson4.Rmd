@@ -1,0 +1,142 @@
+---
+title: "Lesson 4 Practice"
+author: "Gabrielle Ferra"
+date: '2022-08-07'
+output: html_document
+---
+
+# Demo part 1: Working with dataframes!
+
+# make a directory
+
+```{r}
+dir.create("data") # run me!
+```
+
+# download data from url
+
+```{r}
+ #Download the file here: https://github.com/gferra97/Coding_for_Cancer_2023/blob/3bbd87c817d750e36d83bd8558347972baa91bf9/clinical.csv
+```
+
+# import data and assign to object
+
+```{r}
+# your code here...
+
+```
+
+
+# view data
+
+```{r}
+# your code here...
+
+```
+
+# assess size of data frame
+
+```{r}
+# your code here...
+
+```
+
+# preview first few rows
+
+```{r}
+# your code here...
+
+```
+
+# show last three rows
+ 
+```{r}
+# your code here...
+
+```
+
+# view column names
+
+```{r}
+# your code here...
+
+```
+
+
+# view row names
+
+```{r}
+# your code here...
+
+```
+
+# show overview of object
+ 
+```{r}
+# your code here...
+
+```
+
+# provide summary statistics for each column
+ 
+```{r}
+# your code here...
+
+```
+
+# Demo part 2
+
+# extract first column and assign to a variable
+
+```{r}
+first_column <- # fill me in
+```
+
+# extract first column
+
+```{r}
+first_column_again <- # fill me in
+```
+
+# extract first row 
+
+```{r}
+first_row <- # fill me in
+```
+
+# extract cell from first row of first column
+
+```{r}
+single_cell <- # fill me in
+```
+
+# extract a range of cells, rows 1 to 3, second column
+
+```{r}
+range_cells <- # fill me in
+```
+
+# exclude first column
+
+```{r}
+exclude_col <- # fill me in 
+```
+
+# exclude first 100 rows
+
+```{r}
+exclude_range <- # fill me in 
+```
+
+# extract column by name
+
+```{r}
+name_col1 <- # fill me in
+```
+
+
+# dollar sign syntax
+
+```{r}
+name_col4 <- # fill me in
+```

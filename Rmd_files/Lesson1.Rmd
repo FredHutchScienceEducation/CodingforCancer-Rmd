@@ -1,0 +1,16 @@
+---
+title: "Lesson 1 practice"
+author: "Magdalena Russell"
+date: '2022-06-22'
+output: html_document
+---
+
+This is a R Markdown document.
+
+You can take notes just like you can in word or google docs. 
+
+Try writing a few notes here:
+
+
+
+R Markdown documents can also contain code chunks. We will learn more about code chunks and how to run them in the coming lessons.

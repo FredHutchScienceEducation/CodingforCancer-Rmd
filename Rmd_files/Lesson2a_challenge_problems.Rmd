@@ -1,0 +1,28 @@
+---
+title: "Lesson 2a Challenge Problems"
+author: "Magdalena Russell"
+date: '2022-06-15'
+output: html_document
+---
+
+# Exercise 1
+Create an object called agge that contains your age in years 
+Reassign the object to a new object called age (e.g., correct the typo) 
+Calculate your age in days (ignore leap years) age * 365
+
+```{r}
+#your code here..
+
+```
+
+
+# Exercise 2
+For the code chunk below, what is the value of each item at each step?
+
+```{r}
+mass <- 47.5
+width  <- 122          
+mass <- mass * 2.0 
+width  <- width - 20
+mass_index <- mass/width 
+```

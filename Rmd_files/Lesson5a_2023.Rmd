@@ -1,0 +1,83 @@
+---
+title: "Lesson 5a Practice"
+author: "Magdalena Russell & Katherine Brower"
+date: '2023-08-08'
+output: html_document
+---
+
+# install package (not required for RStudio cloud users)
+
+```{r}
+# run me
+install.packages("tidyverse")
+```
+
+# load library/package (REQUIRED for RStudio cloud users)
+
+```{r}
+# run me
+library(tidyverse)
+```
+
+# import data (same as yesterday!)
+
+```{r}
+# run me
+clinical <- read.csv("data/clinical.csv")
+```
+
+# inspect object
+
+```{r}
+# run me
+str(clinical)
+```
+
+# selecting columns with tidyverse (dplyr)
+
+```{r} 
+# pull out the following columns: clinical, tissue_or_organ_of_origin, primary_diagnosis, sample_type
+sel_columns <- select() # modify me!
+```
+
+```{r}
+# select range of columns
+sel_columns2 <- 
+```
+
+```{r}
+## select columns using helpers
+# using starts_with()
+sel_columns3 <- 
+# using ends_with()
+sel_columns4 <- 
+# using contains()
+sel_columns5 <- 
+```
+
+## select rows conditionally
+
+```{r}
+# keep only cancer samples
+filtered_rows <- 
+# keep only patients born after 1950
+filtered_rows2 <- 
+# keep only normal samples obtained from patients born before 1950
+filtered_rows3 <- 
+```
+
+## multiple conditions/methods using an intermediate object
+
+```{r}
+# first only look at Stage IV patients
+stage_iv <- 
+# select only race, ethnicity, and stage columns
+race_stage <- 
+```
+
+## nested commands 
+
+```{r}
+# select patients with Stage IV cancer, then select only the race, ethnicity, and stage columns
+race_stage <- select(filter(clinical, ajcc_pathologic_stage == "Stage IV"), race, ethnicity, ajcc_pathologic_stage)
+```

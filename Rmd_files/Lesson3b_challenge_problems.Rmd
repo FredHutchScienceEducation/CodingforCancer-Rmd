@@ -1,0 +1,83 @@
+---
+title: "Lesson 3a Challenge problems"
+author: "Gabrielle Ferra"
+date: '2023-08-07'
+output: html_document
+---
+
+What does the following code return as an answer? Why?
+
+```{r}
+"four" > "five"
+```
+
+Complete the following tasks after executing the code chunk below. (Note: there are multiple solutions):
+
+```{r}
+# create vector
+more_heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
+```
+
+Remove NAs
+
+```{r}
+#your code here...
+
+```
+
+Calculate the median
+
+```{r}
+#your code here...
+
+```
+
+Identify how many elements in the vector are greater than 67 inches
+
+```{r}
+#your code here...
+
+```
+
+Create a object representing a vector that contains the names of buildings on Fred Hutch’s campus: https://www.fredhutch.org/en/contact-us/visit-us.html
+
+```{r}
+#your code here...
+
+```
+
+Add Seattle, Washington to the beginning of the vector, and Steam Plant to the end of the vector
+
+```{r}
+#your code here...
+
+```
+
+subset the vector to show only the building whose name is in the acronym FHCRC
+
+```{r}
+#your code here...
+
+```
+
+The following vector represents the number of vacation days possessed by various employees:
+
+```{r}
+vacation_days <- c(5, 7, 20, 1, 0, 0, 12, 4, 2, 2, 2, 4, 5, 6, 7, 10, 4)
+```
+
+How many employees are represented in the vector?
+
+```{r}
+#your code here...
+
+```
+
+How many employees have at least one work week’s worth of vacation available to them?
+
+```{r}
+#your code here...
+
+```
+
+

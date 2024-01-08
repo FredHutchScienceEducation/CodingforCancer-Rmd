@@ -1,0 +1,41 @@
+---
+title: "Lesson 4 Challenge problems"
+author: "Gabrielle Ferra"
+date: '2022-08-07'
+output: html_document
+---
+
+If you already downloaded the dataset we worked with in the "Lesson4_practice.Rmd" notebook, run this code chunk:
+
+```{r}
+clinical <- read.csv("data/clinical.csv")      
+```
+
+If you have not already downloaded the dataset from the "Lesson4_practice.Rmd" notebook, run this code chunk:
+
+```{r}
+dir.create("data") 
+ #Download the file here: https://github.com/gferra97/Coding_for_Cancer_2023/blob/3bbd87c817d750e36d83bd8558347972baa91bf9/clinical.csv
+
+clinical <- read.csv("data/clinical.csv")      
+```
+
+Question 1: 
+
+What is the difference in results between clinical[1] and clinical[ , 1] (using our clinical data frame)?
+
+```{r}
+# your code here..
+
+```
+
+Question 2:
+a)	Code as many different ways possible to extract the column “pack_years_smoked”
+b)	Extract the first 6 rows for only “sample_type”, “ajcc_pathologic_stage”, and “age_at_diagnosis”.
+c)	Calculate the range and mean for cigarettes_per_day.
+d)	What age is the oldest patient (at diagnosis) in years? Youngest? (Note: age_at_diagnosis is given in days)
+
+```{r}
+# your code here..
+
+```

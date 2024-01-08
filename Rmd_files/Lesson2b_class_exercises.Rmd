@@ -1,0 +1,31 @@
+---
+title: "Lesson 2b In-class exercises"
+author: "Magdalena Russell"
+date: '2022-06-15'
+output: html_document
+---
+
+# Using pre-made functions
+
+## Instructions:
+
+## Use the `?` operator and/or google to figure out what each of the following functions do (and what arguments they can take)
+Type in your answers after each of the function names listed here:
+
+abs()
+ceiling()
+floor()
+log()
+sqrt()
+exp()
+toupper()
+tolower()
+substr()
+
+## Open the "Lesson2a_practice.Rmd" notebook from yesterday. Copy over the code chunk you wrote to introduce yourself. Then, integrate at least three of the functions you just learned about into your code chunk
+
+```{r}
+# copy over your code chunk from last time here...
+
+```
+
