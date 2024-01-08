@@ -41,7 +41,7 @@
 - Class: cmd_question
   Output: "extract the last 3 lines of TG"
   CorrectAnswer: tail(TG, n=3)
-  AnswerTests: omnitest(correctExpr = "tail(TG, n=3")
+  AnswerTests: omnitest(correctExpr = "tail(TG, n=3)")
   Hint: "the function for extracting the last few lines is tail() "
 
 - Class: cmd_question
@@ -65,9 +65,9 @@
   AnswerTests: omnitest(correctExpr = "mean(TG$len, na.rm = TRUE)")
   Hint: "check your coding help sheet or Google for the function!"
 
-- Class: cmd_quesiton
+- Class: cmd_question
   Output: "what was the lowest dose given in TG?"
-  CorrectAsnwer: min(TG$dose, na.rm = TRUE)
+  CorrectAnswer: min(TG$dose, na.rm = TRUE)
   AnswerTests: omnitest(correctExpr = "min(TG$dose, na.rm = TRUE)")
   Hint: "check your coding help sheet or Google for the function!"
 
@@ -85,4 +85,123 @@
   CorrectAnswer: summary(TG)
   AnswerTests: omnitest(correctExpr = 'summary(TG)')
   Hint: "the function for summary statistics is summary()"
+  
+- Class: txt
+  Output: "now that we have some summary stats on the entire data frame, lets look at the different treatment groups in the data frame"
+  
+- Class: txt
+  Output: "the guinea pigs in the study were given either orange juice (OG) or vitamin C (VC) and their odontoblasts were measured"
 
+- Class: cmd_question
+  Output: "what is the data type of the column dose?"
+  CorrectAnswer: class(TG$len)
+  AnswerTests: omnitest(correctExpr = "class(TG$dose)")
+  Hint: "the function for finding data type is class()"
+
+- Class: txt
+  Output: "this column contains information on the dose of either OJ or VC the guinea pig was given"
+
+- Class: cmd_question
+  Output: "do the same for the column len"
+  CorrectAnswer: class(TG$len)
+  AnswerTests: omnitest(correctExpr = "class(TG$len)")
+  
+- Class: txt
+  Output: "this column contains the measured length of the odontoblast after the treatment (OJ or VC)"
+
+- Class: txt
+  Output: "the first 30 samples in the data set received VC, the last 30 samples received OJ"
+
+- Class: cmd_question
+  Output: "extract the samples that received VC, assign it to TG_VC"
+  CorrectAnswer: TG_VC <- TG[1:30,]
+  AnswerTests: omnitest(correctExpr = "TG_VC <- TG[1:30,]")
+  Hint: "the format for extraction is df[row, column]"
+
+- Class: cmd_question
+  Output: "what is the mean odontoblast length for the samples that received VC?"
+  CorrectAnswer: "mean(TG_VC$len)"
+  AnswerTests: omnitest(correctExpr = "mean(TG_VC$len)", correctVal = 16.96333)
+  Hint: "use your newly extracted subset of TG"
+
+- Class: cmd_question
+  Output: "extract the samples that received OJ, assign it to TG_OJ"
+  CorrectAnswer: TG_OJ <- TG[31:60,]
+  AnswerTests: omnitest(correctExpr = "TG_OJ <- TG[31:60,]")
+  Hint: "make sure to start at row 31, sample 30 received VC!"
+
+- Class: cmd_question
+  Output: "what is the mean odontoblast length for samples that received OJ?"
+  CorrectAnswer: "mean(TG_OJ$len)"
+  AnswerTests: omnitest(correctExpr = "mean(TG_OJ$len)", correctVal = 20.66333)
+  Hint: "use your newly extracted subset of TG"
+
+- Class: cmd_question
+  Output: "what is the difference of the mean odontoblast lengths across the OJ and VC group?"
+  CorrectAnswer: mean(TG_OJ$len) - mean(TG_VC$len)
+  AnswerTests: omnitest(correctExpr =  "mean(TG_OJ$len) - mean(TG_VC$len)", correctVal = 3.7)
+  Hint: "substract VC from OJ, use your commands instead of retyping the number outputs from above"
+  
+- Class: txt
+  Output: "now lets try comparing the means across different doses in the OJ group"
+
+- Class: cmd_question
+  Output: "samples 31 - 40 are in the OJ group and received 0.5, extract this group and assign it to TG_OJ_low"
+  CorrectAnswer: TG_OJ_low <- TG[31:40,]
+  AnswerTests: omnitest(correctExpr = 'TG_OJ_low <- TG[31:40,]')
+  
+- Class: cmd_question
+  Output: "what is the mean odontoblast length of this subset of guinea pigs that received a low dose of OJ?"
+  CorrectAnswer: mean(TG_OJ_low$len)
+  AnswerTests: omnitest(correctExpr = "mean(TG_OJ_low$len)", correctVal = 13.23)
+  Hint: "use your new subset"
+
+- Class: cmd_question
+  Output: "samples 41 - 50 are in the OJ group and received a median dose (dose = 1.0), extract this group and assign it to TG_OJ_med"
+  CorrectAnswer: TG_OJ_med <- TG[41:50,]
+  AnswerTests: omnitest(correctExpr = "TG_OJ_med <- TG[41:50,]")
+
+- Class: cmd_question
+  Output: "what is the mean odotnoblast length of this subset of guniea pigs that received a medium dose of OJ?"
+  CorrectAnswer: mean(TG_OJ_med$len)
+  AnswerTests: omnitest(correctExpr = "mean(TG_OJ_med$len)", correctVal = 22.7) 
+  Hint: "use your new subest!"
+  
+- Class: cmd_question
+  Output: "lastly, samples 51 - 60 are in the OJ group and received a high dose (dose = 2.0) of OJ, extract this group and assign it to TG_OJ_high"
+  CorrectAnswer: TG_OJ_high <- TG[51:60,]
+  AnswerTests: omnitest(correctExpr = "TG_OJ_high <- TG[51:60,]")
+
+- Class: cmd_question
+  Output: "what is the mean odontoblast length of this subset of guinea pigs that received a high dose of OJ?"
+  CorrectAnswer: mean(TG_OJ_high$len)
+  AnswerTests: omnitest(correctExpr = "mean(TG_OJ_high$len)", correctVal = 26.06)
+  Hint: "use the new subset you just extracted!"
+  
+- Class: cmd_question
+  Output: "what is the difference between the mean length in the low dose group and high dose group?"
+  CorrectAnswer: mean(TG_OJ_high$len) - mean(TG_OJ_low$len)
+  AnswerTests: omnitest(correctExpr = " mean(TG_OJ_high$len) - mean(TG_OJ_low$len)", correctVal = 12.83)
+  Hint: "substract low dose from high dose, use the commands instead of typing out the numerical outputs"
+  
+- Class: cmd_question
+  Output: "what is the median odontoblast length of TG_OJ?"
+  CorrectAnswer: median(TG_OJ$len)
+  AnswerTests: omnitest(correctExpr = "median(TG_OJ$len)", correctVal = 22.7)
+  Hint: "use the subset for all OJ dose groups"
+  
+- Class: cmd_question
+  Output: "what is the difference between the median odontoblast length of the entire OJ group and the mean odontoblast length of the median OJ dose group?"
+  CorrectAnswer: median(TG_OJ$len) -  mean(TG_OJ_med$len)
+  AnswerTests: omnitest(correctExpr = "median(TG_OJ$len) -  mean(TG_OJ_med$len)", correctVal = 0)
+  Hint: "subtrace the med group mean from the median, use the previous comands instead of typing out the numerical outputs"
+
+- Class: txt
+  Output: "the median was the same as the mean of the medium dosage group!"
+
+- Class: txt
+  Output: "great work subsetting the ToothGrowth dataset and analyzing it!"
+
+
+  
+  
