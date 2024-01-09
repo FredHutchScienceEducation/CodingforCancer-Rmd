@@ -1,0 +1,67 @@
+---
+title: "Lesson 7a Coding Exercises"
+author: "sfhart & Katherine Brower"
+date: "08/14/2023"
+output: html_document
+---
+
+## Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient
+##       characteristics
+
+
+## Graphing using ggplot2
+
+## Instructions:
+## Let's revisit the relationship between RB1 expression and the types of
+## mutations in RB1 that we've seen in our bladder cancer samples!
+##  - Make a boxplot comparing RB1 expression between cancers that have any
+##    RB1 mutation and those that do not. Use the RB1_clinical dataset you created in lesson 6.
+##    Hint: Which col holds logical values for our RB1 mutations of interest? (e.g. use names() or View())
+##  - Discuss with your group (be prepared to share with the larger group later):
+##    We were aware of the difference in mean/medians, but what can we now
+##      say about the range, outliers, etc.? What new questions/hypothesis can
+##      we generate from these data?
+##  - Then use coord_cartesian() to "zoom" to between 0 and 20 FPKM (the units
+##    for this analysis)
+##  - Discuss with your group (be prepared to share with the larger group later):
+##    How does this new view alter what questions we might generate?
+##  - If there's time, take a look at the ggplot2 reference sheet below and test
+##    out some plot modifications to see what works with boxplots!
+##    https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf
+
+
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+# Run the following code from lesson 6 to make RB1_clinical
+```{r}
+clinical <- read_csv("data/clinical.csv")
+RB1_clinical <- clinical %>%
+  select(tissue_or_organ_of_origin:total.number.Indels, contains("RB1")) %>%
+  filter(sample_type == "Primary Tumor") %>%
+  mutate(across(c(focal.deletion.in.RB1,mutation.in.RB1), #find cols that contain "RB1"
+                ~replace_na(., "NaN"))) %>%  #replace the NAs with strings
+  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
+           focal.deletion.in.RB1 == "Loss" |
+           mutation.in.RB1 == "yes"
+  ) %>%
+  mutate(RB1_expr = as.numeric(RB1_expr)) #make sure expression is numeric just in case
+```
+
+```{r}
+#RB1_clinical
+#names(RB1_clinical)
+ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
+  geom_boxplot()
+```
+
+```{r}
+ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
+  geom_boxplot()+
+  coord_cartesian(ylim=c(0,20))
+```
+
+

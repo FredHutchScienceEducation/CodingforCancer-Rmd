@@ -1,0 +1,208 @@
+---
+title: "Lesson 7b key"
+author: "sfhart"
+date: "7/17/2022"
+output: html_document
+---
+
+# load library/package
+```{r}
+library(tidyverse)
+```
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+# boxplot from lesson 7a
+```{r}
+d_plot <- clinical %>% 
+  select(barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations) %>% 
+  filter(!is.na(count.ERCC2.signature.mutations)) %>% 
+  filter(Tobacco.smoking.history %in% c("Current smoker", "Lifelong Non-smoker"))
+
+L7A_boxplot <- ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(color = "blue")
+
+L7A_boxplot
+```
+
+
+# set boxplot color = "red"
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           color = "red")) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) 
+  geom_jitter(color = "blue")
+```
+
+# set boxplot fill = "red"
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = "red")) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(color = "blue")
+```
+
+# set boxplot fill to be colored by Tobacco smoking history
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(color = "blue")
+```
+
+# specify boxplot fill colors
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(color = "blue") +
+  scale_fill_manual(limits = c("Current smoker", "Lifelong Non-smoker"), # category names
+                    values = c("orange", "blue")) # corresponding colors
+```
+
+# specify boxplot fill and jitter points colors
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(aes(color = Tobacco.smoking.history)) + # specify data column
+  scale_fill_manual(limits = c("Current smoker", "Lifelong Non-smoker"),
+                    values = c("orange", "blue"))
+```
+
+# use hex color codes
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(aes(color = Tobacco.smoking.history)) +
+  scale_fill_manual(limits = c("Current smoker", "Lifelong Non-smoker"),
+                    values = c("#fdae61", "#abd9e9")) # hex color codes
+```
+
+# add transparency to jittered points
+```{r}
+ggplot(data = d_plot,
+       aes(x = Tobacco.smoking.history,
+           y = count.ERCC2.signature.mutations,
+           fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(aes(color = Tobacco.smoking.history), alpha = 0.5) + # add transparency
+  scale_fill_manual(limits = c("Current smoker", "Lifelong Non-smoker"),
+                    values = c("#fdae61", "#abd9e9"))
+```
+
+# save plot to an object p
+```{r}
+# Alpha =0.5
+p <- ggplot(data = d_plot,
+            aes(x = Tobacco.smoking.history,
+                y = count.ERCC2.signature.mutations,
+                fill = Tobacco.smoking.history)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(aes(color = Tobacco.smoking.history), alpha = 0.5) +
+  scale_fill_manual(limits = c("Current smoker", "Lifelong Non-smoker"),
+                    values = c("#fdae61", "#abd9e9")) +
+ labs(title = "Tobacco smoking history vs. Number of Signature ERCC2 Mutations",
+       x = "Tobacco smoking history",
+       y = "Number of ERCC2 signature mutations")
+
+p
+```
+
+# modify plot area and gridlines
+```{r}
+p +
+  theme_bw() # using a pre-set theme
+```
+  
+# modify plot text features with theme() to make it more readable!
+```{r}
+p +
+  theme_bw() + 
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7))
+```
+
+# remove legend
+```{r}
+p +
+  theme_bw() + 
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none")
+```
+
+# fix axis titles
+```{r}
+p +
+  theme_bw() + 
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(x = "Tobacco smoking history",
+       y = "Number of ERCC2 signature mutations")
+```
+
+# create final_plot object
+```{r}
+final_plot <- p +
+  theme_bw() + 
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "Tobacco smoking history vs. Number of Signature ERCC2 Mutations",
+       x = "Tobacco smoking history",
+       y = "Number of ERCC2 signature mutations")
+
+final_plot
+```
+ 
+
+# create a directory to store our plots
+```{r}
+dir.create("plots")
+```
+
+# save plot to directory
+```{r}
+ggsave(filename = "plots/boxplot.pdf",
+       plot = final_plot,
+       width = 1.5, 
+       height = 3) 
+```

@@ -1,0 +1,43 @@
+---
+title: "lesson7b_challenge_problems"
+author: "sfhart & Katherine Brower"
+date: "08/15/2023"
+output: html_document
+---
+
+All exercises use the clinical object we created in the readings:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+In the code used to create boxplots in the readings:
+    Code jitter before the boxplot. What happens?
+    Layer the code block using theme(), modifying the axes labels and the legend, before theme_bw(). What is different?
+    Given your observations after doing the above, does the order of layers matter?
+```{r}
+
+```
+    
+In the boxplot code in the reading, use theme_gray() (or theme_grey()) instead of theme_bw(). What do you observe when theme_gray() is present vs when it is absent in the code block? What can you conclude about default theme settings in ggplot2?
+```{r}
+
+```
+
+In Lesson 7a, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in Lesson 7b to create a more presentable plot.
+    Set the colors of the points to a column with continuous (numerical) data of your choice. What happens? Is there a trend?
+    Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
+    Use faceting to create the same plot for each of the cancer stages
+```{r}
+
+```
+
+Create a plot of your choice using the data in clinical. Use what you learned in Lesson 7b to add appropriate customizations.
+```{r}
+
+```
+
