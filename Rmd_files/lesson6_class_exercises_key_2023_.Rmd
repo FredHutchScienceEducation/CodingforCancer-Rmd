@@ -1,0 +1,169 @@
+---
+title: 'Lesson 6: Coding Exercises'
+author: "Sam Hart & Katherine Brower"
+date: "2023-08-10"
+output: html_document
+---
+
+## Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient
+##       characteristics
+
+
+
+## Part I: Counting and summarizing groups
+
+## Instructions:
+##  We are interested in how RB1--which is best known for contributing to eye
+##  cancers--might contribute to bladder cancers. Let's continue with our expression
+##  comparisons from last time!
+##   - Group by "any.RB1.mut" and then determine the median, min, and max
+##     of RB1_expr for each group using summarize.
+##   - Group by cancer stage and then determine the median age of diagnosis *in years*
+##     Hint: Remember to use View() or names() if you're not sure of the column
+##      names to use here. Remember you can nest mathematical functions just like
+##      R functions or the two together. :)
+
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+## Load the data
+
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+## Continue with RB1-relevant subset of data
+
+```{r}
+RB1_clinical <- clinical %>%
+  select(tissue_or_organ_of_origin:total.number.Indels, contains("RB1")) %>%
+  filter(sample_type == "Primary Tumor") %>%
+  mutate(across(c(focal.deletion.in.RB1,mutation.in.RB1), #find cols that contain "RB1"
+                ~replace_na(., "NaN"))) %>%  #replace the NAs with strings
+  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
+           focal.deletion.in.RB1 == "Loss" |
+           mutation.in.RB1 == "yes"
+  ) %>%
+  mutate(RB1_expr = as.numeric(RB1_expr)) #make sure expression is numeric just in case
+```
+
+# [Add code here]
+
+
+```{r}
+RB1_stats <- RB1_clinical %>%
+  group_by(any.RB1.mut) %>%
+  summarize(
+    median.RB1_expr = median(RB1_expr, na.rm = TRUE),
+    min.RB1_expr = min(RB1_expr, na.rm = TRUE),
+    max.RB1_expr = max(RB1_expr, na.rm = TRUE)
+  )
+```
+
+# # A tibble: 2 Ã 4
+#    any.RB1.mut median.RB1_expr min.RB1_expr max.RB1_expr
+#    <lgl>                 <dbl>        <dbl>        <dbl>
+#  1 FALSE                  7.83        0.696         41.7
+#  2 TRUE                   3.19        0.385         19.0
+
+## To find col name:
+
+```{r}
+names(RB1_clinical) #OR
+View(RB1_clinical)
+```
+
+
+```{r}
+RB1_median_age <- RB1_clinical %>%
+  group_by(ajcc_pathologic_stage) %>%
+  summarize(
+    median.age_diagnosis_yrs = median(age_at_diagnosis / 365)
+  )
+```
+
+## A tibble: 5 Ã 2
+#   ajcc_pathologic_stage median.age_diagnosis_yrs
+#   <chr>                                    <dbl>
+# 1 Stage I                                   73.5
+# 2 Stage II                                  67.3
+# 3 Stage III                                 69.7
+# 4 Stage IV                                  69.0
+# 5 NA                                        NA
+
+
+## Part II: Saving data and more counting options
+
+## Instructions:
+##  - Save RB1_clinical to a new csv called "RB1.csv" in the directory data
+##     Hint: If you're not sure what path to enter, use the read_csv statement
+##      above as a template.
+##  - Group by the column "any.RB1.mut" and count the number of patients with each cancer stage using tally()
+##  - Filter race for Asian, Black, or White patients using the %in% operator;
+##    then count the number of patients with each cancer stage using count()
+
+# [Add code here]
+
+
+# Check that it's in the data folder to the right
+```{r}
+RB1_clinical %>%
+  write_csv(., file = "data/RB1.csv")
+```
+
+
+
+```{r}
+RB1_num_patients <- RB1_clinical %>%
+  group_by(any.RB1.mut, ajcc_pathologic_stage) %>%
+  tally()
+```
+## This one can be tricky since you have to use both in the group_by, which might
+## not be clear from how it's written.
+
+#    any.RB1.mut ajcc_pathologic_stage     n
+#    <lgl>       <chr>                 <int>
+#  1 FALSE       Stage I                   4
+#  2 FALSE       Stage II                102
+#  3 FALSE       Stage III               125
+#  4 FALSE       Stage IV                118
+#  5 FALSE       NA                        1
+#  6 TRUE        Stage II                 28
+#  7 TRUE        Stage III                17
+#  8 TRUE        Stage IV                 18
+#  9 TRUE        NA                        1
+
+## Determine what these race categories are coded as; it's easier to copy and
+## paste anyway :)
+```{r}
+unique(RB1_clinical$race)
+```
+# [1] "white"                     "asian"                     "not reported"
+# [4] "black or african american"
+
+```{r}
+RB1_by_race_count <- RB1_clinical %>%
+  filter(race %in% c("white","asian","black or african american")) %>%
+  count(ajcc_pathologic_stage)
+```
+
+# ajcc_pathologic_stage      n
+# <chr>                   <int>
+# 1 Stage I                   4
+# 2 Stage II                125
+# 3 Stage III               135
+# 4 Stage IV                132
+# 5 NA                        1
+
+## What would you add to the above code if you wanted to look at stage distribtions
+## for the three race options?
+
+```{r}
+RB1_by_stage_distribution <- RB1_clinical %>%
+  filter(race %in% c("white","asian","black or african american")) %>%
+  group_by(ajcc_pathologic_stage) %>%
+  count(ajcc_pathologic_stage)
+```

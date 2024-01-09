@@ -1,0 +1,49 @@
+---
+title: "Lesson 5a Challenge problems"
+author: "Magdalena Russell & Katherine Brower"
+date: '2023-08-08'
+output: html_document
+---
+
+All exercises use the clinical object we created in the readings:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+Create a new object from clinical called demographics_BLCA that includes only the height, bmi, gender, ethnicity, and race.
+
+```{r}
+#creating the new object using the select() function
+demographics_BLCA <- select(clinical, height, bmi, gender, ethnicity, race)
+```
+
+Code as many ways to select the columns of barcode, project_id, tissue_or_organ_of_origin, primary_diagnosis, and sample_type from the clinical object. Hint there are 6 ways!
+
+```{r}
+#6 ways to create the same object with the same selected columns!
+try_1 <- select(clinical, barcode, project_id, tissue_or_organ_of_origin, primary_diagnosis, sample_type)
+try_2 <- select(clinical, c(1, 2, 3, 4, 5))
+try_3 <- select(clinical, 1:5)
+try_4 <- clinical[ , 1:5]
+try_5 <- clinical[ , c(1, 2, 3, 4, 5)]
+try_6 <- clinical[c("barcode", "project_id", "tissue_or_organ_of_origin", "primary_diagnosis", "sample_type")]
+```
+
+Create a new object from clinical called demographics_BLCA_current_smokers that includes only the height, bmi, gender, ethnicity, and race. However, restrict data such that only current smokers are included (hint: relevant column is called Tobacco.smoking.history).
+
+```{r}
+# creating the new object with the conditions given in the question
+demographics_BLCA_current_smokers <- select(filter(clinical, Tobacco.smoking.history == "Current smoker"), height, bmi, gender, ethnicity, race)
+
+#calculate the mean of the count of the ERCC2 signature mutations. Remember that we can use $ operator with data frames! (Hint: the column we are looking for is count.ERCC2.signature.mutations)
+mean(demographics_BCLA_mutation_count$count.ERCC2.signature.mutations, na.rm = TRUE)
+#the answer is 64.31059
+
+```
+
+

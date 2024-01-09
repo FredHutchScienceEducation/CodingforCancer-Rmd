@@ -1,0 +1,83 @@
+---
+title: "Lesson 5a Practice"
+author: "Magdalena Russell & Katherine Brower"
+date: '2022-06-15'
+output: html_document
+---
+
+# install package (not required for RStudio cloud users)
+
+```{r}
+# run me
+install.packages("tidyverse")
+```
+
+# load library/package (REQUIRED for RStudio cloud users)
+
+```{r}
+# run me
+library(tidyverse)
+```
+
+# import data (same as yesterday!)
+
+```{r}
+# run me
+clinical <- read.csv("data/clinical.csv")
+```
+
+# inspect object
+
+```{r}
+# run me
+str(clinical)
+```
+
+# selecting columns with tidyverse (dplyr)
+
+```{r} 
+# pull out the following columns: clinical, tissue_or_organ_of_origin, primary_diagnosis, sample_type
+sel_columns <- select(clinical, tissue_or_organ_of_origin, primary_diagnosis, sample_type) # modify me!
+```
+
+```{r}
+# select range of columns
+sel_columns2 <- select(clinical, barcode:sample_type)  
+```
+
+```{r}
+# selecting columns with helpers
+# using starts_with()
+sel_columns3 <- select(clinical, starts_with("total"))
+# using ends_with()
+sel_columns4 <- select(clinical, ends_with("expr"))
+# using contains()
+sel_columns5 <- select(clinical, contains("mut"))
+```
+
+## select rows conditionally
+
+```{r}
+# keep only cancer samples
+filtered_rows <- filter(clinical, sample_type == "Primary Tumor")
+# keep only patients born after 1950
+filtered_rows2 <- filter(clinical, year_of_birth > 1950)
+# keep only normal samples obtained from patients born before 1950
+filtered_rows3 <- filter(clinical, (sample_type == "Solid Tissue Normal") & (year_of_birth < 1950))
+```
+
+## multiple conditions/methods using an intermediate object
+
+```{r}
+# first only look at Stage IV patients
+stage_iv <- filter(clinical, ajcc_pathologic_stage == "Stage IV")
+# select only race, ethnicity, and stage columns
+race_stage <- select(stage_iv, race, ethnicity, ajcc_pathologic_stage)
+```
+
+## nested commands 
+
+```{r}
+# select patients with Stage IV cancer, then select only the race, ethnicity, and stage columns
+race_stage <- select(filter(clinical, ajcc_pathologic_stage == "Stage IV"), race, ethnicity, ajcc_pathologic_stage)
+```

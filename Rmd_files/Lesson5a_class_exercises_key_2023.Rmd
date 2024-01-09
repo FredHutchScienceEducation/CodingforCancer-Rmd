@@ -1,0 +1,45 @@
+---
+title: "Lesson 5a In-class exercises"
+author: "Magdalena Russell & Katherine Brower"
+date: '2023-08-08'
+output: html_document
+---
+
+# Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics
+
+# Part I: Working with dataframes: select and filter
+
+## Instructions:
+We’re interested in how RB1--which is best known for contributing to eye cancers--might contribute to bladder cancers. Let’s prepare the data to investigate!
+    * Select the columns "tissue_or_organ_of_origin” through "total.number.Indels" and all columns that contain “RB1”. Assign this new dataframe to the variable “RB1_clinical”. Hint: Use commas to separate multiple groupings of columns in `select()`)
+    * Filter RB1_clinical for just the "Primary Tumor" sample types in "sample_type"
+    * Filter RB1_clinical for patients who have either “Del” or “Loss” in “focal.deletion.in.RB1” OR “yes” in "mutation.in.RB1". Hint: We can use the “|” operator for OR. You'll need a total of three expressions in your filtering step.
+
+
+## Import packages
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+## Load the data
+
+```{r}
+clinical <- read.csv("data/clinical.csv")
+```
+
+```{r}
+RB1_clinical <- select(clinical,
+                       tissue_or_organ_of_origin:total.number.Indels,
+                       contains("RB1"))
+
+filter(RB1_clinical,
+       sample_type == "Primary Tumor")
+
+filter(RB1_clinical,
+  focal.deletion.in.RB1 == "Del" |
+  focal.deletion.in.RB1 == "Loss" |
+  mutation.in.RB1 == "Yes"
+)
+```
+
