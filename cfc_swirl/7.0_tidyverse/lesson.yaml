@@ -1,0 +1,41 @@
+- Class: meta
+  Course: cfc_swirl
+  Lesson: 7.0_tidyverse
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the lesson on tidyverse!"
+  
+- Class: mult_question
+  Output: "what is tidyverse?"
+  AnswerChoices: package; software; app
+  CorrectAnswer: package
+  AnswerTests: omnitest(correctVal = "package")
+  
+- Class: cmd_question 
+  Output: "lets download the tidyverse package"
+  CorrectAnswer: install.package("tidyverse")
+  AnswerTests: omnitest(correctExpr = 'install.packages("tidyverse")')
+  Hint: "the function to install a package is install.packages()"
+
+- Class: cmd_question
+  Output: "now that we have downloaded tidyverse, load the library/package"
+  CorrectAnswer: library(tidyverse)
+  AnswerTests: omnitest(correctExpr = "library(tidyverse)")
+  Hint: "the function to load a library is library()"
+
+- Class: cmd_question
+  Output: "import thta data set from last time and assign it to clinical"
+  CorrectAnswer: clinical <- read.csv("data/clinical.csv")
+  AnswerTests: omnitest(correctExpr = "clinical <- read.csv('data/clinical.csv)")
+  Hint: "did you download the data from Github last time? if not go back to 6.1 to download it"
+
+- Class: cmd_question
+  Output: "inspect the structure of clinical"
+  CorrectAnswer: str(clinical)
+  AnswerTests: omnitest(correctExpr = "str(clinical)")
+  Hint: "the function str() can be used to insepct the structure of an R object"
+
