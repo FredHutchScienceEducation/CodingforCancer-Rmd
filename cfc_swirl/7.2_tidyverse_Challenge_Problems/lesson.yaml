@@ -1,0 +1,45 @@
+- Class: meta
+  Course: cfc_swirl
+  Lesson: 7.2_tidyverse_Challenge_Problems
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the tidyverse Challenge Problems!"
+
+- Class: txt
+  Output: "we are going to continue working with the clinical data frame using
+  tidyverse"
+  
+- Class: cmd_question
+  Output: "before you begin, you should have tidyverse installed (skip this if you do)"
+  CorrectAnswer: install.packages("tidyverse")
+  AnswerTests: omnitest(correctExpr = 'install.packages("tidyverse")')
+  Hint: "run install.packages('tidyverse')"
+
+- Class: cmd_question
+  Output: "lets load tidyverse"
+  CorrectAnswer: library(tidyverse)
+  AnswerTests: omnitest(correctExpr = "library(tidyverse)")
+  Hint: "use library() to load"
+  
+- Class: cmd_question
+  Output: "load the clinical dataset to get started"
+  CorrectAnswer: clinical <- read.csv('data/clinical.csv')
+  AnswerTests: omnitest(correctExpr = "clinical <- read.csv('data/clinical.csv')")
+  Hint: "use read.csv to load the clinical.csv into the variable clinical"
+
+- Class: txt
+  Output: "now that you have your data set and tidyverse loaded, lets get started"
+  
+- Class: cmd_question
+  Output: "create a new object called demographics_BLCA that only includes the height, 
+  bmi, gender, ethnicity, and race columns of clinical"
+  CorrectAnswer: demographics_BLCA <- select(clinical, height, bmi, gender, ethnicity, race)
+  AnswerTests: omnitest(correctExpr = "demographics_BLCA <- select(clinical, height, bmi, gender, ethnicity, race)")
+  Hint: "use select()"
+  
+- Class: 
+  
