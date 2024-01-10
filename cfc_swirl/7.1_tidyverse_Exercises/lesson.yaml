@@ -14,7 +14,7 @@
   tidyverse"
   
 - Class: cmd_question
-  Output: "before you begin, you should have tidyverse installed (skip this is you do)"
+  Output: "before you begin, you should have tidyverse installed (skip this if you do)"
   CorrectAnswer: install.packages("tidyverse")
   AnswerTests: omnitest(correctExpr = 'install.packages("tidyverse")')
   Hint: "run install.packages('tidyverse')"
