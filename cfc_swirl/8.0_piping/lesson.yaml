@@ -1,0 +1,17 @@
+- Class: meta
+  Course: cfc_swirl
+  Lesson: 8.0_piping
+  Author: Hanako Osuga
+  Type: Standard
+  Organization: Fred Hutch Cancer Center
+  Version: 2.4.5
+
+- Class: txt
+  Output: "welcome to the piping lesson!"
+  
+- Class: cmd_question
+  Output: "before we get started, lets load the tidyverse package"
+  CorrectAnswer: library(tidyverse)
+  AnswerTests: omnitest(correctExpr = "library(tidyverse)")
+  Hint: "use the library() function, see coding help sheet for more info"
+  
