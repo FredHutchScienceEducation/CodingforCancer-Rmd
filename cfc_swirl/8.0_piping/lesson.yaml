@@ -15,3 +15,80 @@
   AnswerTests: omnitest(correctExpr = "library(tidyverse)")
   Hint: "use the library() function, see coding help sheet for more info"
   
+- Class: cmd_question
+  Output: "import the data, just like last time"
+  CorrectAsnwer: clinical <- read.csv("data/clinical.csv")
+  AnswerTests: omnitest(correctExpr = "clinical <- read.csv('data/clinical.csv')")
+  Hint: "assign clinical to the data set"
+  
+- Class: txt
+  Output: "last time we used nested commands to combine multiple commands"
+
+- Class: txt
+  Output: "we ran: race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)"
+  
+- Class: mult_question
+  Output: "look at the command above, what is the inner most nest (layer) of code?"
+  AnswerChoices: race_stage <-; select(), filter()
+  CorrectAnswer: filter()
+  AnswerTests: omnitest(correctVal = "filter()")
+  Hint: "what is inside the inner most layer of parantheses"
+
+- Class: mult_question
+  Output: "what is that function filtering for?"
+  AnswerChoices: Stage IV cancer; race; ethnicity
+  CorrectAnswer: Stage IV cancer
+  AnswerTests: omnitest(correctVal = "Stage IV cancer")
+  Hint: "ajcc_pathologic_stage equals what?"
+
+- Class: mult_question
+  Output: "which of these columns is the command not selecting for?"
+  AnswerChoices: race; ethnicity; age; ajcc_pathologic_stage
+  CorrectAnswer: age
+  AnswerTests: omnitest(correctVal = "age")
+  Hint: "what columns are you selecting for? what is not present in the code?"
+
+- Class: cmd_question
+  Output: "run the nested command"
+  CorrectAnswer: race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)
+  AnswerTests: omnitest(correctExpr = "race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)")
+  Hint: "run this command: race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)"
+
+- Clas: cmd_question
+  Output: "view race_stage"
+  CorrectAnswer: View(race_stage)
+  AnswerTests: omnitest(correctExpr = "View(race_stage")
+  
+- Class: txt
+  Output: "now lets try to write this command, but with pipes"
+
+- Class: mult_question    
+  Output: "what is the piping operator?"
+  AnswerChoices: !; ?; <-; %>%
+  CorrectAnswer: "%>%"
+  AnswerTests: omnitest(correctVal = "%>%")
+  
+- Class: txt
+  Output: "a pipe takes the output of a command and feeds it directly into the next command"
+
+- Class: txt
+  Output: "if you want to read more about piping, go to https://magrittr.tidyverse.org/"
+
+- Class: txt
+  Output: "an example fo this would be to use the %>% operator to put piped <- clinical into the next command"
+
+- Class: txt
+  Output: "in this case you want to assign the clinical to the piped data set, then pipe that into the filter function"
+  
+- Class: cmd_question
+  Output: "to do this, run: piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')"
+  CorrectAnswer: piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')
+  AnswerTests: omntest(correctExpr = "piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')")
+    
+  
+  
+  
+  
+  
+  
+  
