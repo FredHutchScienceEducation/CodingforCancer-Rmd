@@ -34,6 +34,7 @@
   AnswerTests: omnitest(correctVal = "filter()")
   Hint: "what is inside the inner most layer of parantheses"
 
+
 - Class: mult_question
   Output: "what is that function filtering for?"
   AnswerChoices: Stage IV cancer; race; ethnicity
@@ -42,7 +43,7 @@
   Hint: "ajcc_pathologic_stage equals what?"
 
 - Class: mult_question
-  Output: "which of these columns is the command not selecting for?"
+  Output: "which of these columns is the command NOT selecting for?"
   AnswerChoices: race; ethnicity; age; ajcc_pathologic_stage
   CorrectAnswer: age
   AnswerTests: omnitest(correctVal = "age")
@@ -54,7 +55,7 @@
   AnswerTests: omnitest(correctExpr = "race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)")
   Hint: "run this command: race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)"
 
-- Clas: cmd_question
+- Class: cmd_question
   Output: "view race_stage"
   CorrectAnswer: View(race_stage)
   AnswerTests: omnitest(correctExpr = "View(race_stage)")
@@ -80,10 +81,11 @@
 - Class: txt
   Output: "in this case you want to assign the clinical to the piped data set, then pipe that into the filter function"
 
-- Class: cmd_question
-  Output: "to do this, run: piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')"
-  CorrectAnswer: piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')
-  AnswerTests: omntest(correctExpr = "piped <- clinical %>% filter(., ajcc_pathologic_stage == 'Stage IV')")
-    
-  
-  
+- Class: txt
+  Output: "piped <- clinical %>%"
+
+- Class: txt
+  Output: "....filter(., ajcc_pathologic_stage == 'Stage IV')"
+
+- Class: txt
+  Output: "where each . is replaced by a space"
