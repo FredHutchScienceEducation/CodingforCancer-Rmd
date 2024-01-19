@@ -1,0 +1,89 @@
+---
+title: "2.2_Data_Types_Challenge_Problems"
+output: html_document
+date: "2024-01-19"
+---
+
+welcome to the challenge problems for the data types lesson!
+
+in this problem set, you work at a bodega that sells candy, a popular item here is the chocolate bar
+
+#assign an obeject called item with the value "chocolate bar"
+```{r}
+
+```
+
+each chocolate bar costs $1.25
+
+#assign the object price with the price of the chocolate bar as a numeric
+```{r}
+
+```
+
+WA State is a state with sales tax of 6.5%
+
+#calculate the total price of 1 chocolate bar with sales tax, assign thsi to with_tax
+```{r}
+
+```
+
+#how much would it cost to buy 6 chocolate bars BEFORE tax?
+```{r}
+
+```
+
+#how much would it cost to buy 6 chocolate bars AFTER tax?
+```{r}
+
+```
+
+the price of the chocolate bar goes down to $1.15
+
+#re-assign price to this new number
+```{r}
+
+```
+
+#what is the new price with tax per chocolate bar, re-assign with_tax with this new value
+```{r}
+
+```
+
+you receive a large order of chocolate bars, the quantity requested is seventy chocolate bars
+
+#make a new object called quantitiy, and assign it 'seventy'
+```{r}
+
+```
+
+you are asked to calculate the price of this large order
+since you were storing these values as you went, you should be bale to just ask R to do price*quantity
+
+#try this
+```{r}
+
+```
+
+why will this get you an error?
+
+what is the data type of price?
+
+what is the data type of quantity?
+
+#re-assign quantity to the correct data type to do the calculation
+```{r}
+
+```
+
+#calculate the price after tax for this large order
+```{r}
+
+```
+
+
+great work!
+
+
+
+
+
