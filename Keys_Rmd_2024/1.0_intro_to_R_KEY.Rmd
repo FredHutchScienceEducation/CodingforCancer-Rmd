@@ -1,0 +1,86 @@
+---
+title: "1.0_intro_to_R"
+output: html_document
+date: "2024-01-12"
+---
+
+This is a R Markdown document.
+
+You can take notes just like you can in word or google docs. 
+
+Try writing a few notes!
+
+Your name: 
+Today's date:
+More notes:
+
+
+R Markdown documents can also contain code chunks. The grey area below is a code chunk:
+
+```{r}
+#insert code here
+```
+
+Code written in a code chunk can be run just like you wrote it in the Console pane below.
+To run the code in the code chunk, click on the play button in the top right corner
+of each code chunk.
+
+We are going to use these Rmd files to save our code from our activities in swirl(). 
+You can write yourself notes in these files, these are meant for your and your learning!
+You won't be able to run any code in the code chunks with swirl() open, so do any troubleshooting 
+in swirl() before writing it down in here. 
+
+Once you close out of swirl() you can run your code. 
+
+Work through each activity in swirl(), but make sure to copy over code so you can keep 
+a record of all the amazing code you write!
+
+
+#add 3 and 4 together, using the '+' operator, just like in math class
+```{r}
+3+4
+```
+
+#try multiplying 5 by 6, using the * operator 
+```{r}
+5*6
+```
+
+#assign the value 10 to the object weight_kg, by typing weight_kg <- 10
+```{r}
+weight_kg <- 10
+```
+
+#print the variable you created above
+```{r}
+weight_kg
+```
+
+#convert kg to lb by multiplying weight_kg by 2.2
+```{r}
+weight_kg*2.2
+```
+
+#assign a new object called weight_lb with the value you got above
+```{r}
+weight_lb <- weight_kg*2.2
+```
+
+#print your new object
+```{r}
+weight_lb
+```
+
+#re-assign weight_kg to 100
+```{r}
+weight_kg <- 100
+```
+
+#print weight_kg to check
+```{r}
+weight_kg
+```
+
+Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
+Once you exit swirl(), try running your code. 
+
