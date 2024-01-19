@@ -1,0 +1,46 @@
+---
+title: "1.1_Intro_to_R_Exercises"
+output: html_document
+date: "2024-01-19"
+---
+
+Welcome to the 1.0 Intro to R Exercises. Feel free to take notes in this document, 
+for you to reference later! Make sure to copy your commands from your console (swirl)
+so you can reference it later too!
+
+divide 525600 by 60
+```{r}
+#insert code here
+```
+
+assign the object year, the value 365 (or the number of days in a year)
+```{r}
+#insert code here
+```
+
+multiply year by 24
+```{r}
+#insert code here
+```
+
+assign year*24 to hours
+```{r}
+#insert code here
+```
+
+multiply hours by 60 *the number of minutes in an hour)
+```{r}
+#insert code here
+```
+
+how many minutes are in a year?
+```{r}
+#insert code here
+```
+
+
+
+
+
+
+
