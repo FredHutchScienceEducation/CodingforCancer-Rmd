@@ -6,44 +6,44 @@ date: "2024-01-19"
 
 Welcome to the 1.2 Intro Challenge Problems! Feel free to take notes in this document, for you to reference later! Make sure to copy your commands from your console (swirl) so you can reference it later too!
 
-make an object called message and assign it "congrats"
+#make an object called message and assign it "congrats"
 ```{r}
 
 ```
 
 a normal resting heart rate for adults ranges from 60 - 100 beats per minute.
 
-first, let's make an object called lower_range and assign it to 60
+#first, let's make an object called lower_range and assign it to 60
 ```{r}
 
 ```
 
-now let's do the same for the upper range of heartbeats
+#now let's do the same for the upper range of heartbeats
 ```{r}
 
 ```
 
-now we need to calculate how many minutes in a year, let's start by multiplying 60 by 24 to get the number of minutes in a day
+#now we need to calculate how many minutes in a year, let's start by multiplying 60 by 24 to get the number of minutes in a day
 ```{r}
 
 ```
 
-now we can multiply lower_range by mins_year to get the lower range of heart beats per year, and assign it to lower_bpy
+#now we can multiply lower_range by mins_year to get the lower range of heart beats per year, and assign it to lower_bpy
 ```{r}
 
 ```
 
-do the same for upper_range, assign it to upper_bpy
+#do the same for upper_range, assign it to upper_bpy
 ```{r}
 
 ```
 
-what is the range of heartbeats per year for an adult?
+#what is the range of heartbeats per year for an adult?
 ```{r}
 
 ```
 
-what is the difference between the upper and lower range of heartbeats per year?
+#what is the difference between the upper and lower range of heartbeats per year?
 ```{r}
 
 ```

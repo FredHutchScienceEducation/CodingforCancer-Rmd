@@ -6,8 +6,24 @@ date: "2024-01-19"
 
 R has a few basic data types (types of information/data), these are characters, numerics, integers, and logicals/booleans.
 
-assign the character "yellow" to the variable colorOne
+characters are enclosed in quotes like "apple"
+
+what type of data is "hello world"?
+
+numerics and integers can be used for calculations but strings or logicals/booleans cannot
+
+what type of data is 3?
+
+logicals or booleans are either TRUE or FALSE
+
+what type of data is 3.14?
+
+
+#assign the character "yellow" to the variable colorOne
 ```{r}
 
 ```
+
+when you assign a value to a variable you should see it appear in the Environment window
+
 
