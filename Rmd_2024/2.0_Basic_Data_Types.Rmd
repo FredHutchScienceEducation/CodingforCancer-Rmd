@@ -1,0 +1,13 @@
+---
+title: "2.0_Basic_Data_Types"
+output: html_document
+date: "2024-01-19"
+---
+
+R has a few basic data types (types of information/data), these are characters, numerics, integers, and logicals/booleans.
+
+assign the character "yellow" to the variable colorOne
+```{r}
+
+```
+
