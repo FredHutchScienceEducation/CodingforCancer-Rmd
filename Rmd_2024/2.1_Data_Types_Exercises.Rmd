@@ -1,0 +1,92 @@
+---
+title: "2.1_Data_Type_Exercises"
+output: html_document
+date: "2024-01-19"
+---
+
+welcome to the Data Types Exercises!
+
+dont forget to take notes and record your commands from swirl here so you can save
+your work to reference later!
+
+which of these is not a data type in R (numerics, logical/boolean, character, irrational, integer)
+
+which data type is TRUE?
+
+what is the data type that is enclosed in ""?
+
+what is the assignment operator?
+
+now let's practice assigning and re-assigning objects in R
+
+#create an object called agge that contains 16
+```{r}
+
+```
+
+#whoops we made a typo, reassign agge to a new object called age
+```{r}
+
+```
+
+as you assign and re-assign objects check your Environment pane to make sure these changes go through
+
+#calculate age in days by multiplying it by 365 (lets ignore leap years)
+```{r}
+
+```
+
+
+not we are going to do some more practice assigning values to objects and using them
+
+#create an object called mass, assign it 47.5
+```{r}
+
+```
+
+#create an object called width, assign it 122
+```{r}
+
+```
+
+when assigning and re-assigning, you can reference already existing objects
+
+#re-assign mass with a new value of mass* 2.0
+```{r}
+
+```
+
+#re-assign width with the new value width-20
+```{r}
+
+```
+
+#create a new object called mass_index, assign it the value mass/width
+```{r}
+
+```
+
+what is the data type stored in mass_index?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
