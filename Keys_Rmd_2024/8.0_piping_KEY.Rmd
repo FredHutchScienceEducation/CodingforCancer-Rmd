@@ -1,0 +1,61 @@
+---
+title: "8.0_piping_KEY.Rmd"
+output: html_document
+date: "2024-01-23"
+---
+
+# load library/package 
+
+```{r}
+# run me
+library(tidyverse)
+```
+
+# import data (same as yesterday!)
+
+```{r}
+# run me
+clinical <- read.csv("data/clinical.csv") 
+```
+
+# yesterday we used nested commands to execute multiple commands at once 
+
+```{r}
+# select patients with Stage IV cancer, then select only the race, ethnicity, and stage columns
+race_stage <- select(filter(clinical, ajcc_pathologic_stage == "Stage IV"), race, ethnicity, ajcc_pathologic_stage)
+```
+
+# same task as above, but with pipes
+
+```{r}
+piped <- clinical %>%
+  filter(., ajcc_pathologic_stage == "Stage IV") %>% 
+  select(., race, ethnicity, ajcc_pathologic_stage)
+```
+
+# extract race, ethnicity, and age at diagnosis from cases born prior to 1930
+
+```{r}
+piped2 <- clinical %>%
+  filter(year_of_birth < 1930) %>%
+  select(race, ethnicity, age_at_diagnosis)
+
+piped3 <- clinical %>%
+  select(race, ethnicity, age_at_diagnosis) %>%
+  filter(year_of_birth < 1930)
+```
+
+# convert days to years
+
+```{r}
+clinical_years <- clinical %>%
+  mutate(age_at_diagnosis_in_years = age_at_diagnosis / 365)
+```
+
+# convert days to year and months at same time, and we don't always need to assign to object
+
+```{r}
+clinical %>%
+  mutate(age_at_diagnosis_in_years = age_at_diagnosis / 365,
+         age_at_diagnosis_in_months = age_at_diagnosis / 30) 
+``` 
