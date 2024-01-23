@@ -1,0 +1,133 @@
+---
+title: "7.1_tidyverse_Exercises.Rmd"
+output: html_document
+date: "2024-01-23"
+---
+
+
+welcome to the tidyverse Exercises!
+
+we are going to continue working with the clinical data frame using tidyverse!
+
+#before we begin, you should have tidyverse installed (skip this if you)
+```{r}
+install.packages("tidyverse")
+```
+
+#load tidyverse
+```{r}
+library(tidyverse)
+```
+
+#load the clinical data set we have been working with
+```{r}
+clinical <- read.csv('data/clinical.csv')
+```
+
+#find the structure of the data set
+```{r}
+
+```
+
+today we are interested in looking at the RB1 gene
+the RB1 gene is known to contribute to eye cancers, but we want to see if it might contribute to bladder cancers
+
+#look at all columns taht contain RB1, extract it and assign it to RB1_all
+```{r}
+
+```
+
+#view this data frame
+```{r}
+
+```
+
+Which one of these columns that contain RB1 contains data as yes/no?
+
+
+#extract the columns tissue_or_organ_of_origin THROUGH total.number.Indels, assign this to cancer_clinical
+```{r}
+
+```
+
+now add those parameters together to make 1 data frame
+
+#select the columns tissue_or_organ_of_origin THROUGH total.number.Indels AND all columns that contain RB1, assign this to RB1_clinical
+```{r}
+
+```
+
+#take a look!
+```{r}
+
+```
+
+Which column contains information on the stage of cancers?
+
+now that we have the column we want, lets filter the rows to get the data we want to analyze
+
+how many rows are in RB1_clinical?
+
+#filter RB1_clinical to show just the rows taht have 'Primary Tumor' in sample_type, assign this to filter1
+```{r}
+
+```
+
+#take a look at the structure of filter1
+```{r}
+
+```
+
+How many rows are in filter1?
+
+#filter RB1_clinical for patients who have either 'Del' or 'Loss' in the focal.deletion.RB1, assign this to filter2
+```{r}
+  
+```
+
+#print filter2
+```{r}
+
+```
+
+How many rows are in filter2?
+
+#now lets filter for rows that have an RB1 mutation (mutation.in.RB1 is 'yes'), assign this to filter3
+```{r}
+
+```
+
+#take a look at filter3
+```{r}
+
+```
+
+How many rows are in filter3?
+
+
+remember RB1_clinical is already narrowed down to show related columns
+and what we are interested in looking at is the data of patients who have deleted or lost RB1 or has a mutation in RB1
+
+
+#lets combine the filters from above to filter for RB1_clinical patients who have either 'Del' OR 'Loss' in focal.deletion.in.RB1 OR 'yes' in mutation.in.RB1, assign this to filter_all
+```{r}
+
+```
+
+#open filter_all
+```{r}
+
+```
+
+How many rows are in filter_all?
+
+great work subsetting your dataset, now we have the data we are interested in!
+
+
+
+
+
+
+
+
+
