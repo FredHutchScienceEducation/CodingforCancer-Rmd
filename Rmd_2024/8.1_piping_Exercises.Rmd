@@ -1,0 +1,50 @@
+---
+title: "8.1_piping_Exercises.Rmd"
+output: html_document
+date: "2024-01-24"
+---
+
+# Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics
+
+## Import packages
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+## Load the data
+
+```{r}
+clinical <- read.csv("data/clinical.csv")
+
+# this is the selection procedure you used yesterday to select a subset of the columns
+RB1_clinical <- select(clinical,
+                       tissue_or_organ_of_origin:total.number.Indels,
+                       contains("RB1"))
+```
+
+
+# Part I: Piping practice
+
+#filter RB1_clinical for just the "Primary Tumor" samples types in "sample_type"
+```{r}
+# your code here...
+```
+
+
+#filter RB1_clinical for patients who have either "Del" or "Loss" in focal.deletion.in.RB1 OR "yes" in mutations.in.RB1 
+hint: we can use the "|" operator for OR. 
+```{r}
+
+```
+
+
+#use the pipe operator to combine the selecting/filtering steps above
+```{r}
+
+```
+
+
+
+
