@@ -1,0 +1,132 @@
+---
+title: "7.1_tidyverse_Exercises_KEY.Rmd"
+output: html_document
+date: "2024-01-23"
+---
+
+welcome to the tidyverse Exercises!
+
+we are going to continue working with the clinical data frame using tidyverse!
+
+#before we begin, you should have tidyverse installed (skip this if you)
+```{r}
+install.packages("tidyverse")
+```
+
+#load tidyverse
+```{r}
+library(tidyverse)
+```
+
+#load the clinical data set we have been working with
+```{r}
+clinical <- read.csv('data/clinical.csv')
+```
+
+#find the structure of the data set
+```{r}
+str(clinical)
+```
+
+today we are interested in looking at the RB1 gene
+the RB1 gene is known to contribute to eye cancers, but we want to see if it might contribute to bladder cancers
+
+#look at all columns that contain RB1, extract it and assign it to RB1_all
+```{r}
+RB1_all <- select(clinical, contains('RB1'))
+```
+
+#view this data frame
+```{r}
+View(RB1_all)
+```
+
+Which one of these columns that contain RB1 contains data as yes/no?
+
+
+#extract the columns tissue_or_organ_of_origin THROUGH total.number.Indels, assign this to cancer_clinical
+```{r}
+cancer_clinical <- select(clinical, tissue_or_organ_of_origin:total.number.Indels)
+```
+
+now add those parameters together to make 1 data frame
+
+#select the columns tissue_or_organ_of_origin THROUGH total.number.Indels AND all columns that contain RB1, assign this to RB1_clinical
+```{r}
+RB1_clinical <- select(clinical, tissue_or_organ_of_origin:total.number.Indels, contains('RB1'))
+```
+
+#take a look!
+```{r}
+View(RB1_clinical)
+```
+
+Which column contains information on the stage of cancers?
+ajcc_pathologic_stage
+
+now that we have the column we want, lets filter the rows to get the data we want to analyze
+
+how many rows are in RB1_clinical?
+433
+
+#filter RB1_clinical to show just the rows taht have 'Primary Tumor' in sample_type, assign this to filter1
+```{r}
+filter1 <- filter(RB1_clinical, sample_type == "Primary Tumor")
+```
+
+#take a look at the structure of filter1
+```{r}
+str(filter1)
+```
+
+How many rows are in filter1?
+414
+
+
+#filter RB1_clinical for patients who have either 'Del' or 'Loss' in the focal.deletion.RB1, assign this to filter2
+```{r}
+filter2 <- filter(RB1_clinical, focal.deletion.in.RB1 == 'Del' | focal.deletion.in.RB1 == "Loss")
+```
+
+#print filter2
+```{r}
+filter2
+```
+
+How many rows are in filter2?
+64
+
+
+#now lets filter for rows that have an RB1 mutation (mutation.in.RB1 is 'yes'), assign this to filter3
+```{r}
+filter3 <- filter(RB1_clinical, mutation.in.RB1 == 'yes')
+```
+
+#take a look at filter3
+```{r}
+View(filter3)
+```
+
+How many rows are in filter3?
+70
+
+remember RB1_clinical is already narrowed down to show related columns
+and what we are interested in looking at is the data of patients who have deleted or lost RB1 or has a mutation in RB1
+
+
+#lets combine the filters from above to filter for RB1_clinical patients who have either 'Del' OR 'Loss' in focal.deletion.in.RB1 OR 'yes' in mutation.in.RB1, assign this to filter_all
+```{r}
+filter_all <-  filter(RB1_clinical, focal.deletion.in.RB1 == "Del" |
+  focal.deletion.in.RB1 == "Loss" | mutation.in.RB1 == "yes")
+```
+
+#open filter_all
+```{r}
+View(filter_all)
+```
+
+How many rows are in filter_all?
+114 
+
+great work subsetting your dataset, now we have the data we are interested in!
+
