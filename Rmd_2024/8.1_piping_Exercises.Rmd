@@ -70,7 +70,7 @@ Use pipes to do the following:
 ```
 
 
-# extract the "RB1_expr" column as a vector and assign it to variable for each of your two new dataframes (created above). Hint: Review lesson 4 if you don't remember how to extract a column as a vector.
+# extract the "RB1_expr" column as a vector and assign it to variable for each of your two new dataframes (created above). Hint: Review the vectors lesson if you don't remember how to extract a column as a vector.
 ```{r}
 
 ```
@@ -80,7 +80,15 @@ Use pipes to do the following:
 
 ```
 
+
+# does the mean expression of RB1 (RB1_expr) differ between these groups?
+```{r}
+
+```
+
  
 Why might this result be, based on your knowledge of gene structure and types of cancer-relevant mutations?
 
 
+
+RB1 is a tumor suppressor, meaning that if it's there it can help prevent cancers from developing. Would you expect a higher rate of cancer in th expr.RB1_wildtype or expr.RB1_mutants?
