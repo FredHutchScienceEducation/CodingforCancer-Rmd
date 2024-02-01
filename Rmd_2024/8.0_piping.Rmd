@@ -23,23 +23,40 @@ clinical <- read.csv("data/clinical.csv")
 
 ```{r}
 # select patients with Stage IV cancer, then select only the race, ethnicity, and stage columns
+race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)
 
 ```
+Take a look at the code above, what does the function filter for?
 
-# same task as above, but with pipes
 
+
+What is the inner most nest (layer) of code?
+
+
+#lets do the same task as above, but with pipes
+
+# first, start off the pipe with the pipe operator, %>%, call this piped
+# then write the first layer filtering for ajcc_pathologic_stage == "Stage IV",  use. to reference the clinical dataset
+# then write the layer for selecting the race, ethnicity, and stage columns, use > to reference the clinical dataset you filtered above
+```{r}
+
+```
+If you want to read more about piping,  https://magrittr.tidyverse.org/
+
+
+
+# extract race, ethnicity, and age at diagnosis from cases born prior to 1930, filter before you select your columns, call this piped2
 ```{r}
 
 ```
 
-# extract race, ethnicity, and age at diagnosis from cases born prior to 1930
 
+# do the same as above, but this time select your columms before filtering rows, call this piped3
 ```{r}
 
 ```
 
-# convert days to years
-
+# convert days to years using pipes, assign this to clinical years 
 ```{r}
 
 ```
@@ -49,3 +66,6 @@ clinical <- read.csv("data/clinical.csv")
 ```{r}
 
 ``` 
+
+
+Great work!
