@@ -1,0 +1,98 @@
+---
+title: "Lesson 5b In-class exercises"
+author: "Magdalena Russell & Katherine Brower"
+date: '2022-08-09'
+output: html_document
+---
+
+# Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics
+
+## Import packages
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+
+## Load the data
+
+```{r}
+clinical <- read.csv("data/clinical.csv")
+
+# this is the selection procedure you used yesterday to select a subset of the columns
+RB1_clinical <- select(clinical,
+                       tissue_or_organ_of_origin:total.number.Indels,
+                       contains("RB1"))
+```
+
+# Part I: Piping practice
+
+## Instructions:
+
+Use the pipe operator (%>%) to combine the following three selecting/filtering steps:
+    * Filter RB1_clinical for just the "Primary Tumor" sample types in "sample_type"
+    * Filter RB1_clinical for patients who have either “Del” or “Loss” in “focal.deletion.in.RB1” OR “yes” in "mutation.in.RB1". Hint: We can use the “|” operator for OR. You'll need a total of three expressions in your filtering step.
+using the the form:
+
+my_dataframe %>%
+   function(inputs) %>%
+   function(inputs)
+
+```{r}
+RB1_trial <- RB1_clinical %>%
+  filter(sample_type == "Primary Tumor") %>%
+  filter(
+    focal.deletion.in.RB1 == "Del" |
+    focal.deletion.in.RB1 == "Loss" |
+    mutation.in.RB1 == "yes"
+  )
+```
+
+# Part II: Working with dataframes: mutate and pipe 
+
+## Instructions:
+
+Because RB1 is a tumor suppressor (when it's present, helps prevent cells from becoming cancerous), we mostly care about whether the gene is "broken" regardless of how it happened. Use pipes to do the following:
+    * First, use RB1_clinical and create a new column called "any.RB1.mut"; set it equal to the statement that you used to filter earlier (the three equals expressions. This will create a logical column for whether there's any mutation in RB1 in the cancers.
+    * Create two new dataframes: one that contains TRUEs for this new col and one that contains just FALSEs. Name them something you can remember. Hint: By "create" we just mean to assign it to a variable. You'll need to use one of the functions we learned today to limit the rows to just the ones that meet the criteria (i.e. either TRUE or FALSE)
+    * Extract the "RB1_expr" column as a vector and assign it to variable for each of your two new dataframes (created above). Hint: Review lesson 4 if you don't remember how to extract a column as a vector.
+    * Does the median expression of RB1 (RB1_expr) differ between these groups?
+    * Why might this result be, based on your knowledge of gene structure and types of cancer-relevant mutations?
+
+```{r}
+RB1_trial <- RB1_clinical %>%
+  mutate(any.RB1.mut = (focal.deletion.in.RB1 == "Del") |
+           (focal.deletion.in.RB1 == "Loss") |
+           (mutation.in.RB1 == "yes"))
+
+## Cancers with an RB1_mutation
+RB1_mutants <- RB1_clinical %>%
+  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
+           focal.deletion.in.RB1 == "Loss" |
+           mutation.in.RB1 == "yes"
+  ) %>%
+  filter(any.RB1.mut == TRUE) 
+
+## "Wild type" (aka no mutation in RB1) cancers
+RB1_wildtype <- RB1_clinical %>%
+  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
+           focal.deletion.in.RB1 == "Loss" |
+           mutation.in.RB1 == "yes"
+  ) %>%
+  filter(any.RB1.mut == FALSE) 
+
+expr.RB1_mutants <- RB1_mutants$RB1_expr
+
+expr.RB1_wildtype <- RB1_wildtype$RB1_expr
+
+median(expr.RB1_mutants)
+# 3.415344
+
+median(expr.RB1_wildtype)
+# 8.302018
+
+
+```
+
+
