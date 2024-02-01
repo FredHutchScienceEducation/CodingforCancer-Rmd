@@ -1,0 +1,108 @@
+---
+title: "1.0_intro_to_R"
+output: html_document
+date: "2024-01-12"
+---
+
+This is a R Markdown document.
+
+You can take notes just like you can in word or google docs. 
+
+Try writing a few notes!
+
+Your name: 
+Today's date:
+More notes:
+
+
+R Markdown documents can also contain code chunks. The grey area below is a code chunk:
+
+```{r}
+#insert code here
+
+```
+
+Code written in a code chunk can be run just like you wrote it in the Console pane below.
+To run the code in the code chunk, click on the play button in the top right corner
+of each code chunk.
+
+We are going to use these Rmd files to write and save our code from now on!
+
+Let's practice using an Rmd file
+
+#add 3 and 4 together, using the '+' operator, just like in math class
+```{r}
+
+
+```
+
+Click on the run button to see the answer!
+
+
+#assign the value 10 to the object weight_kg, by typing weight_kg <- 10
+```{r}
+
+```
+
+Once you run the code chunk, you should see weight_kg show up in the Environment window!
+
+
+#convert kg to lb by multiplying weight_kg by 2.2
+```{r}
+
+```
+
+#assign a new object called weight_lb with the value you got above
+```{r}
+
+```
+
+Once you run the code chunk, you should see weight_lb pop up in the Environment window.
+
+#re-assign weight_kg to 100
+```{r}
+
+```
+
+You should see teh value for weight_kg change in your Environment window. 
+
+#round 3.14159 to 3 digits
+```{r}
+
+```
+
+#make a vector called practice_vector with the values (1, 3, 5, 7, 10)
+```{r}
+
+```
+
+#find the median of practice_vector
+```{r}
+
+```
+
+#load the clinical dataset
+```{r}
+
+```
+
+#get the structure of clinical
+```{r}
+
+```
+
+#load tidyverse
+```{r}
+
+```
+
+#filter clinical  for rows that have an RB1 mutation (mutation.in.RB1 is 'yes'), assign this to filtered
+```{r}
+
+```
+
+
+Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
+
+
+
