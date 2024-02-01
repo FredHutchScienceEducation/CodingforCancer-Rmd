@@ -1,0 +1,133 @@
+---
+title: "Data Manipulation"
+author: "Sam Hart & Katherine Brower"
+date: "2023-08-10"
+output: html_document
+---
+
+__Under each heading below, type your code and run it. Feel free to add notes and comments to help you learn.__ 
+
+
+# load library/package
+
+```{r}
+library(tidyverse)
+```
+
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+# show categories in gender
+```{r}
+unique(clinical$gender) # remember, the $ extracts the column as a vector
+```
+
+
+# count number of individuals by gender
+```{r}
+gender_count <- clinical %>%
+  group_by(gender) %>%
+  tally() 
+
+View(gender_count)
+```
+
+
+# summarize average birth year by gender
+```{r}
+avg_YOB_by_gender <- clinical %>%
+  group_by(gender) %>%
+  summarize(mean_year_of_birth = mean(year_of_birth, na.rm = TRUE))
+
+# optional:
+avg_YOB_by_gender_2 <- clinical %>%
+  group_by(gender) %>%
+  summarize(mean_age = 2023 - mean(year_of_birth, na.rm = TRUE))
+
+View(avg_YOB_by_gender)
+```
+
+
+# summarize average age at diagnosis (in days) by gender
+```{r}
+avg_age_days_by_gender <- clinical %>%
+  group_by(gender) %>%
+  summarize(mean_age_at_diagnosis_days = mean(age_at_diagnosis, na.rm = TRUE))
+```
+
+
+# summarize average, median, minimum, and maximum 
+# age at diagnosis (in days) by gender. Don't forget to remove any NAs!
+
+```{r}
+clinical_summarized_by_gender <- clinical %>%
+  group_by(gender) %>%
+  summarize(a = mean(age_at_diagnosis, na.rm = TRUE),
+            b = median(age_at_diagnosis, na.rm = TRUE),
+            c = max(age_at_diagnosis, na.rm = TRUE),
+            d = min(age_at_diagnosis, na.rm = TRUE))
+
+View(clinical_summarized_by_gender)
+```
+
+# save clinical_summarized as a .csv file in our data directory
+
+```{r}
+write_csv(clinical_summarized_by_gender, "data/clinical_summarized.csv")
+```
+
+# counting number of distinct diagnoses
+
+```{r}
+diagnosis_counts <- clinical %>%
+  count(primary_diagnosis) %>%
+  arrange(n) 
+```
+
+  
+# get names of cancer diagnoses with more than 1 patient'
+
+```{r}
+specific_diagnoses <- diagnosis_counts %>%
+  filter(n > 1)
+``` 
+
+  
+# extract data specifying primary diagnoses to keep
+
+```{r}
+# One way
+clinical_reduced2 <- clinical %>%
+  filter(primary_diagnosis == "Papillary transitional cell carcinoma" | # OR
+         primary_diagnosis == "Transitional cell carcinoma")
+
+# Quicker way - less typing
+clinical_reduced <- clinical %>%
+  filter(primary_diagnosis %in% specific_diagnoses$primary_diagnosis)
+
+
+```
+
+  
+# confirm diagnoses present are the ones we want
+
+```{r}
+clinical_reduced$primary_diagnosis %>% 
+  unique()
+```
+
+
+# same as above but without an intermediate object
+
+```{r}
+clinical_reduced3 <- clinical %>%
+  filter(primary_diagnosis %in% c("Transitional cell carcinoma", "Papillary transitional cell carcinoma"))
+```
+
+
+
+
+
