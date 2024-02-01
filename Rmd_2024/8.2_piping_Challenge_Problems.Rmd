@@ -14,7 +14,9 @@ library(tidyverse) ## if this isn't working, be sure to run the above (uncomment
 clinical <- read.csv("data/clinical.csv")
 ```
 
-There is a column “gender” in clinical; its name is not quite accurate. We would like to rename this column. Using mutate(), code a way to correct the column header to the more appropriate name “sex” (hint: we can use the minus sign (-) within select to remove columns). Save the new dataframe as “clinical_corrected”.
+There is a column “gender” in clinical; its name is not quite accurate. 
+
+We would like to rename this column. Using mutate(), code a way to correct the column header to the more appropriate name “sex” (hint: we can use the minus sign (-) within select to remove columns). Save the new dataframe as “clinical_corrected”.
 
 ```{r}
 
@@ -25,7 +27,6 @@ The column pack_years_smoked represents the values “pack years” for each pat
 ```{r}
 
 ```
-
 
 
 Continuing with the above, how many 20 pack year patients are female and have Stage III cancer at the start of the study?
