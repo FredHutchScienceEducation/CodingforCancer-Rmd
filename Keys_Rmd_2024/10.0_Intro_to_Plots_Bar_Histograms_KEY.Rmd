@@ -1,0 +1,92 @@
+---
+title: "Intro to Plots: Scatterplots"
+author: "Sam Hart & Katherine Brower"
+date: "2/1/20224"
+output: html_document
+---
+
+# Intro to Plotting: Scatterplots
+
+# load library/package
+```{r}
+library(tidyverse)
+```
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+# Part 1: Bar Plots!
+# let's make a bar plot of mutations.in.ggplot, we want to see how many of the samples in clinical
+# have a mutation in TP53, do not have a mutation in TP53, and how many are NA
+
+# basic ggplot step 1: bind data to the plot
+# call your plot, bar_plot
+```{r}
+bar_plot <- ggplot(data = clinical) # bind data to plot
+# data has binded to the plot but is not visible because aesthetics (step 2) have not been applied yet
+```
+
+# basic ggplot step 2: specify aesthetics (axes)
+# the x axis is mutation.in.TP53
+```{r}
+bar_plot <- ggplot(clinical, aes(mutation.in.TP53)) 
+bar_plot
+
+```
+
+# basic ggplot step 3: add a layer of geometry
+```{r}
+bar_plot <- ggplot(clinical, aes(mutation.in.TP53)) +
+  geom_bar(stat="count") 
+bar_plot
+
+```
+
+
+
+
+
+# Part 2: Histograms
+# let's make a histogram of the distrbution of height in the clinical dataset
+
+# basic ggplot step 1: bind the data to the plot
+# name the plot histogram
+```{r}
+histogram <- ggplot(data = clinical)
+
+```
+
+# basic ggplot step 2: specfiy the aesthetics (axes)
+```{r}
+histogram <- ggplot(data = clinical, aes(x= height))
+histogram
+```
+
+# basic ggplot step 3: add a layer of geometry
+# we want to make this with the default 30 bins
+```{r}
+histogram <- ggplot(data = clinical, aes(x=height))+
+    geom_histogram()
+histogram 
+```
+
+
+# on second thought, let's make it with half the number of bins (15)
+```{r}
+histogram <- ggplot(data = clinical, aes(x=height))+
+    geom_histogram(bins=15)
+histogram
+```
+
+# actually, let's set the bin width to be 10 so we see everything in groups of 10 inches
+```{r}
+histogram <- ggplot(data = clinical, aes(x=height))+
+    geom_histogram(binwidth=15)
+histogram
+```
+
+
+
+
