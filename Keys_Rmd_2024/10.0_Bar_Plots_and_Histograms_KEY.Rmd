@@ -1,11 +1,11 @@
 ---
-title: "Intro to Plots: Scatterplots"
-author: "Sam Hart & Katherine Brower"
+title: "Intro to Plots: Bar plots and Histograms"
+author: "Hanako"
 date: "2/1/20224"
 output: html_document
 ---
 
-# Intro to Plotting: Scatterplots
+# Intro to Plotting: Bar plot and histograms
 
 # load library/package
 ```{r}
@@ -31,19 +31,29 @@ bar_plot <- ggplot(data = clinical) # bind data to plot
 # basic ggplot step 2: specify aesthetics (axes)
 # the x axis is mutation.in.TP53
 ```{r}
-bar_plot <- ggplot(clinical, aes(mutation.in.TP53)) 
+bar_plot <- ggplot(clinical, 
+                   mapping = aes(mutation.in.TP53)) 
 bar_plot
 
 ```
 
 # basic ggplot step 3: add a layer of geometry
 ```{r}
-bar_plot <- ggplot(clinical, aes(mutation.in.TP53)) +
+bar_plot <- ggplot(clinical, 
+                   mapping = aes(mutation.in.TP53)) +
   geom_bar(stat="count") 
 bar_plot
 
 ```
 
+# alternative formatting
+```{r}
+bar_plot <- ggplot(clinical) + 
+  geom_bar(aes(x= mutation.in.TP53), stat="count")
+
+bar_plot
+
+```
 
 
 
@@ -60,33 +70,43 @@ histogram <- ggplot(data = clinical)
 
 # basic ggplot step 2: specfiy the aesthetics (axes)
 ```{r}
-histogram <- ggplot(data = clinical, aes(x= height))
+histogram <- ggplot(data = clinical, 
+                    mapping = aes(x= height))
 histogram
 ```
 
 # basic ggplot step 3: add a layer of geometry
 # we want to make this with the default 30 bins
 ```{r}
-histogram <- ggplot(data = clinical, aes(x=height))+
-    geom_histogram()
+histogram <- ggplot(data = clinical, 
+                    mapping = aes(x=height))+
+  geom_histogram()
 histogram 
 ```
 
 
 # on second thought, let's make it with half the number of bins (15)
 ```{r}
-histogram <- ggplot(data = clinical, aes(x=height))+
+histogram <- ggplot(data = clinical, 
+                    mapping = aes(x=height))+
     geom_histogram(bins=15)
 histogram
 ```
 
 # actually, let's set the bin width to be 10 so we see everything in groups of 10 inches
 ```{r}
-histogram <- ggplot(data = clinical, aes(x=height))+
-    geom_histogram(binwidth=15)
+histogram <- ggplot(data = clinical, 
+                    mapping = aes(x=height))+
+    geom_histogram(binwidth=10)
 histogram
 ```
 
+# write the above command using the alternative formatting
+```{r}
+histogram <- ggplot(clinical) +
+  geom_histogram(aes(x= height), binwidth = 10)
+histogram
+```
 
 
 

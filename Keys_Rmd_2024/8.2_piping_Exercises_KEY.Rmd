@@ -1,0 +1,79 @@
+---
+title: "8.1_piping_Exercises_KEY.Rmd"
+output: html_document
+date: "2024-01-24"
+---
+
+# Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics
+
+## Import packages
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+## Load the data
+
+```{r}
+clinical <- read.csv("data/clinical.csv")
+
+# this is the selection procedure you used yesterday to select a subset of the columns
+RB1_clinical <- select(clinical,
+                       tissue_or_organ_of_origin:total.number.Indels,
+                       contains("RB1"))
+```
+
+
+# Part I: Piping practice
+
+#filter RB1_clinical for just the "Primary Tumor" samples types in "sample_type"
+```{r}
+# your code here...
+```
+
+
+#filter RB1_clinical for patients who have either "Del" or "Loss" in focal.deletion.in.RB1 OR "yes" in mutations.in.RB1 
+hint: we can use the "|" operator for OR. 
+```{r}
+
+```
+
+
+#use the pipe operator to combine the selecting/filtering steps above
+```{r}
+
+```
+
+
+#Part 2: Working with dataframes, mutate and pipe
+
+Because RB1 is a tumor suppressor (when it's present, it helps prevent cells from becoming cancerous) we mostly care about whether the gene is "broken" regardless of how it happened. 
+
+Use pipes to do the following:
+
+#use RB1_clinical and create a new column called "any.RB1.mut"; set it equal to the statement that you used to filter earlier (the three equals expressions. This will create a logical column for whether there's any mutation in RB1 in the cancers.
+```{r}
+
+```
+
+#create two new dataframes: one that contains TRUEs for this new col and one that contains just FALSEs. Name them something you can remember. Hint: By "create" we just mean to assign it to a variable. You'll need to use one of the functions we learned today to limit the rows to just the ones that meet the criteria (i.e. either TRUE or FALSE)
+```{r}
+
+```
+
+
+#extract the "RB1_expr" column as a vector and assign it to variable for each of your two new dataframes (created above). Hint: Review lesson 4 if you don't remember how to extract a column as a vector.
+```{r}
+
+```
+
+#does the median expression of RB1 (RB1_expr) differ between these groups?
+```{r}
+
+```
+
+ 
+Why might this result be, based on your knowledge of gene structure and types of cancer-relevant mutations?
+
+

@@ -1,11 +1,11 @@
 ---
-title: "Intro to Plots: Scatterplots"
+title: "Lesson 7a key"
 author: "Sam Hart & Katherine Brower"
-date: "2/1/20224"
+date: "7/17/2022"
 output: html_document
 ---
 
-# Intro to Plotting: Scatterplots
+# Introduction to R: Lesson 7a
 
 # load library/package
 ```{r}
@@ -18,17 +18,15 @@ clinical <- read_csv("data/clinical.csv")
 ```
 
 # basic ggplot step 1: bind data to the plot
-# call your plot, plot1
 ```{r}
 plot1 <- ggplot(data = clinical) # bind data to plot
 # data has binded to the plot but is not visible because aesthetics (step 2) have not been applied yet
 ```
 
 # basic ggplot step 2: specify aesthetics
-# the x axis should be cigarettes_per_day and the y axis is 
-# count.ERCC2.signature.mutations
 ```{r}
-plot1 <- ggplot(data = clinical, mapping = aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations)) # specify aesthetics (axes)
+plot1 <- ggplot(data = clinical, aes(x = cigarettes_per_day, 
+                            y = count.ERCC2.signature.mutations)) # specify aesthetics (axes)
 plot1
 ```
 
@@ -46,7 +44,6 @@ plot1 + geom_point()
 ```
 
 # basic ggplot step 4: alter the coordinate range
-# limit your x axis from 0 to 10, your y axis from 0 to 100
 ```{r}
 plot1 + geom_point() +
   coord_cartesian(xlim = c(0, 10), ylim= c(0, 100))
@@ -79,12 +76,8 @@ ggplot(barcode_CPD_ERCC_count_data) +
   coord_cartesian(xlim = c(0, 10), ylim = c(0, 400))
 ```
           
-
-
-
-
           
-        
+# END OF PART 1 DEMO *****           
 # subset another data frame to include the columns: barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations
 # remove NAs in ERCC2 signature mutations
 # restrict to current smokers and lifelong non-smokers

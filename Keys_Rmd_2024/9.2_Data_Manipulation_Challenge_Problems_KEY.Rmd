@@ -101,3 +101,5 @@ non_white_latino <- clinical %>%
 
 # 3 people who did not specify/report their race
 ```
+
+
