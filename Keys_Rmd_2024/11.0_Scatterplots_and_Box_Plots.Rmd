@@ -1,11 +1,11 @@
 ---
-title: "Lesson 7a key"
+title: "11.0 Scatterplots and Box Plots KEY"
 author: "Sam Hart & Katherine Brower"
 date: "7/17/2022"
 output: html_document
 ---
 
-# Introduction to R: Lesson 7a
+# Introduction to R: Scatterplots and Box Plots
 
 # load library/package
 ```{r}
@@ -17,15 +17,23 @@ library(tidyverse)
 clinical <- read_csv("data/clinical.csv")
 ```
 
+
+# Part 1: Scatterplots
+# let's make a scatter plot looking at the number of cigarettes per day and the count of
+# ERCC2 mutations
+
 # basic ggplot step 1: bind data to the plot
+# call this plot1
 ```{r}
 plot1 <- ggplot(data = clinical) # bind data to plot
 # data has binded to the plot but is not visible because aesthetics (step 2) have not been applied yet
 ```
 
 # basic ggplot step 2: specify aesthetics
+# the x axis is cigarettes_per_day and the y axis is count.ERCC2.signature.mutations
 ```{r}
-plot1 <- ggplot(data = clinical, aes(x = cigarettes_per_day, 
+plot1 <- ggplot(data = clinical, 
+                mapping = aes(x = cigarettes_per_day, 
                             y = count.ERCC2.signature.mutations)) # specify aesthetics (axes)
 plot1
 ```
@@ -33,9 +41,11 @@ plot1
 # basic ggplot step 3: add a layer of geometry
 ```{r}
 plot1 <- ggplot(data = clinical,
-       aes(x = cigarettes_per_day, 
-           y = count.ERCC2.signature.mutations)) + 
+                mapping = aes(x = cigarettes_per_day, 
+                              y = count.ERCC2.signature.mutations)) + 
   geom_point() # add a layer of geometry 
+
+plot1
 ```
 
 # basic ggplot step 3: alternative way to add a layer of geometry
@@ -44,32 +54,38 @@ plot1 + geom_point()
 ```
 
 # basic ggplot step 4: alter the coordinate range
+# restrist the x axis from 0 to 10 and the y axis from 0 to 100 
 ```{r}
 plot1 + geom_point() +
   coord_cartesian(xlim = c(0, 10), ylim= c(0, 100))
 ```
 
-# alternative formatting for ggplot 
+# write the command in the alternative formatting for ggplot 
 ```{r}
 ggplot(clinical) + 
   geom_point(aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations)) 
 ```
 
-# create a subsetted data frame of the columns: barcode, cigarettes_per_day, count.ERCC2.signature.mutations
-# * remove NAs
+
+# we need to cleano out data! 
+# create a subsetted data frame of the columns: barcode, cigarettes_per_day, count.ERCC2.signature.mutations and remove NAs
+# call this new subset barcode_CPD_ERCC_count_data 
 ```{r}
 barcode_CPD_ERCC_count_data <- clinical %>% 
           select(barcode, cigarettes_per_day, count.ERCC2.signature.mutations) %>% 
           drop_na()
 ```
 
+#now that our data is clean,
 # create a scatterplot using the subsetted data frame from above (steps 1, 2 and 3)
 ```{r}
 ggplot(barcode_CPD_ERCC_count_data) + 
   geom_point(aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations))
 ```
 
+# let's remove the outliers to make the data easier to read
 # zoom into a smaller x-axis range (exclude outliers) (step 4)
+# limit the x axis to 0 to 10 and the y axis to 0 to 400
 ```{r}
 ggplot(barcode_CPD_ERCC_count_data) + 
   geom_point(aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations)) +
@@ -77,10 +93,16 @@ ggplot(barcode_CPD_ERCC_count_data) +
 ```
           
           
-# END OF PART 1 DEMO *****           
+
+# Part 2: Box plots
+# now we are going to make a box plot of ERCC2 mutations and comparte them across
+# current smokers and lifelong non-smokers
+
+# let's start with cleaning our data
 # subset another data frame to include the columns: barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations
 # remove NAs in ERCC2 signature mutations
 # restrict to current smokers and lifelong non-smokers
+# call this barcode_TSH_ERCC2_count_data
 ```{r}
 barcode_TSH_ERCC2_count_data <- clinical %>% 
   select(barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations) %>% 
@@ -88,34 +110,40 @@ barcode_TSH_ERCC2_count_data <- clinical %>%
   filter(Tobacco.smoking.history %in% c("Current smoker", "Lifelong Non-smoker"))
 ```
 
+# now that we have clean data, let's make our box plot
 # create a boxplot from the subsetted dataframe above (steps 1, 2, and 3)
 ```{r}
 ggplot(data = barcode_TSH_ERCC2_count_data, # bind data
-       aes(x = Tobacco.smoking.history, # specify aesthetic
+       mapping = aes(x = Tobacco.smoking.history, # specify aesthetic
            y = count.ERCC2.signature.mutations)) + 
   geom_boxplot() # add geometry
 ```
 
+
 # create boxplot, adjust y-axis range (step 4)
+# restrict the y axis to 0 to 125
 ```{r}
 ggplot(data = barcode_TSH_ERCC2_count_data, # bind data
-       aes(x = Tobacco.smoking.history, # specify aesthetic
+       mapping = aes(x = Tobacco.smoking.history, # specify aesthetic
            y = count.ERCC2.signature.mutations)) + 
   geom_boxplot() + # add geometry
-  coord_cartesian(ylim = c(0, 125))
+  coord_cartesian(ylim = c(0, 125)) # adjust the coordinate range
 ```
 
-# add  data, jittered
+# let's add the data points onto the box plot
+# add  data, jittered (step 5)
 ```{r}
 ggplot(data = barcode_TSH_ERCC2_count_data,
        aes(x = Tobacco.smoking.history,
            y = count.ERCC2.signature.mutations)) + 
   geom_boxplot() +
   coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter(color = "blue") # adds each datapoint colored blue to the box plot (jitters)
+  geom_jitter(color = "blue") # adds each data point colored blue to the box plot (jitters)
 ```
 
-# remove outlier points from geom_boxplot()
+# there are a few outliers that make it hard to see the trends
+# let's remove the outlier points from geom_boxplot()
+# this time make the jitter data points purple
 ```{r}
 set.seed(1)
 ggplot(data = barcode_TSH_ERCC2_count_data,
@@ -126,16 +154,5 @@ ggplot(data = barcode_TSH_ERCC2_count_data,
   geom_jitter(color = "purple")
 ```
 
-```{r}
-set.seed(1)
-plot_w_pointlabel_names <- ggplot(data = barcode_TSH_ERCC2_count_data,
-       aes(x = Tobacco.smoking.history,
-           y = count.ERCC2.signature.mutations)) + 
-  geom_boxplot(outlier.shape = NA) + # remove points generated by geom_boxplot()
-  coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter(color = "purple")
 
-```
-# Will go into this in tomorrow's lesson of changing the labels
-#  #print(plot_w_label_names + ggtitle("Tobacco smoking history vs. ERCC2 Signature Mutations"))
-# #print(plot_w_label_names + labs(y = "Number of signature ERCC2 Mutations", x = "Tobacco Smoking History"))
+
