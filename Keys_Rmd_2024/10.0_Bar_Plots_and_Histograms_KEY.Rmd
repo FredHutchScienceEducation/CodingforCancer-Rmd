@@ -46,7 +46,7 @@ bar_plot
 
 ```
 
-# alternative formatting
+# write the above command in the alternative formatting
 ```{r}
 bar_plot <- ggplot(clinical) + 
   geom_bar(aes(x= mutation.in.TP53), stat="count")
