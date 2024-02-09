@@ -1,0 +1,91 @@
+---
+title: "Intro to Plots: Bar plots and Histograms"
+author: "Hanako"
+date: "2/1/20224"
+output: html_document
+---
+
+# Intro to Plotting: Bar plot and histograms
+
+# load library/package
+```{r}
+library(tidyverse)
+```
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+# Part 1: Bar Plots!
+# let's make a bar plot of mutations.in.ggplot, we want to see how many of the samples in clinical
+# have a mutation in TP53, do not have a mutation in TP53, and how many are NA
+
+# basic ggplot step 1: bind data to the plot
+# call your plot, bar_plot
+```{r}
+
+```
+
+# basic ggplot step 2: specify aesthetics (axes)
+# the x axis is mutation.in.TP53
+```{r}
+
+
+```
+
+# basic ggplot step 3: add a layer of geometry
+```{r}
+
+
+```
+
+# write the above command in the alternative formatting
+```{r}
+
+
+```
+
+
+
+
+# Part 2: Histograms
+# let's make a histogram of the distrbution of height in the clinical dataset
+
+# basic ggplot step 1: bind the data to the plot
+# name the plot histogram
+```{r}
+
+
+```
+
+# basic ggplot step 2: specfiy the aesthetics (axes)
+```{r}
+
+```
+
+# basic ggplot step 3: add a layer of geometry
+# we want to make this with the default 30 bins
+```{r}
+
+```
+
+
+# on second thought, let's make it with half the number of bins (15)
+```{r}
+
+```
+
+# actually, let's set the bin width to be 10 so we see everything in groups of 10 inches
+```{r}
+
+```
+
+# write the above command using the alternative formatting
+```{r}
+
+
+```
+
+
+

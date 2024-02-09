@@ -1,0 +1,141 @@
+---
+title: "11.0 Scatterplots and Box Plots"
+author: "Sam Hart & Katherine Brower"
+date: "7/17/2022"
+output: html_document
+---
+
+# Introduction to R: Scatterplots and Box Plots
+
+# load library/package
+```{r}
+library(tidyverse)
+```
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+
+# Part 1: Scatterplots
+# let's make a scatter plot looking at the number of cigarettes per day and the count of
+# ERCC2 mutations
+
+# basic ggplot step 1: bind data to the plot
+# call this plot1
+```{r}
+
+```
+
+# basic ggplot step 2: specify aesthetics
+# the x axis is cigarettes_per_day and the y axis is count.ERCC2.signature.mutations
+```{r}
+
+```
+
+# basic ggplot step 3: add a layer of geometry
+```{r}
+
+```
+
+# basic ggplot step 3: alternative way to add a layer of geometry
+```{r}
+
+```
+
+# basic ggplot step 4: alter the coordinate range
+# restrist the x axis from 0 to 10 and the y axis from 0 to 100 
+```{r}
+
+```
+
+# write the command in the alternative formatting for ggplot 
+```{r}
+
+
+
+```
+
+
+# we need to cleano out data! 
+# create a subsetted data frame of the columns: barcode, cigarettes_per_day, count.ERCC2.signature.mutations and remove NAs
+# call this new subset barcode_CPD_ERCC_count_data 
+```{r}
+
+
+
+```
+
+#now that our data is clean,
+# create a scatterplot using the subsetted data frame from above (steps 1, 2 and 3)
+```{r}
+
+
+
+```
+
+# let's remove the outliers to make the data easier to read
+# zoom into a smaller x-axis range (exclude outliers) (step 4)
+# limit the x axis to 0 to 10 and the y axis to 0 to 400
+```{r}
+
+
+
+
+```
+          
+          
+
+# Part 2: Box plots
+# now we are going to make a box plot of ERCC2 mutations and comparte them across
+# current smokers and lifelong non-smokers
+
+# let's start with cleaning our data
+# subset another data frame to include the columns: barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations
+# remove NAs in ERCC2 signature mutations
+# restrict to current smokers and lifelong non-smokers
+# call this barcode_TSH_ERCC2_count_data
+```{r}
+
+
+
+
+```
+
+# now that we have clean data, let's make our box plot
+# create a boxplot from the subsetted dataframe above (steps 1, 2, and 3)
+```{r}
+
+
+
+```
+
+
+# create boxplot, adjust y-axis range (step 4)
+# restrict the y axis to 0 to 125
+```{r}
+
+
+
+
+```
+
+# let's add the data points onto the box plot
+# add  data, jittered (step 5)
+```{r}
+
+
+
+
+```
+
+# there are a few outliers that make it hard to see the trends
+# let's remove the outlier points from geom_boxplot()
+# this time make the jitter data points purple
+```{r}
+
+
+
+```
+
