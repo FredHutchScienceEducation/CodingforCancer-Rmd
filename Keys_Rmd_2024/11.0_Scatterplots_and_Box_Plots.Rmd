@@ -154,5 +154,3 @@ ggplot(data = barcode_TSH_ERCC2_count_data,
   geom_jitter(color = "purple")
 ```
 
-
-
