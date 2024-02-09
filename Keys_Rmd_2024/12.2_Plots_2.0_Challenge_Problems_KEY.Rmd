@@ -1,0 +1,96 @@
+---
+title: "Plots 2.0 Challenge Problems"
+author: "sfhart & Katherine Brower"
+date: "08/15/2023"
+output: html_document
+---
+
+
+## Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient
+##       characteristics
+
+
+## Graphing using ggplot2
+
+## Instructions:
+## Work with a partner or two!:
+## - We've looked at a number of variables in our RB1_clinical dataset. Choose
+##   two variables (columns) you think might have an interesting relationship.
+## - Note: 
+##   - it may be wise to avoid relating 2 categorical variables (may not be able to plot it!)
+## - Form a hypothesis about these variables and discuss with your group which plot type would best help you evaluate it.
+## - Generate the plot using the techniques we learning in ggplot.
+## - Change the color/fill of at least one part of the plot and use
+##    coord_cartesian to "zoom" in/out as necessary.
+## - Add informative x- and y-axis labels.
+## - Use ggsave() to save to plot to an appropriate name in the plots directory (folder)
+
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+# Run the following code from lesson 6 to make RB1_clinical
+```{r}
+clinical <- read_csv("data/clinical.csv")
+RB1_clinical <- clinical %>%
+  select(tissue_or_organ_of_origin:total.number.Indels, contains("RB1")) %>%
+  filter(sample_type == "Primary Tumor") %>%
+  mutate(across(c(focal.deletion.in.RB1,mutation.in.RB1), #find cols that contain "RB1"
+                ~replace_na(., "NaN"))) %>%  #replace the NAs with strings
+  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
+           focal.deletion.in.RB1 == "Loss" |
+           mutation.in.RB1 == "yes"
+  ) %>%
+  mutate(RB1_expr = as.numeric(RB1_expr)) #make sure expression is numeric just in case
+```
+
+
+```{r}
+# [Add code here]
+```
+
+
+
+
+
+# PART 2
+
+All exercises use the clinical object we created in the readings:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+In the code used to create boxplots in the readings:
+    Code jitter before the boxplot. What happens?
+    Layer the code block using theme(), modifying the axes labels and the legend, before theme_bw(). What is different?
+    Given your observations after doing the above, does the order of layers matter?
+```{r}
+
+```
+    
+In the boxplot code in the reading, use theme_gray() (or theme_grey()) instead of theme_bw(). What do you observe when theme_gray() is present vs when it is absent in the code block? What can you conclude about default theme settings in ggplot2?
+```{r}
+
+```
+
+In the Scatterplots and Histograms lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in Lesson 7b to create a more presentable plot.
+    Set the colors of the points to a column with continuous (numerical) data of your choice. What happens? Is there a trend?
+    Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
+    Use faceting to create the same plot for each of the cancer stages
+```{r}
+
+```
+
+Create a plot of your choice using the data in clinical. Use what you learned today to add appropriate customization.
+```{r}
+
+```
+
+
