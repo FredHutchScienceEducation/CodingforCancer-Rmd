@@ -1,0 +1,61 @@
+---
+title: "Scatterplots and Boxplots Challenge Problems"
+author: "sfhart & Katherine Brower"
+date: "08/14/2023"
+output: html_document
+---
+
+All exercises use the clinical object we created in the readings:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+Create a visualization (plot) showing the effects of mutations on RNA expression level (expression levels are given in ELF3, relevant columns end in “expr”). What do you see? Hypothesize what this tells you about the effect of the mutation.
+```{r}
+
+```
+
+Does smoking have an effect on the number of mutations? Create visualizations and investigate if smoking is correlated to:
+    The number of single nucleotide variants (also known as point mutations, mutations in just one base) 
+    The number of indels (mutations that are insertion or deletions)
+    Total number of mutations: create a column summing up the number of point mutations and indels.
+```{r}
+
+```
+
+Some mutations are named “focal deletion” and “focal amplification” in clinical. Choose a gene of interest (e.g. focal.amplification.in.E2F3) and relate its mutational status to RNA levels (e.g. E2F3_expr). What can you hypothesize about the effect of these categories of mutations on RNA levels (transcription)?
+    Note that for focal amplification:
+        "." means no amplification   
+        "Gain" and "Amp" mean focal amplification is present 
+        NA and "NaN" mean missing data
+
+    Note that for focal deletion:
+        "." means no deletion
+        "Del" and "Loss" mean focal deletion is present
+         NA and "NaN" mean missing data
+```{r}
+
+```
+
+Mutations in which gene is most common in bladder cancer patients (see columns which start with “mutation.in”)? Create a visualization which illustrates this. Hints: 
+    Use your dplyr skills to count the occurrences of “yes” for each of the genes available, tally these values for each gene, create a new tibble that could be used for plotting.
+    A bar chart is one effective way. We can make a barchart using geom_bar() the same way we've been using geom_boxplot() and geom_point()
+    Compare what the visualizations/plot types look like!
+```{r}
+
+```
+
+When making the boxplots, we layered two geoms together to make an improved plot. In the introductory readings, there was an optional section talking about linear regression or adding a best-fitting line to scatter plots in order to visualize overall trends. Here, two geoms are also layered together to create this visualization. In the scatter plot relating the number of cigarettes smoked per day and the number of ERCC2 signature mutations, fit a line to the data. Hint: the geom to use is called geom_smooth(). Explore the defaults. What do you observe? Change to method = “lm” (stands for linear model). What happens? Is there a correlation between the two variables plotted? What do you conclude?
+```{r}
+
+```
+
+Explore the data on your own! Create your own plot using the data in clinical and see if you can find interesting signals in the data. You may choose to try other plot types such as histograms using geom_histogram()
+```{r}
+
+```
