@@ -1,0 +1,20 @@
+---
+title: "Intro to Plots: Bar plots and Histograms"
+author: "Hanako"
+date: "2/1/20224"
+output: html_document
+---
+
+# Part 1
+
+# load library/package
+```{r}
+library(tidyverse)
+```
+
+# import data
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+
