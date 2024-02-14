@@ -1,11 +1,9 @@
 ---
 title: "Intro to Plots: Bar plots and Histograms"
-author: "Hanako"
+author: "Hanako Osuga"
 date: "2/1/20224"
 output: html_document
 ---
-
-# Part 1
 
 # load library/package
 ```{r}
@@ -15,6 +13,96 @@ library(tidyverse)
 # import data
 ```{r}
 clinical <- read_csv("data/clinical.csv")
+```
+
+# Bar plots practice
+# the following are some categorical data in our clinical data set: tissue_or_organ_of_origin, sample_type, primary_diagnosis, ajcc_pathologic_state, gender
+
+#lets practice making a bar plot looking at the count of records by primary_diagnosis
+#call this plot diagnosis_plot
+```{r}
+diagnosis_plot <- ggplot(data= clinical,
+                         mapping = aes(primary_diagnosis)) +
+  geom_bar(stat="count")
+diagnosis_plot
+```
+
+#make the same code with our alternative formatting
+#call this diagnosis_2
+```{r}
+diagnosis_2 <- ggplot(clinical)+
+    geom_bar(aes(x=primary_diagnosis), stat="count")
+diagnosis_2
+```
+
+
+#pick another categorical variable from the list and make your own bar plot!
+#what are you intersted in learning about our clinical data set?
+```{r}
+#this is an example with the column gender
+
+gender_plot <- ggplot( data = clinical,
+                       mapping = aes(x= gender))+
+  geom_bar(stat="count")
+gender_plot
+```
+
+#save this plot
+#call this plot the name of the variable chose .pdf
+```{r}
+
+#this is an example with the column gender
+ggsave(filename = "gender.pdf",
+       plot = gender_plot,
+       width = 4, height = 3)
+
+```
+
+
+#Histogram practice!
+#these are some numerical data columns in our clinical dataset: year_of_birth, age_at_diagnosis, year_of_diagnosis, pack_years_smoked, cigarettes_per_day
+
+
+#lets practice making a histogram with the column cigarettes_per_day
+#call this plot cigarettes_plot
+```{r}
+cigarettes_plot <- ggplot(data = clinical, 
+                          mapping = aes(x= cigarettes_per_day))+
+    geom_histogram()
+cigarettes_plot
+```
+
+#change the number of bins or the bin widht on this plot to make it a little easier to read
+```{r}
+cigarettes_plot <- ggplot(data = clinical, 
+                          mapping = aes(x= cigarettes_per_day))+
+    geom_histogram(bins = 10)
+cigarettes_plot
+```
+
+
+#choose another numerical variable to make your own histogram
+#what are you interested in learning about the clinical dataset?
+#make sure to utilize the bins/binwidth to make your plot easy to read!
+```{r}
+#this is an example with year_of_diagnosis
+
+diagnosis_year <- ggplot(data = clinical, 
+                         mapping = aes(x=year_of_diagnosis))+
+  geom_histogram(binwidth = 5)
+diagnosis_year
+
+```
+
+#save this plot
+#call this plot the name of the variable chose .pdf
+```{r}
+
+#this is an example with the column year_of_diagnosis
+ggsave(filename = "year_of_diagnosis.pdf",
+       plot = diagnosis_year,
+       width = 4, height = 3)
+
 ```
 
 
