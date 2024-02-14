@@ -1,0 +1,71 @@
+---
+title: "Intro to Plots: Bar plots and Histograms Challenge Problems"
+author: "Hanako Osuga"
+date: "2/14/20224"
+output: html_document
+---
+
+
+# load library/package
+```{r}
+#run if you haven't already today
+#library(tidyverse)
+```
+
+# import data
+```{r}
+#run if you haven't already today
+#clinical <- read_csv("data/clinical.csv")
+```
+
+# make a plot of the column vital_status
+# you will need to choose the type of plot and build your plot accordingly
+# hint: you will also need to do some data cleaning 
+```{r}
+# this is an example of a bar plot
+
+vital_status_noNA <- clinical %>%
+  select(Vital.status, barcode, year_of_birth) %>%
+  filter(!is.na(Vital.status)) 
+
+vital_status_plot <- ggplot(data= vital_status_noNA, 
+                            mapping = aes(x= vital_status_noNA$Vital.status))+
+  geom_bar(stat= "count")
+
+vital_status_plot
+
+
+```
+
+# save this plot
+# remember to name it something descriptive!
+```{r}
+ggsave(filename = "vital_status.pdf",
+       plot = vital_status_plot,
+       width = 4, height = 3)
+```
+
+
+
+
+# make the other type of plot (the one you didn't choose above)
+# choose a column from the clinical dataset that works for the plot type
+```{r}
+# this is an example of a histogram, we chose the year_at_birth
+birth_year <- ggplot(data = clinical,
+                     mapping = aes(x= year_of_birth))+
+        geom_histogram(binwidth=10) #looking at distrbution by decade (10 years)
+
+birth_year
+
+```
+
+
+# save this plot too
+```{r}
+ggsave(filename = "birth_year.pdf",
+       plot = birth_year,
+       width = 4, height = 3)
+```
+
+
