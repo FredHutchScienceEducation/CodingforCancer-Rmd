@@ -1,0 +1,61 @@
+---
+title: "Intro to Plots: Bar plots and Histograms Challenge Problems"
+author: "Hanako Osuga"
+date: "2/14/20224"
+output: html_document
+---
+
+
+# load library/package
+```{r}
+#run if you haven't already today
+#library(tidyverse)
+```
+
+# import data
+```{r}
+#run if you haven't already today
+#clinical <- read_csv("data/clinical.csv")
+```
+
+# make a plot of the column vital_status
+# you will need to choose the type of plot and build your plot accordingly
+# hint: you will also need to do some data cleaning
+```{r}
+
+
+
+
+
+```
+
+# save this plot
+# remember to name it something descriptive!
+```{r}
+
+
+
+```
+
+
+
+
+# make the other type of plot (the one you didn't choose above)
+# choose a column from the clinical dataset that works for the plot type
+```{r}
+
+
+
+
+
+```
+
+
+# save this plot too
+```{r}
+
+
+
+```
+
+
