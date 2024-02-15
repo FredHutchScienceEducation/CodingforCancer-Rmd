@@ -1,5 +1,5 @@
 ---
-title: "Scatterplots and Boxplots Exercises KEY"
+title: "Scatterplots and Boxplots Exercises"
 author: "sfhart & Katherine Brower"
 date: "08/14/2023"
 output: html_document
@@ -26,11 +26,9 @@ library(tidyverse) ## if this isn't working, be sure to run the above (uncomment
 # it should also filter for any rows that has Primary Tumor as the sample type
 
 ```{r}
-#clinical <- read_csv("data/clinical.csv")
 
-RB1_clinical <- clinical %>%
-  select(tissue_or_organ_of_origin:total.number.Indels, contains("RB1")) %>%
-  filter(sample_type == "Primary Tumor") 
+
+
 
 ```
 
@@ -40,19 +38,9 @@ RB1_clinical <- clinical %>%
 # 3) double check RB1_expr is a numeric, just in case
 
 ```{r}
-#clinical <- read_csv("data/clinical.csv")
 
-RB1_clinical <- clinical %>%
-  select(tissue_or_organ_of_origin:total.number.Indels, contains("RB1")) %>%
-  filter(sample_type == "Primary Tumor") %>%
-  
-  mutate(across(c(focal.deletion.in.RB1,mutation.in.RB1), #find cols that contain "RB1"
-                ~replace_na(., "NaN"))) %>%  #replace the NAs with strings
-  mutate(any.RB1.mut = focal.deletion.in.RB1 == "Del" |
-           focal.deletion.in.RB1 == "Loss" |
-           mutation.in.RB1 == "yes"
-  ) %>%
-  mutate(RB1_expr = as.numeric(RB1_expr)) #make sure expression is numeric just in case
+
+
 ```
 
 
@@ -63,12 +51,9 @@ RB1_clinical <- clinical %>%
 # Call this any_RB1_mut
 
 ```{r}
-#RB1_clinical
-#names(RB1_clinical)
-any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
-  geom_boxplot()
 
-any_RB1_mut
+
+
 ```
 
 # Reflection Questions
@@ -80,17 +65,16 @@ any_RB1_mut
 ##  - Then use coord_cartesian() to "zoom" to between 0 and 20 FPKM (the units
 ##    for this analysis)
 ```{r}
-any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
-  geom_boxplot()+
-  coord_cartesian(ylim=c(0,20))
 
-any_RB1_mut
+
+
+
 ```
 # don't forget to save your plot!
 ```{r}
-ggsave( filename = "anyRB1mut.PDF",
-        plot = any_RB1_mut,
-        width = 4, height = 3)
+
+
+
 ```
 
 
@@ -101,39 +85,30 @@ ggsave( filename = "anyRB1mut.PDF",
 # now lets use RB1_clinical to make a scatterplor
 # make a scatterplot of RB1_expr and age_at_diagnosis
 ```{r}
-RB1_age_plot <- ggplot(data = RB1_clinical,
-                      mapping = aes(x= RB1_expr, y = age_at_diagnosis))+
-  geom_point()
 
-RB1_age_plot 
+
 ```
 
 
 # lets remove the outlier by zooming into 0 to 30
 ```{r}
-RB1_age_plot <- ggplot(data = RB1_clinical,
-                      mapping = aes(x= RB1_expr, y = age_at_diagnosis))+
-  geom_point() +
-  coord_cartesian(xlim = c(0,30))
 
-RB1_age_plot 
+
+
 ```
 
 # we still have that second outlier, change the coord_cartesian again to remove it
 ```{r}
-RB1_age_plot <- ggplot(data = RB1_clinical,
-                      mapping = aes(x= RB1_expr, y = age_at_diagnosis))+
-  geom_point() +
-  coord_cartesian(xlim = c(0,25))
 
-RB1_age_plot 
+
+
 ```
 
 
 # save the plot!
 ```{r}
-ggsave( filename = "RB1expr-age.PDF",
-        plot = RB1_age_plot,
-        width = 4, height = 3)
+
+
+
 ```
 
