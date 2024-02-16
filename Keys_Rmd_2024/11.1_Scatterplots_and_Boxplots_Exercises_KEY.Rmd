@@ -86,9 +86,10 @@ any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
 
 any_RB1_mut
 ```
-# don't forget to save your plot!
+
+# don't forget to save your plot to your plots directory!
 ```{r}
-ggsave( filename = "anyRB1mut.PDF",
+ggsave( filename = "plots/anyRB1mut.PDF",
         plot = any_RB1_mut,
         width = 4, height = 3)
 ```
@@ -130,9 +131,9 @@ RB1_age_plot
 ```
 
 
-# save the plot!
+# save the plot to your plots directory!
 ```{r}
-ggsave( filename = "RB1expr-age.PDF",
+ggsave( filename = "plots/RB1expr-age.PDF",
         plot = RB1_age_plot,
         width = 4, height = 3)
 ```

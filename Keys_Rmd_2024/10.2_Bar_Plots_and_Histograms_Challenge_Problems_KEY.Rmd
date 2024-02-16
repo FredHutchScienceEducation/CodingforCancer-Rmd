@@ -40,7 +40,7 @@ vital_status_plot
 # save this plot in the plots directory
 # remember to name it something descriptive!
 ```{r}
-ggsave(filename = "vital_status.pdf",
+ggsave(filename = "plots/vital_status.pdf",
        plot = vital_status_plot,
        width = 4, height = 3)
 ```
@@ -68,9 +68,9 @@ birth_year
 ```
 
 
-# save this plot in your plots directory
+# save this plot in your plots directorya
 ```{r}
-ggsave(filename = "birth_year.pdf",
+ggsave(filename = "plots/birth_year.pdf",
        plot = birth_year,
        width = 4, height = 3)
 ```

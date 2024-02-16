@@ -154,3 +154,13 @@ ggplot(data = barcode_TSH_ERCC2_count_data,
   geom_jitter(color = "purple")
 ```
 
+#save your plot to your plots directory
+```{r}
+ggsave(filename = "plots/ERCC2_mutations.pdf",
+       plot = diagnosis_year,
+       width = 4, height = 3)
+```
+
+
+```
+
