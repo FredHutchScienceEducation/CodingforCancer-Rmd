@@ -29,7 +29,7 @@ output: html_document
 
 ```
 
-# save this plot
+# save this plot in your plots directory
 # remember to name it something descriptive!
 ```{r}
 
@@ -40,8 +40,10 @@ output: html_document
 
 
 
+
 # make the other type of plot (the one you didn't choose above)
 # choose a column from the clinical dataset that works for the plot type
+# don't forget to remove NAs!
 ```{r}
 
 
@@ -51,7 +53,7 @@ output: html_document
 ```
 
 
-# save this plot too
+# save this plot in the same plots directorys
 ```{r}
 
 

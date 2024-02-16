@@ -39,7 +39,7 @@ clinical <- read_csv("data/clinical.csv")
 
 ```
 
-#save this plot
+#save this plot in the plots directory you created previously 
 #call this plot the name of the variable chose .pdf
 ```{r}
 
@@ -78,7 +78,7 @@ clinical <- read_csv("data/clinical.csv")
 
 ```
 
-#save this plot
+#save this plot in the plots directory you created previously 
 #call this plot the name of the variable chose .pdf
 ```{r}
 

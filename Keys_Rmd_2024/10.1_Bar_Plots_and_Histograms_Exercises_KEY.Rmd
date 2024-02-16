@@ -47,12 +47,12 @@ gender_plot <- ggplot( data = clinical,
 gender_plot
 ```
 
-#save this plot
+#save this plot in the plots directory you created previously
 #call this plot the name of the variable chose .pdf
 ```{r}
 
 #this is an example with the column gender
-ggsave(filename = "gender.pdf",
+ggsave(filename = "plots/gender.pdf",
        plot = gender_plot,
        width = 4, height = 3)
 
@@ -94,12 +94,12 @@ diagnosis_year
 
 ```
 
-#save this plot
+#save this plot in the plots directory you created previously
 #call this plot the name of the variable chose .pdf
 ```{r}
 
 #this is an example with the column year_of_diagnosis
-ggsave(filename = "year_of_diagnosis.pdf",
+ggsave(filename = "plots/year_of_diagnosis.pdf",
        plot = diagnosis_year,
        width = 4, height = 3)
 

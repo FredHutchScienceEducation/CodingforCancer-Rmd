@@ -48,6 +48,18 @@ clinical <- read_csv("data/clinical.csv")
 
 
 
+# create a directory to store our plots
+```{r}
+
+```
+
+#save your plot!
+```{r}
+
+```
+
+
+
 
 # Part 2: Histograms
 # let's make a histogram of the distrbution of height in the clinical dataset
@@ -87,5 +99,9 @@ clinical <- read_csv("data/clinical.csv")
 
 ```
 
+#save your plot in the plots directory you created earlier
+```{r}
+
+```
 
 

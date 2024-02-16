@@ -37,7 +37,7 @@ vital_status_plot
 
 ```
 
-# save this plot
+# save this plot in the plots directory
 # remember to name it something descriptive!
 ```{r}
 ggsave(filename = "vital_status.pdf",
@@ -49,19 +49,26 @@ ggsave(filename = "vital_status.pdf",
 
 
 # make the other type of plot (the one you didn't choose above)
-# choose a column from the clinical dataset that works for the plot type
+# choose a column from the clinical dataset that works for the plot type 
+# don't forget to remove NAs
 ```{r}
 # this is an example of a histogram, we chose the year_at_birth
-birth_year <- ggplot(data = clinical,
+
+birth_year_noNA <- clinical %>%
+  select(year_of_birth, barcode) %>%
+  filter(!is.na(year_of_birth))
+
+
+birth_year <- ggplot(data = birth_year_noNA,
                      mapping = aes(x= year_of_birth))+
-        geom_histogram(binwidth=10) #looking at distrbution by decade (10 years)
+        geom_histogram(binwidth=10) #looking at distribution by decade (10 years)
 
 birth_year
 
 ```
 
 
-# save this plot too
+# save this plot in your plots directory
 ```{r}
 ggsave(filename = "birth_year.pdf",
        plot = birth_year,
