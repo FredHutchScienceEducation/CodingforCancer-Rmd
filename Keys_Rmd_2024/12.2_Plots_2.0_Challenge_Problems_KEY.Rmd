@@ -1,5 +1,5 @@
 ---
-title: "Plots 2.0 Challenge Problems"
+title: "Plots 2.0 Challenge Problems KEY"
 author: "sfhart & Katherine Brower"
 date: "08/15/2023"
 output: html_document
@@ -52,9 +52,6 @@ RB1_clinical <- clinical %>%
 ```
 
 
-
-
-
 # PART 2
 
 All exercises use the clinical object we created in the readings:
@@ -80,11 +77,33 @@ In the boxplot code in the reading, use theme_gray() (or theme_grey()) instead o
 
 ```
 
-In the Scatterplots and Histograms lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in Lesson 7b to create a more presentable plot.
+In the Scatterplots and Histograms lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in the lesosn to create a more presentable plot.
     Set the colors of the points to a column with continuous (numerical) data of your choice. What happens? Is there a trend?
     Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
     Use faceting to create the same plot for each of the cancer stages
 ```{r}
+
+d_plot <- clinical %>% 
+  select(barcode,ajcc_pathologic_stage, cigarettes_per_day, count.ERCC2.signature.mutations) %>% 
+  filter(!is.na(count.ERCC2.signature.mutations)) 
+ 
+
+ggplot(data = d_plot,
+       aes(x = cigarettes_per_day,
+           y = count.ERCC2.signature.mutations,
+           fill = cigarettes_per_day)) + 
+  geom_point(color = "pink") +
+  coord_cartesian(ylim = c(0, 400), xlim=c(0,10)) +
+  geom_smooth(color = "red")
+  
+
+ggplot(data = d_plot,
+       aes(x = ajcc_pathologic_stage,
+           y = count.ERCC2.signature.mutations,
+           fill = ajcc_pathologic_stage)) + 
+  geom_point(aes(color = ajcc_pathologic_stage)) +
+  coord_cartesian(ylim = c(0, 125)) 
+
 
 ```
 
