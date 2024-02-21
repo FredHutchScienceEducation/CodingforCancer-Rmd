@@ -31,7 +31,7 @@ output: html_document
 library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
 ```
 
-# Run the following code from lesson 6 to make RB1_clinical
+# Run the following code we wrote previously to make RB1_clinical
 ```{r}
 clinical <- read_csv("data/clinical.csv")
 RB1_clinical <- clinical %>%
@@ -46,9 +46,30 @@ RB1_clinical <- clinical %>%
   mutate(RB1_expr = as.numeric(RB1_expr)) #make sure expression is numeric just in case
 ```
 
-
+# Make a plot of the two variables you find interesting
 ```{r}
-# [Add code here]
+#example with Tobacco.smoking.hustory and RB1_expr
+A_boxplot <- ggplot(data = RB1_clinical,
+       aes(x = Tobacco.smoking.history,
+           y = RB1_expr)) + 
+  geom_boxplot(outlier.shape = NA) +
+  coord_cartesian(ylim = c(0, 25)) +
+  geom_jitter(color = "blue") +
+  theme_grey()+
+    theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "Tobacco smoking history vs. RB1_expr",
+       x = "Tobacco smoking history",
+       y = "RB1 Expression")
+A_boxplot
+
+ggsave(filename = "plots/smoking_history_vs_RB1_Expr.pdf",
+       plot = A_boxplot,
+       width = 6, 
+       height = 12) 
 ```
 
 
@@ -64,23 +85,111 @@ library(tidyverse) ## if this isn't working, be sure to run the above (uncomment
 clinical <- read.csv("data/clinical.csv")
 ```
 
-In the code used to create boxplots in the readings:
-    Code jitter before the boxplot. What happens?
-    Layer the code block using theme(), modifying the axes labels and the legend, before theme_bw(). What is different?
-    Given your observations after doing the above, does the order of layers matter?
+This is code to make a boxplot:
 ```{r}
+any_RB1_mut <- ggplot(data = RB1_clinical, aes(x = any.RB1.mut, y = RB1_expr)) +
+  geom_boxplot() +
+  coord_cartesian(ylim = c(0, 20)) +
+  geom_jitter(aes(color = any.RB1.mut), alpha = 0.5) +
+  labs(title = "RB1 mutations and RB1 expression",
+       x = "RB1 Mutation Presence",
+       y = "RB1 expression")
+
+any_RB1_mut
+
+
+```
+
+Code jitter before the boxplot. What happens?
+```{r}
+any_RB1_mut <- ggplot(data = RB1_clinical, aes(x = any.RB1.mut, y = RB1_expr)) +
+  geom_jitter(aes(color = any.RB1.mut), alpha = 0.5) +
+  geom_boxplot() +
+  coord_cartesian(ylim = c(0, 20)) +
+  labs(title = "RB1 mutations and RB1 expression",
+       x = "RB1 Mutation Presence",
+       y = "RB1 expression")
+
+any_RB1_mut
+
+```
+
+Layer the code block using theme(), modifying the axes labels and the legend.
+```{r}
+
+any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
+  geom_boxplot()+
+  coord_cartesian(ylim=c(0,20)) +
+  geom_jitter(aes(color = any.RB1.mut), alpha = 0.5) +
+  theme_bw() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "RB1 mutations and RB1 Expression",
+       x = "RB1 Mutations",
+       y = "RB1 Expression")
+
+
+any_RB1_mut
+
 
 ```
     
-In the boxplot code in the reading, use theme_gray() (or theme_grey()) instead of theme_bw(). What do you observe when theme_gray() is present vs when it is absent in the code block? What can you conclude about default theme settings in ggplot2?
+Now flip the order so that you put the labels before theme_bw(), what happens?    
+Given your observations after doing the above, does the order of layers matter?
 ```{r}
+
+any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
+  geom_boxplot()+
+  coord_cartesian(ylim=c(0,20)) +
+  geom_jitter(aes(color = any.RB1.mut), alpha = 0.5) +
+  labs(title = "RB1 mutations and RB1 Expression",
+       x = "RB1 Mutations",
+       y = "RB1 Expression")+
+  theme_bw() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") 
+
+
+any_RB1_mut
+
+
+```
+    
+
+In the box plot above, use theme_gray() (or theme_grey()) instead of theme_bw(). 
+
+What do you observe when theme_gray() is present vs when it is absent in the code block? What can you conclude about default theme settings in ggplot2?
+```{r}
+
+any_RB1_mut <- ggplot(data = RB1_clinical, aes(x=any.RB1.mut, y=RB1_expr)) +
+  geom_boxplot()+
+  coord_cartesian(ylim=c(0,20)) +
+  geom_jitter(aes(color = any.RB1.mut), alpha = 0.5) +
+  theme_grey() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "RB1 mutations and RB1 Expression",
+       x = "RB1 Mutations",
+       y = "RB1 Expression")
+
+any_RB1_mut
+
+#the default if theme_grey!
 
 ```
 
-In the Scatterplots and Histograms lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in the lesosn to create a more presentable plot.
+In the Scatterplots and Boxplots lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in the lesosn to create a more presentable plot.
     Set the colors of the points to a column with continuous (numerical) data of your choice. What happens? Is there a trend?
-    Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
-    Use faceting to create the same plot for each of the cancer stages
+   
 ```{r}
 
 d_plot <- clinical %>% 
@@ -88,28 +197,79 @@ d_plot <- clinical %>%
   filter(!is.na(count.ERCC2.signature.mutations)) 
  
 
-ggplot(data = d_plot,
-       aes(x = cigarettes_per_day,
-           y = count.ERCC2.signature.mutations,
-           fill = cigarettes_per_day)) + 
+scatter_1<- ggplot(data = d_plot,
+                   aes(x = cigarettes_per_day,
+                       y = count.ERCC2.signature.mutations,
+                       fill = cigarettes_per_day)) + 
   geom_point(color = "pink") +
-  coord_cartesian(ylim = c(0, 400), xlim=c(0,10)) +
-  geom_smooth(color = "red")
-  
+  coord_cartesian(ylim = c(0, 400), xlim=c(0,8)) +
+  theme_grey() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "ERCC2 mutations vs cigarettes per day",
+       x = "# ERCC2 Mutations",
+       y = "Cigarettes per day")
 
-ggplot(data = d_plot,
-       aes(x = ajcc_pathologic_stage,
-           y = count.ERCC2.signature.mutations,
-           fill = ajcc_pathologic_stage)) + 
-  geom_point(aes(color = ajcc_pathologic_stage)) +
-  coord_cartesian(ylim = c(0, 125)) 
-
+scatter_1
 
 ```
+
+ Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
+    Use faceting to create the same plot for each of the cancer stages
+```{r}
+stage_ERCC2 <- ggplot(data = d_plot,
+                      aes(x = ajcc_pathologic_stage,
+                          y = count.ERCC2.signature.mutations,
+                          fill = ajcc_pathologic_stage)) + 
+  geom_point(aes(color = ajcc_pathologic_stage)) +
+  coord_cartesian(ylim = c(0, 125)) +
+  theme_bw() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        legend.position = "none") +
+  labs(title = "ERCC2 mutations vs Cancer Stage Category",
+       x = "# ERCC2 Mutations",
+       y = "Cancer Stage")
+
+
+stage_ERCC2
+```
+
 
 Create a plot of your choice using the data in clinical. Use what you learned today to add appropriate customization.
 ```{r}
+#an example with total.number.Indels and year of birth 
+
+my_plot <- ggplot( data = clinical, 
+                   aes(x= year_of_birth, 
+                       y= total.number.Indels)) +
+  geom_point(color = "#d8c0e4") +
+  coord_cartesian(ylim = c(0,30)) +
+  theme_grey()+
+    theme(axis.text.y = element_text(color = "black", size = 10),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.title.y = element_text(color = "black", size = 8),
+        axis.title.x = element_text(color = "black", size = 8),
+        legend.position = "none") +
+    labs(title = "Total Number of Indels by Year of Birth",
+         x = "Year of Birth",
+         y = "Total Number of Indels")
+           
+my_plot
 
 ```
+Save this plot to turn in! Make the name of the file your name.
+```{r}
+ggsave(filename = "plots/Your_Name_Here.pdf",
+       plot = my_plot,
+       width = 6, 
+       height =12) 
 
+
+```
 
