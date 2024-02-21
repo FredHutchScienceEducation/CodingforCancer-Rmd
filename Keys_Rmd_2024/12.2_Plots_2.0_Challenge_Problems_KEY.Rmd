@@ -1,7 +1,7 @@
 ---
 title: "Plots 2.0 Challenge Problems KEY"
-author: "sfhart & Katherine Brower"
-date: "08/15/2023"
+author: "sfhart & Katherine Brower & Hanako Osuga"
+date: "2.21.24"
 output: html_document
 ---
 
