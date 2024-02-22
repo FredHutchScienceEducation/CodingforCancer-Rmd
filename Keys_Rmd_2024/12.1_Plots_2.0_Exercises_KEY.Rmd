@@ -193,12 +193,6 @@ final_plot <- p +
 final_plot
 ```
  
-
-# create a directory to store our plots
-```{r}
-dir.create("plots")
-```
-
 # save plot to directory
 ```{r}
 ggsave(filename = "plots/boxplot.pdf",

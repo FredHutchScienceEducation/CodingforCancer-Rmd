@@ -279,9 +279,9 @@ my_plot <- ggplot( data = clinical,
 my_plot
 
 ```
-Save this plot to turn in! Make the name of the file your name.
+Save this plot! 
 ```{r}
-ggsave(filename = "plots/Your_Name_Here.pdf",
+ggsave(filename = "plots/Plot_Name_Here.pdf",
        plot = my_plot,
        width = 6, 
        height =12) 
