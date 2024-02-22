@@ -1,0 +1,74 @@
+---
+title: "Scatterplots and Boxplots Challenge Problems"
+author: "sfhart & Katherine Brower & Hanako Osuga"
+date: "2/21/2024"
+output: html_document
+---
+
+Don't forget to load these if you haven't already!
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+
+Create a visualization (plot) showing the effects of mutations on RNA expression level (expression levels are given in ELF3, relevant columns end in “expr”). What do you see? Hypothesize what this tells you about the effect of the mutation.
+```{r}
+
+
+
+
+```
+
+Does smoking have an effect on the number of mutations? Create visualizations and investigate if smoking is correlated to:
+    The number of single nucleotide variants (also known as point mutations, mutations in just one base) 
+    The number of indels (mutations that are insertion or deletions)
+    Total number of mutations: create a column summing up the number of point mutations and indels.
+    
+# total SNPs 
+```{r}
+
+
+
+
+
+```
+
+# total indels 
+
+```{r}
+
+
+
+
+```
+
+# total number of mutations
+```{r}
+
+
+```
+
+
+Some mutations are named “focal deletion” and “focal amplification” in clinical. Choose a gene of interest (e.g. focal.amplification.in.E2F3) and relate its mutational status to RNA levels (e.g. E2F3_expr). What can you hypothesize about the effect of these categories of mutations on RNA levels (transcription)?
+    Note that for focal amplification:
+        "." means no amplification   
+        "Gain" and "Amp" mean focal amplification is present 
+        NA and "NaN" mean missing data
+```{r}
+
+
+
+
+```
+
+Explore the data on your own! Create your own plot using two numerical variables from the data in clinical and see if you can find interesting signals in the data. You may choose to try other plot types such as histograms using geom_histogram()
+
+```{r}
+
+
+```
+

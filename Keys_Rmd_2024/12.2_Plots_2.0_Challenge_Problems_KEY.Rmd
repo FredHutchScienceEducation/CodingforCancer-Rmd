@@ -279,6 +279,8 @@ my_plot <- ggplot( data = clinical,
 my_plot
 
 ```
+
+
 Save this plot! 
 ```{r}
 ggsave(filename = "plots/Plot_Name_Here.pdf",

@@ -89,6 +89,9 @@ indel_plot
 
 ```
 
+
+
+
 ```{r}
 # total number of mutations
 
@@ -161,7 +164,7 @@ Explore the data on your own! Create your own plot using two numerical variables
 
 ```{r}
 
-#exmample of cigarettes_per_day and pack_years_smoked, colored by gender 
+#example of cigarettes_per_day and pack_years_smoked, colored by gender 
 smoking_plot <- ggplot(data = clinical,
                       aes(x = cigarettes_per_day,
                           y = pack_years_smoked)) + 

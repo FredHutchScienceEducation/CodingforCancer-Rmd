@@ -1,5 +1,5 @@
 ---
-title: "Plots 2.0 Exercises"
+title: "Plots 2.0 Exercises KEY"
 author: "sfhart"
 date: "7/17/2022"
 output: html_document
@@ -93,6 +93,8 @@ ggplot(data = d_plot,
 ```
 
 # use hex color codes
+# choose your own or use "#fdae61" and "#abd9e9" 
+
 ```{r}
 ggplot(data = d_plot,
        aes(x = Tobacco.smoking.history,
@@ -119,6 +121,7 @@ ggplot(data = d_plot,
 ```
 
 # save plot to an object p
+# don't forget to add a title and axis labels!
 ```{r}
 # Alpha =0.5
 p <- ggplot(data = d_plot,
@@ -137,13 +140,15 @@ p <- ggplot(data = d_plot,
 p
 ```
 
-# modify plot area and gridlines
+# modify plot area and gridlines, use a new theme!
 ```{r}
 p +
   theme_bw() # using a pre-set theme
 ```
   
 # modify plot text features with theme() to make it more readable!
+# try color = black and size = 7
+# you can put the axis at an angle if it makes it easier to read!
 ```{r}
 p +
   theme_bw() + 
@@ -193,7 +198,8 @@ final_plot <- p +
 final_plot
 ```
  
-# save plot to directory
+# save plot to plot directory
+# name it something descriptive!
 ```{r}
 ggsave(filename = "plots/boxplot.pdf",
        plot = final_plot,
