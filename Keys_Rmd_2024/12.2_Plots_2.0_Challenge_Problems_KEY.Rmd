@@ -187,11 +187,12 @@ any_RB1_mut
 
 ```
 
-In the Scatterplots and Boxplots lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in the lesosn to create a more presentable plot.
+In the Scatterplots and Boxplots lesson, we created a scatterplot relating smoking to the number of ERCC2 signature mutations. Use what we learned in the lesson to create a more presentable plot.
     Set the colors of the points to a column with continuous (numerical) data of your choice. What happens? Is there a trend?
    
 ```{r}
 
+#example for cigarettes_per_day 
 d_plot <- clinical %>% 
   select(barcode,ajcc_pathologic_stage, cigarettes_per_day, count.ERCC2.signature.mutations) %>% 
   filter(!is.na(count.ERCC2.signature.mutations)) 
@@ -210,33 +211,29 @@ scatter_1<- ggplot(data = d_plot,
         axis.title.x = element_text(color = "black", size = 7),
         legend.position = "none") +
   labs(title = "ERCC2 mutations vs cigarettes per day",
-       x = "# ERCC2 Mutations",
-       y = "Cigarettes per day")
+       x = "Cigarettes per day",
+       y = "# of ERCC2 mutations")
 
 scatter_1
 
 ```
 
- Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend?
-    Use faceting to create the same plot for each of the cancer stages
+Set the colors of the points to be by cancer stage category (relevant column is called ajcc_pathologic_stage). Is there a trend? 
 ```{r}
 stage_ERCC2 <- ggplot(data = d_plot,
-                      aes(x = ajcc_pathologic_stage,
+                      aes(x = cigarettes_per_day,
                           y = count.ERCC2.signature.mutations,
                           fill = ajcc_pathologic_stage)) + 
   geom_point(aes(color = ajcc_pathologic_stage)) +
-  coord_cartesian(ylim = c(0, 125)) +
+  coord_cartesian(ylim = c(0, 125), xlim = c(0,7)) +
   theme_bw() +
   theme(axis.text.y = element_text(color = "black", size = 7),
         axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
         axis.title.y = element_text(color = "black", size = 7),
-        axis.title.x = element_text(color = "black", size = 7),
-        legend.position = "none") +
+        axis.title.x = element_text(color = "black", size = 7))+
   labs(title = "ERCC2 mutations vs Cancer Stage Category",
-       x = "# ERCC2 Mutations",
-       y = "Cancer Stage")
-
-
+       x = "Cigarettes per day",
+       y = "# of ERCC2 mutations")
 stage_ERCC2
 ```
 
@@ -248,7 +245,7 @@ Create a plot of your choice using the data in clinical. Use what you learned to
 my_plot <- ggplot( data = clinical, 
                    aes(x= year_of_birth, 
                        y= total.number.Indels)) +
-  geom_point(color = "#d8c0e4") +
+  geom_point(color =  "#d8c0e4" ) +
   coord_cartesian(ylim = c(0,30)) +
   theme_grey()+
     theme(axis.text.y = element_text(color = "black", size = 10),
@@ -262,6 +259,25 @@ my_plot <- ggplot( data = clinical,
            
 my_plot
 
+
+#same plot colored by cancer stage
+
+my_plot <- ggplot( data = clinical, 
+                   aes(x= year_of_birth, 
+                       y= total.number.Indels)) +
+  geom_point(aes(color = ajcc_pathologic_stage) ) +
+  coord_cartesian(ylim = c(0,30)) +
+  theme_grey()+
+    theme(axis.text.y = element_text(color = "black", size = 10),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.title.y = element_text(color = "black", size = 8),
+        axis.title.x = element_text(color = "black", size = 8) )+
+    labs(title = "Total Number of Indels by Year of Birth",
+         x = "Year of Birth",
+         y = "Total Number of Indels")
+           
+my_plot
+
 ```
 Save this plot to turn in! Make the name of the file your name.
 ```{r}
@@ -269,7 +285,6 @@ ggsave(filename = "plots/Your_Name_Here.pdf",
        plot = my_plot,
        width = 6, 
        height =12) 
-
 
 ```
 

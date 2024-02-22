@@ -1,12 +1,11 @@
 ---
 title: "Scatterplots and Boxplots Challenge Problems"
-author: "sfhart & Katherine Brower"
-date: "08/14/2023"
+author: "sfhart & Katherine Brower & Hanako Osuga"
+date: "2/21/2024"
 output: html_document
 ---
 
-All exercises use the clinical object we created in the readings:
-
+Don't forget to load these if you haven't already!
 ```{r}
 # install.packages("tidyverse")
 library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
@@ -15,8 +14,29 @@ library(tidyverse) ## if this isn't working, be sure to run the above (uncomment
 clinical <- read.csv("data/clinical.csv")
 ```
 
+
 Create a visualization (plot) showing the effects of mutations on RNA expression level (expression levels are given in ELF3, relevant columns end in “expr”). What do you see? Hypothesize what this tells you about the effect of the mutation.
 ```{r}
+
+KMT2D_plot <- ggplot( data = clinical, 
+                     aes( x= mutation.in.KMT2D,
+                          y = KMT2D_expr)) +
+  geom_boxplot()+ 
+  geom_jitter(color = 	"#d0457a") +
+  coord_cartesian(ylim=c(0, 20)) + 
+  theme_grey()+
+    theme(axis.text.y = element_text(color = "black", size = 7),
+          axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+          axis.title.y = element_text(color = "black", size = 7),
+          axis.title.x = element_text(color = "black", size = 7),
+          legend.position = "none") +
+    labs(title = "Expression of KMT2D across samples with and without mutations",
+         x = "Presence of Mutation",
+         y = "KMT2D Expression")
+
+KMT2D_plot
+
+
 
 ```
 
@@ -26,36 +46,137 @@ Does smoking have an effect on the number of mutations? Create visualizations an
     Total number of mutations: create a column summing up the number of point mutations and indels.
 ```{r}
 
+# total SNPs
+SNP_plot <- ggplot( data= clinical,
+                    aes( x = Tobacco.smoking.history,
+                    y = total.number.Single.Nucleotide.Variants)) +
+  geom_boxplot()+
+  geom_jitter( color = "#235347") +
+  coord_cartesian(ylim=c(0, 2000)) +
+  theme_grey() +
+    theme(axis.text.y = element_text(color = "black", size = 7),
+          axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+          axis.title.y = element_text(color = "black", size = 7),
+          axis.title.x = element_text(color = "black", size = 7),
+          legend.position = "none") +
+    labs(title = "SNPs and Smoking History",
+         x = "Smoking History",
+         y = "Total number of SNPs")
+SNP_plot
+
+
 ```
+```{r}
+
+# total indels 
+indel_plot <- ggplot( data = clinical,
+                      aes( x = Tobacco.smoking.history,
+                           y = total.number.Indels)) +
+  geom_boxplot() +
+  geom_jitter( color = "#1c4966") +
+  coord_cartesian(ylim=c(0, 40)) +
+  theme_grey() +
+    theme(axis.text.y = element_text(color = "black", size = 7),
+          axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+          axis.title.y = element_text(color = "black", size = 7),
+          axis.title.x = element_text(color = "black", size = 7),
+          legend.position = "none") +
+    labs(title = "Indels and Smoking History",
+         x = "Smoking History",
+         y = "Total number of Indels")
+indel_plot
+
+
+```
+
+```{r}
+# total number of mutations
+
+#clean the data and make a new column total.Mutations
+mutations_clinical <- clinical %>%
+  select(Tobacco.smoking.history, total.number.Indels, total.number.Single.Nucleotide.Variants) %>%
+  mutate(total_Indels_noNA = replace_na(total.number.Indels, 0)) %>%  #replace the NAs with 0
+  mutate(total_SNPs_noNA = replace_na(total.number.Single.Nucleotide.Variants, 0)) %>%  #replace the NAs with 0
+  mutate(total.Mutations = total_Indels_noNA + total_SNPs_noNA) #add the number of Indels and SNPs together, store value in total.Mutations
+
+
+mutations_plot <- ggplot(data= mutations_clinical,
+                         aes(x = Tobacco.smoking.history,
+                              y = total.Mutations)) +
+  geom_boxplot() +
+  geom_jitter(color = "#ffb900") +
+  coord_cartesian(ylim=c(0, 2000)) +
+  theme_grey() +
+    theme(axis.text.y = element_text(color = "black", size = 7),
+          axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+          axis.title.y = element_text(color = "black", size = 7),
+          axis.title.x = element_text(color = "black", size = 7),
+          legend.position = "none") +
+    labs(title = "All mutations (indels and SNPs) and Smoking History",
+         x = "Smoking History",
+         y = "Total number of mutations")
+  
+mutations_plot
+
+```
+
 
 Some mutations are named “focal deletion” and “focal amplification” in clinical. Choose a gene of interest (e.g. focal.amplification.in.E2F3) and relate its mutational status to RNA levels (e.g. E2F3_expr). What can you hypothesize about the effect of these categories of mutations on RNA levels (transcription)?
     Note that for focal amplification:
         "." means no amplification   
         "Gain" and "Amp" mean focal amplification is present 
         NA and "NaN" mean missing data
-
-    Note that for focal deletion:
-        "." means no deletion
-        "Del" and "Loss" mean focal deletion is present
-         NA and "NaN" mean missing data
 ```{r}
+
+#example for focal.amplification.in/E2F3
+
+#clean the data 
+E2F3_clinical <- clinical %>%
+  select(focal.amplification.in.E2F3, E2F3_expr) %>%
+  mutate(E2F3_amp = replace(focal.amplification.in.E2F3, focal.amplification.in.E2F3== ".", "No Amp")) %>% # replace . for No Amp
+  mutate(E2F3_amp_noNA = replace(E2F3_amp, focal.amplification.in.E2F3 == "NaN", NA) ) # replace NaN with NA
+
+
+E2F3_plot <- ggplot(data = E2F3_clinical, 
+                    aes(x= E2F3_amp_noNA,
+                        y = E2F3_expr))+
+  geom_boxplot()+
+  geom_jitter(color = "#710000") +
+  coord_cartesian(ylim = c(0,120)) +
+  theme_grey()+
+   theme(axis.text.y = element_text(color = "black", size = 7),
+          axis.text.x = element_text(size = 7, color = "black", angle = 45, hjust = 1),
+          axis.title.y = element_text(color = "black", size = 7),
+          axis.title.x = element_text(color = "black", size = 7),
+          legend.position = "none") +
+    labs(title = "Focal amplification in E2F3 and expression",
+         x = "Focal amplification",
+         y = "E2F3 expression")
+E2F3_plot
+
 
 ```
 
-Mutations in which gene is most common in bladder cancer patients (see columns which start with “mutation.in”)? Create a visualization which illustrates this. Hints: 
-    Use your dplyr skills to count the occurrences of “yes” for each of the genes available, tally these values for each gene, create a new tibble that could be used for plotting.
-    A bar chart is one effective way. We can make a barchart using geom_bar() the same way we've been using geom_boxplot() and geom_point()
-    Compare what the visualizations/plot types look like!
+Explore the data on your own! Create your own plot using two numerical variables from the data in clinical and see if you can find interesting signals in the data. You may choose to try other plot types such as histograms using geom_histogram()
+
 ```{r}
 
-```
+#exmample of cigarettes_per_day and pack_years_smoked, colored by gender 
+smoking_plot <- ggplot(data = clinical,
+                      aes(x = cigarettes_per_day,
+                          y = pack_years_smoked)) + 
+  geom_point(aes(color = gender)) +
+  coord_cartesian(ylim = c(0, 125), xlim = c(0,7)) +
+  theme_bw() +
+  theme(axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(size = 7, color = "black", hjust = 1),
+        axis.title.y = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7)) +
+  labs(title = "Cigarettes per day vs pack years smoked",
+       x = "Cigarettes per day",
+       y = "Pack years smoked")
+smoking_plot
 
-When making the boxplots, we layered two geoms together to make an improved plot. In the introductory readings, there was an optional section talking about linear regression or adding a best-fitting line to scatter plots in order to visualize overall trends. Here, two geoms are also layered together to create this visualization. In the scatter plot relating the number of cigarettes smoked per day and the number of ERCC2 signature mutations, fit a line to the data. Hint: the geom to use is called geom_smooth(). Explore the defaults. What do you observe? Change to method = “lm” (stands for linear model). What happens? Is there a correlation between the two variables plotted? What do you conclude?
-```{r}
-
-```
-
-Explore the data on your own! Create your own plot using the data in clinical and see if you can find interesting signals in the data. You may choose to try other plot types such as histograms using geom_histogram()
-```{r}
+#why does this plot look this way? Does it make sense with the data you plotted?
 
 ```
