@@ -68,6 +68,20 @@ clinical <- read_csv("data/clinical.csv")
 ```
 
 
+# now lets make a subset of the clinical data to make the same plot but for 
+# Current Smokers that are alive 
+
+# combine what we learned about piping and data manipulation to create a new
+# subset called clincal_smokers and use that data frame to make the plot
+```{r}
+
+
+
+```
+
+
+
+
 #choose another numerical variable to make your own histogram
 #what are you interested in learning about the clinical dataset?
 #make sure to utilize the bins/binwidth to make your plot easy to read!
@@ -77,6 +91,18 @@ clinical <- read_csv("data/clinical.csv")
 
 
 ```
+
+
+# make the same plot but with a new subset of data that only contains data
+# on individuals who was born after 1950 and select only the relevant
+# columns for your plot
+```{r}
+
+
+
+```
+
+
 
 #save this plot in the plots directory you created previously 
 #call this plot the name of the variable chose .pdf

@@ -72,12 +72,32 @@ cigarettes_plot <- ggplot(data = clinical,
 cigarettes_plot
 ```
 
-#change the number of bins or the bin widht on this plot to make it a little easier to read
+#change the number of bins or the bin width on this plot to make it a little easier to read
 ```{r}
 cigarettes_plot <- ggplot(data = clinical, 
                           mapping = aes(x= cigarettes_per_day))+
     geom_histogram(bins = 10)
 cigarettes_plot
+```
+
+
+# now lets make a subset of the clinical data to make the same plot but for 
+# Current Smokers that are alive 
+
+# combine what we learned about piping and data manipulation to create a new
+# subset called clincal_smokers and use that data frame to make the plot
+```{r}
+
+clinical_smokers <- clinical %>%
+  filter(Tobacco.smoking.history == "Current smoker") %>%
+  filter(Vital.status == "Alive")
+
+
+cigarettes_plot2 <- ggplot(data = clinical_smokers, 
+                          mapping = aes(x= cigarettes_per_day))+
+    geom_histogram(bins = 10)
+cigarettes_plot2
+
 ```
 
 
@@ -94,6 +114,26 @@ diagnosis_year
 
 ```
 
+
+# make the same plot but with a new subset of data that only contains data
+# on individuals who was born after 1950 and select only the relevant
+# columns for your plot
+```{r}
+#this is an example with year_of_diagnosis
+
+clinical_post_1950 <- clinical %>%
+  filter(year_of_birth > 1950) %>%
+  select(., year_of_birth, year_of_diagnosis)
+
+
+diagnosis_year <- ggplot(data = clinical_post_1950, 
+                         mapping = aes(x=year_of_diagnosis))+
+  geom_histogram(binwidth = 5)
+diagnosis_year
+
+```
+
+
 #save this plot in the plots directory you created previously
 #call this plot the name of the variable chose .pdf
 ```{r}
@@ -104,5 +144,6 @@ ggsave(filename = "plots/year_of_diagnosis.pdf",
        width = 4, height = 3)
 
 ```
+
 
 
