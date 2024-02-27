@@ -1,5 +1,5 @@
 ---
-title: "1.0_intro_to_R"
+title: "My first Rmd file"
 output: html_document
 date: "2024-01-12"
 ---
