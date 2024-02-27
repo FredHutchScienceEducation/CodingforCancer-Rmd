@@ -18,7 +18,7 @@ More notes:
 R Markdown documents can also contain code chunks. The grey area below is a code chunk:
 
 ```{r}
-# insert code here
+1+2
 
 ```
 
@@ -31,7 +31,7 @@ We are going to use these Rmd files to write and save our code from now on!
 # Rmd file practice/Intro to R Review
 # 1) add 3 and 4 together, using the '+' operator, just like in math class
 ```{r}
-
+3+4
 
 ```
 
@@ -40,7 +40,10 @@ Click on the run button to see the answer! It's the triangle button in the top r
 # 2a) assign the value 10 to the object weight_kg, by typing weight_kg <- 10
 # 2b) what is weight_kg?
 ```{r}
+# 2a
+weight_kg <- 10
 
+#2b an object or variable
 
 ```
 
@@ -48,12 +51,17 @@ Once you run the code chunk, you should see weight_kg show up in the Environment
 
 # 3) convert kg to lb by multiplying weight_kg by 2.2
 ```{r}
+weight_kg*2.2
 ```
 
 # 4a) assign a new object called weight_lb with the value you got above
 # 4b) what is the data type of weight_lb
 ```{r}
+#4a
+weight_lb <- weight_kg*2.2
 
+#4b numeric, run the code below to check!
+# class(weight_lb)
 
 ```
 
@@ -61,14 +69,14 @@ Once you run the code chunk, you should see weight_lb pop up in the Environment 
 
 # 5) re-assign weight_kg to 100
 ```{r}
-
+weight_kg<-100
 ```
 
 You should see the value for weight_kg change in your Environment window. 
 
 # 6) round 3.14159 to 3 digits
 ```{r}
-
+round(3.14159,3)
 
 ```
 
@@ -80,15 +88,29 @@ You should see the value for weight_kg change in your Environment window.
 # 7d) extract the 3rd animal and save it to an object called party_star
 ```{r}
 
+# your code here...
+animal_party <- c("tiger", "elephant", "pig", "bird", "manatee", "cat", "tiger")
+
+animal_party <- c("dolphin", animal_party)
+
+animal_party <- c(animal_party, "jellyfish")
+
+party_star <- animal_party[3]
+
+num_of_starfish <- length(animal_party[animal_party == "starfish"])
 ```
 
 ```{r}
-
+num_of_tiger <- length(animal_party[animal_party == "tiger"])
+num_of_tiger
 ```
 
 # Additional fun with the animal party!
 # 8) What are 2 other things/functions you could do to add on or edit the vector animal party? Add them below!
 ```{r}
+animal_party <- c(animal_party, "starfish")
+animal_party <- animal_party[-6]
+animal_party[6] <- NA
 
 ```
 
@@ -99,27 +121,36 @@ You should see the value for weight_kg change in your Environment window.
 # 9c) at the end of the vector, add the height of one of someone from your family
 
 ```{r}
-
+heights <- c(63, 66, 63, 62, 72)
+heights <- c(27, heights)
+heights <- c(heights, 60)
+heights
 ```
 
 
 # 10) calculate the mean, median, maximum, and minimum of the vector heights
 ```{r}
-
+mean(heights)
+median(heights)
+max(heights)
+min(heights)
 ```
 
 # 11a) what kind of data is in the vector heights?
 # 11b) Add one more thing/function that you can do with the vector heights! 
 # remember you can use
 ```{r}
-
+class(heights)
+length(heights)
+heights <- heights[-4]
+heights
 ```
 
 
 # Data Frames/tidyverse Review
 # 12a) load the clinical dataset
 ```{r}
-
+clinical <- read.csv("data/clinical.csv")
 ```
 
 # 12b) get the structure of clinical
@@ -129,11 +160,12 @@ str(clinical)
 
 # 12c) load tidyverse
 ```{r}
-
+library(tidyverse)
 ```
 
 # 12d) filter clinical  for rows that have an RB1 mutation (mutation.in.RB1 is 'yes'), assign this to filtered
 ```{r}
+filter(clinical, mutation.in.RB1 == 'yes')
 
 ```
 
@@ -142,7 +174,21 @@ str(clinical)
 # 13b) Subset clinical.csv to 4 columns of your choice
 ```{r}
 
+filtered_rows <- filter(clinical, sample_type == "Primary Tumor")
 
+# 5) your code here...
+# way 1
+clinical_subset <- clinical %>%
+  select(project_id:sample_type)
+
+# way 2
+col4 <- select(clinical, barcode:primary_diagnosis)
+
+# way 3
+four_columns <- select(clinical, gender, height, year_of_diagnosis, sample_type)
+
+# combine question 4 & 5 together
+samples <- select(filter(clinical, sample_type == "Primary Tumor"), race, ethnicity, ajcc_pathologic_stage, height)
 
 ```
 
@@ -151,13 +197,35 @@ str(clinical)
 # hint: to see the columns, run View(clinical.csv)
 ```{r}
 
+#way 1
+year_of_birth <- clinical$year_of_birth
 
+#way 2
+year <- select(clinical, year_of_birth)
+
+#way 3
+vector_try <- c(clinical$year_of_birth, clinical$height)
+
+#the below code will not work to create the vector:
+vector <- c(clinical, year_of_birth)
 ```
 
 # creating vectors
 # 15) Create a vector by setting it equal to a column in clinical.csv (choose a column made up of numbers, not words) hint: to see the columns, run View(clinical.csv)
 ```{r}
 
+# your code here...
+#way 1
+year_of_birth <- clinical$year_of_birth
+
+#way 2
+year <- select(clinical, year_of_birth)
+
+#way 3
+vector_try <- c(clinical$year_of_birth, clinical$height)
+
+#the below code will not work to create the vector:
+vector <- c(clinical, year_of_birth)
 ```
 
 
@@ -166,12 +234,13 @@ str(clinical)
 # 16b) If so, remove them.
 ```{r}
 
+# Yes
 
-
+# your code here...
+year_of_birth <- year_of_birth[!is.na(year_of_birth)]
 ```
 
 
 Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
-
 
 
