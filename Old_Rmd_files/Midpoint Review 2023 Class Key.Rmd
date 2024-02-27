@@ -1,0 +1,161 @@
+---
+title: "Midpoint Review"
+author: "Katherine Brower & Gabby Ferra"
+date: "2023-08-10"
+output: html_document
+---
+# Hello! This is our midpoint review R check in! Please fill out the
+# code chunks and answer any questions with a comment using the # symbol.
+
+# installing packages and loading packages into the rmd file
+#      1) how do you install the tidyverse package? (This format is also how we install other packages besides tidyverse)
+#      2) how do you load a package into the file?
+```{r}
+#make sure that the package name is in "" 
+#1) install.packages("tidyverse")
+
+# 2) package name is not in ""
+library(tidyverse)
+```
+
+# import the data
+# 3) import clinical.csv (from the pathway: "data/clinical.csv"make sure that you have 
+# copied the data folder into the correct place to utilize the csv file!)
+```{r}
+
+# 3) your code here
+clinical <- read.csv("data/clinical.csv")
+
+```
+
+# subsetting dataframes rows and columns
+# 4) Filter clinical.csv to only have tumor samples
+# 5) Subset clinical.csv to 4 columns of your choice
+
+```{r}
+
+# 4) 
+filtered_rows <- filter(clinical, sample_type == "Primary Tumor")
+
+# 5) your code here...
+# way 1
+clinical_subset <- clinical %>%
+  select(project_id:sample_type)
+
+# way 2
+col4 <- select(clinical, barcode:primary_diagnosis)
+
+# way 3
+four_columns <- select(clinical, gender, height, year_of_diagnosis, sample_type)
+
+# combine question 4 & 5 together
+samples <- select(filter(clinical, sample_type == "Primary Tumor"), race, ethnicity, ajcc_pathologic_stage, height)
+
+```
+# creating vectors
+# 6) Create a vector by setting it equal to a column in clinical.csv (choose a column made up of numbers, not words) hint: to see the columns, run View(clinical.csv)
+```{r}
+
+# 6) your code here...
+#way 1
+year_of_birth <- clinical$year_of_birth
+
+#way 2
+year <- select(clinical, year_of_birth)
+
+#way 3
+vector_try <- c(clinical$year_of_birth, clinical$height)
+
+#the below code will not work to create the vector:
+vector <- c(clinical, year_of_birth)
+```
+# determining data type and using various math functions (mean, median, minimum)
+# 7) What is the data type in your vector?
+# 8) With your vector from #6, find the mean median, mininimum, and maximum of the vector
+```{r}
+
+# 7) your code here...
+class(vector_try)
+
+# 8) your code here...
+mean_value <- mean(year_of_birth, na.rm = TRUE)
+median(year_of_birth, na.rm = TRUE)
+min(year_of_birth, na.rm = TRUE)
+max(year_of_birth, na.rm = TRUE)
+```
+# using na.rm and is.na
+# 9) Are there any NAs in your vector? 
+# 10) If so, remove them.
+```{r}
+
+# 9) Yes
+
+# 10) your code here...
+year_of_birth <- year_of_birth[!is.na(year_of_birth)]
+
+```
+
+# 
+#Vector 1
+# * create a vector of your breakout room group member's favorite animals called animal_party
+# * then add one animal to the front of the vector animal_party
+# * then add one marine animal to the end of the vector animal_party
+# extract the 3rd animal and save it to an object called party_star
+```{r}
+
+# your code here...
+animal_party <- c("tiger", "elephant", "pig", "bird", "manatee", "cat", "tiger")
+
+animal_party <- c("dolphin", animal_party)
+
+animal_party <- c(animal_party, "jellyfish")
+
+party_star <- animal_party[3]
+
+num_of_starfish <- length(animal_party[animal_party == "starfish"])
+```
+
+```{r}
+num_of_tiger <- length(animal_party[animal_party == "tiger"])
+num_of_tiger
+```
+# Additional fun with the animal party!
+# What are 2 other things/functions you could do to add on or edit the vector animal party? Add them below!
+
+```{r}
+animal_party <- c(animal_party, "starfish")
+animal_party <- animal_party[-6]
+animal_party[6] <- NA
+
+```
+# Vector 2
+# Create a vector called heights
+# in your vector, add the heights of your breakout room group members
+# at the beginning of the vector, add your age
+# at the end of the vector, add the height of one of someone from your family
+
+```{r}
+heights <- c(5.3, 5.6, 5.3, 5.2, 5.6)
+heights <- c(27, heights)
+heights <- c(heights, 5)
+heights
+```
+
+
+# Stats on Vector 2
+# calculate the mean, median, maximum, and minimum of the vector heights
+# what kind of data is in the vector heights?
+# Add one more thing/function that you can do with the vector heights!
+```{r}
+mean(heights)
+median(heights)
+max(heights)
+min(heights)
+```
+
+```{r}
+class(heights)
+length(heights)
+heights <- heights[-4]
+heights
+```
