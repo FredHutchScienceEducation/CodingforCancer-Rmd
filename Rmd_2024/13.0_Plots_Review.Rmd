@@ -1,0 +1,150 @@
+---
+title: "Plots 2.0 Challenge Problems KEY"
+author: "Hanako Osuga"
+date: "2.21.24"
+output: html_document
+---
+
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+```
+
+
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+PART 1: Error Messages
+The following code will throw error messages. Work with your group to understand 
+what the error message is saying and find the bug in the code!
+
+# error in geom_bar()
+```{r}
+
+bar_plot <- ggplot(data = clinical, 
+                   aes(x = gender, 
+                       y = sample_type)) +
+  geom_bar() +
+  theme_grey() + 
+    theme(axis.text.y = element_text(color = "black", size = 10),
+          axis.text.x = element_text(size = 8, color = "black"),
+          axis.title.y = element_text(color = "black", size = 8),
+          axis.title.x = element_text(color = "black", size = 8) )+
+      labs(title = "Sample type vs Gender",
+           x = "Gender",
+           y = "Sample Type")
+bar_plot
+
+
+```
+
+
+# error: unexpected symbol
+```{r}
+ggplot(data = clinical),
+       aes(x = year_of_birth)) +
+  geom_bar()
+
+
+
+```
+
+
+# error: object not found
+```{r}
+
+diagnosis_year <- ggplot(data = clinical, 
+                         mapping = aes(x=year_diagnosis))+
+  geom_histogram(color = "#7fb366", binwidth = 5)
+diagnosis_year
+
+
+
+```
+
+
+# error: cannot open file
+```{r}
+
+ggsave(filename = "plots/vital_status.pdf",
+       plot = vital_status_plot,
+       width = 4, height = 3)
+
+
+```
+
+
+
+PART 2: Odd Plots
+The following code won't throw error messages but the plots look a little odd. Work with your group to fine tune these plots and make them more understandable!
+
+# missing data? 
+# this one won't throw an error but the plot looks... lacking
+```{r}
+
+#cleaning the dataset 
+non_smoker_clinical <- clinical %>%
+  filter(Tobacco.smoking.history== "ND" | Tobacco.smoking.history == NA)
+
+# making the plot
+plot_scatter <- ggplot(data = non_smoker_clinical, 
+                       aes(x = cigarettes_per_day,
+                            y = pack_years_smoked)) + 
+  geom_point(color = "#8ad6cc") +
+  theme_grey()+
+    theme(axis.text.y = element_text(color = "black", size = 10),
+          axis.text.x = element_text(size = 8, color = "black"),
+          axis.title.y = element_text(color = "black", size = 8),
+          axis.title.x = element_text(color = "black", size = 8) )+
+      labs(title = "Cigarettes_per_day vs pack_years_smoked",
+           x = "cigarettes per day",
+           y = "pack years smoked")
+plot_scatter
+
+
+
+```
+
+
+# planning your plot
+# is this plot the best plot to showcase this data?
+```{r}
+
+ggplot(data = clinical, aes(x= ajcc_pathologic_stage,
+                            y = gender)) +
+  geom_point(color = "#c06df8" )+ 
+  theme_grey()+
+  theme(axis.text.y = element_text(color = "black", size = 10),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.title.y = element_text(color = "black", size = 8),
+        axis.title.x = element_text(color = "black", size = 8) )+
+  labs(title = "gender and cancer stage")
+
+
+
+```
+
+
+# where are my labels?
+# This code won't throw an error message, but it doesn't include the axis labels you coded for, what's going on? 
+```{r}
+my_plot <- ggplot( data = clinical, 
+                   aes(x= year_of_birth, 
+                       y= total.number.Indels)) +
+  geom_point(aes(color = ajcc_pathologic_stage) ) +
+  coord_cartesian(ylim = c(0,30)) +
+  theme_grey()
+    theme(axis.text.y = element_text(color = "black", size = 10),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.title.y = element_text(color = "black", size = 8),
+        axis.title.x = element_text(color = "black", size = 8) )+
+    labs(title = "Total Number of Indels by Year of Birth",
+         x = "Year of Birth",
+         y = "Total Number of Indels")
+           
+my_plot
+
+```
+
