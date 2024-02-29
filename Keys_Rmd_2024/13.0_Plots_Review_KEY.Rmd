@@ -5,20 +5,21 @@ date: "2.21.24"
 output: html_document
 ---
 
-
+As always, load the package if you haven't already this session
 ```{r}
 # install.packages("tidyverse")
 library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
 ```
 
-
+Load the data if you haven't already this session
 ```{r}
 clinical <- read_csv("data/clinical.csv")
 ```
 
 
-The following code will throw error messages. Work with your group to understand 
-what the error message is saying and find the bug in the code!
+PART 1: Error Messages
+
+The following code will throw error messages. Work with your group to understand what the error message is saying and find the bug in the code!
 
 # error in geom_bar()
 ```{r}
@@ -81,10 +82,11 @@ ggsave(filename = "plots/vital_status.pdf",
 
 
 
-PART 2
+PART 2: Odd Plots
 The following code won't throw error messages but the plots look a little odd. Work with your group to fine tune these plots and make them more understandable!
 
-# missing data? this one won't throw an error but the plot looks... lacking
+# missing data? 
+# this one won't throw an error but the plot looks... lacking
 ```{r}
 
 #cleaning the dataset 
@@ -113,7 +115,7 @@ plot_scatter
 ```
 
 
-
+# planning your plot
 # is this plot the best plot to showcase this data?
 ```{r}
 
@@ -133,9 +135,8 @@ ggplot(data = clinical, aes(x= ajcc_pathologic_stage,
 ```
 
 
-
-# This code won't throw an error message, but it doesn't include the axis labels you 
-# coded for, what's going on? 
+# where are my labels?
+# this code won't throw an error message, but it doesn't include the axis labels you coded for, what's going on? 
 ```{r}
 my_plot <- ggplot( data = clinical, 
                    aes(x= year_of_birth, 
