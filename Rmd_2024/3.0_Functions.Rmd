@@ -17,6 +17,7 @@ thinking back to the previous lesson, what date type has decimal points?
 #try rounding the numeric 3.14 usign the function above by entering 3.14 as an argument
 ```{r}
 
+
 ```
 
 you can specify the number of digits you want to round to by adding ", digits = number" after the first argument
@@ -58,7 +59,7 @@ switching the order doesn't change when you use argument labels (ex: x= and digi
 ```
 
 
-what happened? was your asnwer the same with the argument labels?
+what happened? was your answer the same with the argument labels?
 
 when you have argument labels the computer can understand what you are asking, but without the argument labels it will assume the default order or arguments
 
