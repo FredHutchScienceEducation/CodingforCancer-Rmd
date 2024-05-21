@@ -1,0 +1,46 @@
+# 1.0 Intro to R
+
+The gray box below is called a **code chunk**. We use it to write code.
+
+```{r}
+
+```
+
+
+To run your code chunk, you can the green play button (Run current chunk) on the top right corner of the chunk.
+Let's try it here:
+```{r}
+print("Hello World")
+```
+
+
+## Using R as a calculator
+```{r}
+12 + 4 
+```
+
+```{r}
+5 + 4 * 6 - 2
+```
+
+
+## Assigning variables
+We use the `<-` operator to store a value to a variable.
+```{r}
+x <- 15
+```
+
+To see what `x` is, we call it by typing it out:
+```{r}
+x
+```
+Alternatively, we can look in the `Environment` pane to see all objects and its values.
+
+Here is an example for assigning objects and using the objects to form a new object:
+```{r}
+apples <- 5
+oranges <- 6
+
+total_fruits <- apples + oranges
+total_fruits
+```
