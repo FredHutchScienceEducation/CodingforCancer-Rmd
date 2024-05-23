@@ -15,6 +15,14 @@ To run your code chunk, you can the green play button (Run current chunk) on the
 print("Hello World")
 ```
 
+
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+
 ## Using R as a calculator
 
 ```{r}
