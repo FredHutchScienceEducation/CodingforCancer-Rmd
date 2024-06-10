@@ -1,0 +1,30 @@
+# 4.0 Functions in R
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+
+## Functions
+
+**Functions** are commands that allow us to do repeat complex tasks or actions. 
+
+Let take this vector as our starting example:
+```{r}
+ages <- c(10,25,20,14,60,20)
+ages
+```
+
+We can use the function `length` to find out the length of the vector:
+```{r}
+length(ages)
+```
+
+We can use the function `mean` to calculate the mean:
+```{r}
+mean(ages)
+```
+

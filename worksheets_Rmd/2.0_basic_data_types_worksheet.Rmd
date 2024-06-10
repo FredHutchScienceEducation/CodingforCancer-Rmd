@@ -36,6 +36,7 @@ applyingToCollege <-
 
 If you assigned `myName` correctly, then if you run this code block, it should say a correct statement.
 ```{r}
+# You do not need to modify this code chunk. 
 print(paste0("My name is ", myName))
 print(paste0("I am ", myAge, " years old"))
 if(applyingToCollege == T) {print("I am applying to college this summer.")}
