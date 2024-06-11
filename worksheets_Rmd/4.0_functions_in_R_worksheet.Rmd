@@ -28,3 +28,26 @@ We can use the function `mean` to calculate the mean:
 mean(ages)
 ```
 
+## More example
+
+Let's look at other different functions:
+
+- `abs()` take the absolute value of the input
+```{r}
+abs(-19.52)
+```
+
+
+- `floor()` rounds values **DOWN** to the nearest integer and `ceiling()` and rounds values **UP**.
+```{r}
+floor(5.340194)
+```
+
+```{r}
+ceiling(5.340194)
+```
+
+- If you want to round to a specific decimal point, you can use `round()` and specify the number of `digits` like this:
+```{r}
+round(5.340194, digits=2)
+```
