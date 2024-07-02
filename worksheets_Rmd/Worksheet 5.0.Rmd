@@ -1,0 +1,95 @@
+---
+title: "5.0_Manipulating_Vectors_worksheet"
+author: "Katherine Brower (kbrower)"
+date: "2024-06-11"
+output: html_document
+---
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Manipulating Vectors
+Vectors are very useful for storing multiple values. 
+
+We can create a vector using 
+vector_name <- c(value 1, value 2, value 3 ...)
+
+```{r}
+# Create a vector called favorite_numbers and store 6 values
+
+favorite_numbers <- c(13, 34, 86, 104, 22, 96)
+
+```
+
+We can subset values within a vector using vector_name[condition]
+
+Examples: vector[index] or vector[index1, index2] or vector[index1:index2]
+
+```{r}
+# Extract values that are higher than 50 in favorite_numbers 
+
+favorite_numbers[favorite_numbers > 50]
+
+```
+
+```{r}
+# Extract values that are not higher than 40 in favorite_numbers
+
+favorite_numbers[!(favorite_numbers>40)]
+
+```
+
+We can also use multiple conditions to extract values!
+
+- **&** inclusively combine conditions (AND)
+
+- **|** exclusively combine contidions (OR)
+
+```{r}
+# Extract values that are greater than 4 AND less than 55
+
+favorite_numbers[favorite_numbers > 4 & favorite_numbers < 55]
+```
+
+
+```{r}
+# Extract values that are greater than 40 OR less than 90
+favorite_numbers[(favorite_numbers > 40) | (favorite_numbers < 90)]
+```
+
+Sometimes our datasets have missing data! This value will be written as NA.
+
+We need to remove those NA values because R cannot compute mean or max with NA values.
+
+The argument to do this is: na.rm = TRUE
+
+```{r}
+# create a vector of 6 values and 2 missing data points
+numbers <- c(4, 10, 7, NA, 35, 86, 32, NA)
+
+# calculate the mean and remove the NA
+mean(numbers, na.rm = TRUE)
+
+# calculate the max and remove the NA
+max(numbers, na.rm = TRUE)
+```
+
+If you are uncertain if there are missing data points, we can use the is.na() function
+
+```{r}
+# create a vector of 4 values and  missing data
+scores <- c(10, 58, NA, 35, 29, NA)
+
+# use the is.na function to determine which data points are missing
+is.na(scores)
+
+```
+
+```{r}
+#we can subset the vector based on that condition
+scores[is.na(scores)]
+```

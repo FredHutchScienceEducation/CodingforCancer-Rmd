@@ -1,0 +1,153 @@
+---
+title: "Piping 8.0 worksheet"
+author: "Katherine Brower (kbrower)"
+date: "2024-06-11"
+output: html_document
+---
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+Loading necessary packages
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Loading data from palmer penguins
+```{r}
+data(package = "palmerpenguins")
+```
+
+## Piping
+Piping is part of the tidyverse package! This helps streamline and use the output of one command and put that result in the next command.
+
+The piping operator is %>%
+
+"." is very useful to pass the object calculated immediately before to the current function
+
+```{r}
+# use piping to create a df containing only female penguins (row) and select for columns year, bill_length_mm, and island
+
+piped <- penguins %>%
+  filter(., sex == "female") %>%
+  select(., year, bill_length_mm, island)
+  
+# use piping to create a df containing only penguins with flipper_length_mm over 190mm and select for columns species, sex, and year
+
+piped2 <- penguins %>%
+  filter(., flipper_length_mm > 190) %>%
+  select(., species, sex, year)
+```
+
+If we want to add a new column, we can use the function mutate()
+
+```{r}
+# use piping to create a new column called bill_length_cm where the bill_length_mm is converted into cm
+bill_cm_df <- penguins %>%
+  mutate(bill_length_cm = bill_length_mm * 0.1)
+
+
+# use piping to create a new column called mass_lb where the mass_g is converted in lb
+
+mass_lb_df <- penguins %>%
+  mutate(mass_lb = body_mass_g * 0.002)
+```
+
+##Exploring the new dataframe called clinical
+
+First we need to utilize the correct package (tidyverse) to read in csv files
+
+```{r}
+#load the tidyverse package
+library(tidyverse)
+```
+
+Now we'll read in the dataframe from the clinical.csv file
+```{r}
+# importing in the new dataframe
+clinical <- read_csv("data/clinical.csv")
+```
+
+Let's recall a few things we can do to become acuqainted with our dataset:
+- determine the dimensions
+- column names
+- look at the first 6 rows of the dataframe
+- determine the datatype within a column
+- determine how many column names include the same word (ex. mutation)
+- determine if there is any NA values within the data and how many in total
+
+```{r}
+#determine the dimensions (number of rows, number of columns)
+dim(clinical)
+
+# only number of rows
+nrow(clinical)
+
+# only number of columns
+ncol(clinical)
+```
+
+```{r}
+# look at the column names. Many of these column names may sound new to you!
+# if you're interested in learning more, you can use google or the dataframe
+# documentation. Many publicly available dataframes have 
+colnames(clinical)
+```
+
+```{r}
+# let's look at the first 6 rows of the data frame. This function is really
+# helpful for becoming more acquainted with the contents of the data frame
+head(clinical)
+```
+
+```{r}
+# now that we have seen a general overview of the size and what content is
+# inside, let's focus specifically on what data types we have
+
+# to call for a column the format is: dataframe$column_name
+# example let's look at year_of_birth
+class(clinical$year_of_birth)
+
+# Tobacco.smoking.history
+class(clinical$Tobacco.smoking.history)
+```
+
+```{r}
+# determine if there are any NA values within the data
+
+# example column: sample_type
+is.na(clinical$sample_type)
+```
+
+```{r}
+# example column: pack_years_smoked
+is.na(clinical$pack_years_smoked)
+
+# we can also determine the total number of NA values within a column by using
+# the sum function
+sum(is.na(clinical$pack_years_smoked))
+```
+
+## Practice manipulating data in the clinical dataframe
+The clincial dataframe is much larger than our previous penguin dataframe! We
+can look into a lot more and combine different variables (columns) to see if
+there are any patterns.
+
+Let's make a new subset dataframe called smoke_clinical that includes 5 columns:
+  - primary_diagnosis
+  - Vital.status
+  - Tobacco.smoking.history
+  - pack_years_smoked
+  - cigarettes_per_day
+```{r}
+smoke_clinical <- clinical %>%
+  select(., primary_diagnosis, Vital.status, Tobacco.smoking.history,
+         pack_years_smoked, cigarettes_per_day)
+```
+
+Using a bigger dataframe still utilizes the same functions and piping!
