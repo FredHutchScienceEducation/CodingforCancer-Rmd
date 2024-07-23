@@ -1,0 +1,120 @@
+---
+title: "6.0 Data Frames worksheet"
+author: "Katherine Brower (kbrower)"
+date: "2024-06-11"
+output: html_document
+---
+# 6.0 Data Frames
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Data Frames
+We can use data frames to collect different variables we want to work with
+
+Common dataframes are Excel spreadsheets and can contain different data types
+
+We can create a dataframe by: 
+
+df <- data.frame(title = variable1, title2 = variable2, title3 = variable3)
+
+We can also view our dataframe using the function:
+View(df)
+```{r}
+#create a data frame containing 
+# - favorite_movies
+# - favorite_animals
+# - movie_length
+
+favorite_movies <- c("Inside Out", "Howl's Moving Castle", "Nimona", "Guardian's of the Galaxy")
+
+favorite_animals <- c("whaleshark", "puffin", "seahorse", "tiger")
+
+movie_length <- c(95, 129, 98, 122)
+
+# combine these variables into a single dataframe
+
+favorites_df <- data.frame(movies = favorite_movies, animals = favorite_animals, movie_time = movie_length)
+
+# let's look at our created dataframe
+
+favorites_df
+```
+
+Each column in a data frame contains a variable:
+-- Example: animals contains favorite_animals
+
+If we want to look at a column individually, we can use the **$** operator
+
+If we want to look at an individual value, we can use [] (the same way as any other vector)
+
+```{r}
+# access the whole column animals
+favorites_df$animals
+```
+
+```{r}
+# access only the value for whaleshark, first value
+
+favorites_df$animals[1]
+```
+
+## Importing Data - Penguins
+We'll be using the palmerpenguins package dataframe to do more practice!
+
+We can download packages using the install.packages("package_name"). 
+Once you download the package once, you don't need to download it again.
+
+and load packages using: library(package_name)
+
+```{r}
+#install the palmerpenguins package
+install.packages("palmerpenguins")
+```
+
+```{r}
+#load the palmerpenguins package
+library(palmerpenguins)
+```
+Let's look at the dataframe we just downloaded!
+
+We can import the data frame using data(package = "package_name")
+
+And assess the size of data frames using dim(data_frame) or preview the first few rows with head(data_frame)
+
+Data frame format: Df[rows, columns]
+
+```{r}
+data(package = "palmerpenguins")
+
+#assess the size of the penguins dataframe
+
+dim(penguins)
+# 344 represents the number of rows and 8 is the number of columns!
+
+# look at the first few rows
+head(penguins)
+```
+
+Let's try extracting columns from the data frame penguins
+```{r}
+# extract the second column and assign it to a variable
+
+second_column <- penguins[2]
+
+# extract the second column a different way
+
+second_column_again <- penguins[, 2]
+
+# extract the first row of the second column
+single_cell <- penguins[1,2]
+
+# extract column 3 and 10 by name 
+name_col3 <- penguins["bill_length_mm"]
+  
+name_col10 <- penguins["year"]
+```

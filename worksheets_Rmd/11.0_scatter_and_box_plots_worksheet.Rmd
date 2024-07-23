@@ -1,0 +1,61 @@
+# 11.0 Intro to plots: Scatter and Box plots
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Load data and libraries
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+penguins <- penguins
+clinical <- read_csv("clinical.csv", show_col_types = FALSE)
+```
+
+## Scatter plots
+
+Let's make a scatter plot to compare the number of cigarettes per day (`cigarettes_per_day` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
+
+```{r}
+
+```
+
+We can alter the coordinate range to show a specific region using `coord_cartesian(xlim = c(0, 10), ylim = c(0, 400))`
+
+```{r}
+
+```
+
+We can use pipes to remove NAs to clean the plot. Recall this from the piping lesson:
+
+```{r}
+clinical %>%
+  select(barcode, cigarettes_per_day, count.ERCC2.signature.mutations) %>%
+  drop_na
+```
+
+This input can go directly into `data=`
+
+```{r}
+
+```
+
+## Box plots
+
+Let's make a scatter plot to compare `Current smoker`and `Lifetime Non-Smoker` (both in `Tobacco.smoking.history` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
+
+First let's filter the data to just our data of interest:
+
+```{r}
+barcode_TSH_ERCC2_count_data <- clinical %>% 
+
+```
+
+Plot the filtered dataset:
+
+```{r}
+
+```

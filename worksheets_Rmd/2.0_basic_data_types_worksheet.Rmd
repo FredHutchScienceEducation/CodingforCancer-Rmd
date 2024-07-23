@@ -1,0 +1,44 @@
+# 2.0 Basic Data Types
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Data types
+
+The most common data types we will work with are:
+  
+  - **Character**, also called **strings**: Contains a series of letters or symbols enclosed in `"` or `'`. Examples: `"Hello!"`, `coding4%`, `good morning 52`
+  - **Numeric**: Contains any type of number data. Example: `4.1503`
+  - **Integer**: Contains number data, but do not have decimal points. Example: `5`
+  - **Logical**: Contains only `TRUE` or `FALSE`. It can be also represented as `T` or `F`, respectively. 
+
+
+From last time, we use the `<-` operator to assign values to variables.
+
+```{r}
+# Assign an integer or numeric to the variable myAge
+myAge <- 
+```
+
+```{r}
+# Declare variable `myName` to store a character type of your name. Don't forget the quotation marks!
+myName <-
+```
+
+```{r}
+# Assign a logical if you are, or are not, applying to college this upcoming cycle.  
+applyingToCollege <-
+```
+
+If you assigned `myName` correctly, then if you run this code block, it should say a correct statement.
+```{r}
+# You do not need to modify this code chunk. 
+print(paste0("My name is ", myName))
+print(paste0("I am ", myAge, " years old"))
+if(applyingToCollege == T) {print("I am applying to college this summer.")}
+if(applyingToCollege == F) {print("I am not applying to college this summer.")}
+```

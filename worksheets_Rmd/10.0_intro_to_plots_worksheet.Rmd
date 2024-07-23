@@ -1,0 +1,100 @@
+# 10.0 Intro to plots: Bar plots and Histograms
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Load data and libraries
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+penguins <- penguins
+```
+
+## 1. My first plot
+
+We will use the `ggplot` package. The major components to a `ggplot` graph are:
+
+-   Data (the information we want to show)
+
+-   Aesthetics (the axes)
+
+-   Geometry (the shapes, the plot type)
+
+-   Themes (what everything looks like)
+
+    ```{r}
+    ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() 
+    ```
+
+We can add a preset theme to our plot in a similar grammer structure.
+
+```{r}
+ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() + theme_bw()
+```
+
+Here is a list of themes readily available:
+
+-   `theme_gray()` The signature ggplot2 theme with a grey background and white gridlines, designed to put the data forward yet make comparisons easy.
+
+-   `theme_bw()` The classic dark-on-light ggplot2 theme. May work better for presentations displayed with a projector.
+
+-   `theme_linedraw()` A theme with only black lines of various widths on white backgrounds, reminiscent of a line drawing. Serves a purpose similar to `theme_bw()`.
+
+-   `theme_light()` A theme similar to `theme_linedraw()` but with light grey lines and axes, to direct more attention towards the data.
+
+-   `theme_dark()` The dark cousin of `theme_light()`, with similar line sizes but a dark background. Useful to make thin coloured lines pop out.
+
+-   `theme_minimal()` A minimalistic theme with no background annotations.
+
+-   `theme_classic()` A classic-looking theme, with x and y axis lines and no gridlines.
+
+-   `theme_void()` A completely empty theme.
+
+Try a different theme here:
+
+```{r}
+ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() 
+```
+
+## 2. Bar plots
+
+Barplots plots categorical data and makes numerical comparisons, usually counts, between categories.
+
+We will use the clinical dataset for more plotting examples.
+
+```{r}
+clinical <- read_csv("clinical.csv", show_col_types = FALSE)
+```
+
+Plot categorical data in a bar plot for the `mutation.in.TP53` data. For a bar plot, we use `geom_bar()` as the geometry type.
+
+```{r}
+
+```
+
+## 3. Histogram
+
+Histogram plots the range of a set of numerical values.
+
+Plot a histrogram showing the range of `height`. For a histogram, we use `geom_histogram()` as the geometry type.
+
+```{r}
+
+
+```
+
+Changing the number of bins: `bins=10`
+
+```{r}
+
+```
+
+Changing the width of the bins: `binwidth=10`
+
+```{r}
+
+```
