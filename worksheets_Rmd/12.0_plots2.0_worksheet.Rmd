@@ -1,0 +1,280 @@
+# 12.0 Plots 2.0: Effective data visualization
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Load data and libraries
+
+```{r}
+library(tidyverse) 
+library(palmerpenguins) 
+penguins <- penguins
+clinical <- read_csv("clinical.csv", show_col_types = FALSE)
+```
+
+We'll work primarily this data:
+
+```{r}
+barcode_TSH_ERCC2_count_data <- clinical %>% 
+  select(barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations) %>%
+  filter(!is.na(count.ERCC2.signature.mutations)) %>% # remove NAs
+  filter(Tobacco.smoking.history %in% c("Current smoker", "Lifelong Non-smoker")) # filter
+```
+
+Starting plot
+
+```{r}
+ggplot(data = barcode_TSH_ERCC2_count_data) + 
+  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations) + 
+  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
+  geom_jitter(aes(color=Tobacco.smoking.history))
+```
+
+## General changes and additions
+
+### Titles and Axis Labels
+
+We can add text labels to the existing ggplot formula:
+
+-   For titles use `ggtitle("title")`
+
+-   For axis labels use `labs(y = "y_axis_name", x = "x_axis_name")`
+
+```{r}
+
+```
+
+### Removing legends
+
+To remove legends, we can specify **`theme(legend.position = “none”)`**
+
+```{r}
+
+```
+
+### Color with custom hex colors
+
+We can change the **color** the jitter plot by a category with the aesthetic parameter `geom_jitter(aes(color=Tobacco.smoking.history))`.
+
+Then we can set custom colors using `scale_color_manual` with either:
+
+-   A color from the default R color list(<https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/>). Example: `"red"`, `"gray80"`, `"deepskyblue"`
+
+-   hexidecimal code (hex code, <https://htmlcolorcodes.com/>). Example: `"#fdae61"` , "**`#C625A1"`**, `"#535549"`
+
+```{r}
+
+```
+
+### Filling shapes with color
+
+Both **`color`** and **`fill`** have attributes that can be colored.
+
+Generally, **`fill`** defines for shapes to be filled. **`color`** defines outlines (stroke, lines) of shapes. Technically, points are strokes, not shapes.
+
+For filling shapes, we will use `fill = Tobacco.smoking.history` in the aesthetics and set the fill colors with `scale_fill_manual(values = c("#fdae61", "#C625A1"))`
+
+```{r}
+
+```
+
+### Transparency
+
+We can change the transparency of `fill` or `color` by adding `alpha=0.5` in the aesthetics. Alpha can be values from 0 to 1.
+
+```{r}
+
+```
+
+### Modifying text color and size
+
+We can change the text color and size of the axis and labels with
+
+```         
+  theme(axis.text.y = element_text(color = "blue", size = 10),
+        axis.text.x = element_text(color = "blue", size = 10, angle = 45, hjust = 1),
+        axis.title.y = element_text(color = "blue", size = 12),
+        axis.title.x = element_text(color = "blue", size = 12))
+```
+
+Similarly, `color` can accept hex code colors, and the `angle` can be set. `hjust=1` stands for horizontal adjustment to make text align at the top (`=1`). `hjust=0` aligns the text at the bottom.
+
+```{r}
+
+```
+
+### Adding gridlines
+
+We can add gridlines by altering the `theme` with **`theme(panel.grid.major = element_line(colour = "black", linetype="dashed",linewidth=0.25))`**
+
+See the `ggplot theme` documentation (<https://ggplot2.tidyverse.org/reference/theme.html>) for more ways to modify plots.
+
+```{r}
+
+```
+
+## Plot specific changes (and some more general additions)
+
+### Bar plot
+
+Let's start with this bar plot. Notice that you can set `y=` to make a horizontal bar plot.
+
+```{r}
+ggplot(data = clinical) + 
+  aes(y = ajcc_pathologic_stage) + 
+  geom_bar()
+```
+
+We can change the bar width, color, and fill by adding it in the geometry `geom_bar()` like so:
+
+```         
+geom_bar(width = 0.2, color = "red", fill = "orange")
+```
+
+```{r}
+
+```
+
+We can add additional variables to go in the plots by assigning `fill` to another variable. Let's try coloring the bars based on **`tissue_or_organ_of_origin`**.
+
+```{r}
+
+```
+
+Alternatively, stacked bars can be hard to read, so bars side-by-side is another approach to visualize bar charts. To have side-by-side bars, add `position="dodge"` in the `geom_bar()` geometry.
+
+```{r}
+
+```
+
+### Histogram
+
+Starting plot
+
+```{r}
+ggplot(data = clinical) + 
+  aes(x = height) + 
+  geom_histogram(bins=20)
+```
+
+Similar as bar charts, `fill` and `color` can be used to color the individual bars in the historgram
+
+```         
+geom_histogram(bins=20, fill = "white", color = "black")
+```
+
+```{r}
+
+```
+
+We also can use the `fill` to display an additional element of data. In this case, let's try `fill=gender` in the aesthetics `aes(x = height, fill = gender)`.
+
+```{r}
+
+```
+
+To avoid stacked histograms, we add `position="identity"` in `geom_histogram()`. This makes the histograms overlap. Don't forget to alter the transparency to see the overlaps!
+
+```         
+geom_histogram(bins=20, position="identity")
+```
+
+```{r}
+
+```
+
+### Aside: `facet_wrap` can be used for all plot types
+
+An alternative method to display different groups is to use `facet_wrap()`. If we can to group histograms by `gender`, we can add it the `ggplot` formula like this: `+ facet_wrap(~gender)`. Note: `facet_wrap()` can be used for any plot type, not just histograms.
+
+```{r}
+
+```
+
+You can group any number of categories using `facet_wrap()`. Seperate the groups using the `~` symbol, like this: `facet_wrap(group1~group2)`. Try grouping `gender` with one of the following:
+
+-   `race`
+
+-   `Vital.status`
+
+-   `mutation.in.TP53`
+
+```{r}
+
+```
+
+You can change add additional details to `facet_wrap` like number of columns or row, and labels. Change the number of columns that would make the most sense for comparing groups.
+
+```         
+facet_wrap(mutation.in.TP53~gender, ncol=2, labeller = "label_both")
+```
+
+```{r}
+
+
+```
+
+Lastly, we can add vertical (or horizontal) lines to indicate key statistics like mean or median. One way to accomplish this is group the data with `group_by`, then introduce a new column with `mutate` of the statistic.
+
+```         
+  geom_vline(data = clinical %>% 
+                      group_by(mutation.in.TP53, gender) %>% 
+                      mutate(mean_height = mean(height, na.rm = TRUE)), 
+             aes(xintercept = mean_height), color="blue", linetype = "dashed")
+```
+
+```{r}
+
+```
+
+### Scatterplots
+
+Starting plot
+
+```{r}
+ggplot(data = clinical) + 
+  aes(x = height, y = bmi) +
+  geom_point()
+  
+```
+
+Similar to other plots, we can change the color of the points using `geom_point(color="pink")` in the geometry.
+
+We can add a trend line using `+ geom_smooth()`
+
+```{r}
+
+```
+
+We can use shapes as points as an additional dimension and a great alternative for colorblind accessibility.
+
+```{r}
+ggplot(data = clinical) + 
+  aes(x = height, y = bmi, shape=gender, color=gender) +
+  geom_point()
+```
+
+### Box plots and violin plots
+
+Starting plot
+
+```{r}
+ggplot(data = barcode_TSH_ERCC2_count_data) + 
+  aes(x = Tobacco.smoking.history, 
+      y = count.ERCC2.signature.mutations,
+      fill = Tobacco.smoking.history) + 
+  geom_boxplot(outlier.shape = NA) + 
+  coord_cartesian(ylim = c(0, 125)) +
+  ggtitle("Number of ERCC2 mutations vs. Tobacco smoking history") + 
+  labs(y = "Number of ERCC2 mutations", 
+       x = "Tobacco smoking history") + 
+  scale_fill_manual(values = c("#fdae61", "#C625A1"))
+
+```
+
+```{r}
+
+```

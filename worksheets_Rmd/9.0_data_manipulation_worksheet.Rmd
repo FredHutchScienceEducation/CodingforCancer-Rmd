@@ -5,6 +5,8 @@ date: "2024-06-11"
 output: html_document
 ---
 
+# 9.0 Data Manipulation
+
 We will start with a fresh, clean environment. 
 The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
