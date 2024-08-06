@@ -140,23 +140,24 @@ You should see the value for weight_kg change in your Environment window.
 
 ```
 
-# 12a) load both tidyverse and penguins dataset from the palmerpenguins package
+# Utilizing already created dataframe pokemon.csv from yesterday
+# 13a) load both the tidyverse package and read in the pokemon.csv file
 ```{r}
 
 ```
 
-# 12b) get the dimensions of the penguins dataset (number of rows and columns)
+# 13b) get the dimensions of the pokemon.csv file (number of rows and columns)
 ```{r}
 
 ```
 
 # subsetting dataframes rows and columns
-# 13a) Filter penguins to only include Adelie penguins and save as an object called filtered_rows
+# 14a) Filter penguins to only include 
 ```{r}
 
 ```
 
-# 13b) Subset penguins to 4 columns of your choice
+# 14b) Subset penguins to 4 columns of your choice
 ```{r}
 
 
@@ -164,7 +165,7 @@ You should see the value for weight_kg change in your Environment window.
 ```
 
 # creating vectors
-# 14) Create a vector by setting it equal to a column in penguins (choose a column made up of numerics or integers) 
+# 15) Create a vector by setting it equal to a column in penguins (choose a column made up of numerics or integers) 
 # hint: to see the columns, run View(penguins)
 ```{r}
 
