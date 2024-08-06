@@ -129,18 +129,18 @@ You should see the value for weight_kg change in your Environment window.
 ```
 
 # 12b) put boolean_vector, numeric_vector, and character_vector into a dataframe
-# called my_df
+# called my_df. The column names should be boolean, numeric, and character.
 ```{r}
 
 
 ```
 
-# 12c) what are the dimensions of my_df?
+# 12c) look at the first few rows of my_df.
 ```{r}
 
 ```
 
-# Utilizing already created dataframe pokemon.csv from yesterday
+# Utilizing already created dataframe pokemon.csv
 # 13a) load both the tidyverse package and read in the pokemon.csv file
 ```{r}
 
