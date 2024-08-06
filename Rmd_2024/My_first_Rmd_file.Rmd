@@ -24,7 +24,7 @@ R Markdown documents can also contain code chunks. The grey area below is a code
 
 Code written in a code chunk can be run just like you wrote it in the Console pane below.
 To run the code in the code chunk, click on the play button in the top right corner
-of each code chunk.
+of each code chunk. For any notes within a code chunk, don't forget to use the # symbol!
 
 We are going to use these Rmd files to write and save our code from now on!
 
@@ -109,37 +109,54 @@ You should see the value for weight_kg change in your Environment window.
 ```
 
 # 11a) what kind of data is in the vector heights?
-# 11b) Add one more thing/function that you can do with the vector heights! 
-# remember you can use
+# 11b) Add one more thing or use a different function with the vector heights! 
+# Remember you can always review the slides or previous worksheets to see what
+# functions we've used before! Or use the ?function_name to try a new one
 ```{r}
 
 ```
 
 
 # Data Frames/tidyverse Review
-# 12a) load the clinical dataset
+# Creating your own data frame
+# 12a) create 3 different vectors with the length of 6:
+# boolean_vector containing boolean data
+# numeric_vector containing numeric data
+# character_vector containing character data
+
+```r{}
+
+```
+
+# 12b) put boolean_vector, numeric_vector, and character_vector into a dataframe
+# called my_df
+```{r}
+
+
+```
+
+# 12c) what are the dimensions of my_df?
 ```{r}
 
 ```
 
-# 12b) get the structure of clinical
-```{r}
-str(clinical)
-```
-
-# 12c) load tidyverse
+# 12a) load both tidyverse and penguins dataset from the palmerpenguins package
 ```{r}
 
 ```
 
-# 12d) filter clinical  for rows that have an RB1 mutation (mutation.in.RB1 is 'yes'), assign this to filtered
+# 12b) get the dimensions of the penguins dataset (number of rows and columns)
 ```{r}
 
 ```
 
 # subsetting dataframes rows and columns
-# 13a) Filter clinical.csv to only have tumor samples
-# 13b) Subset clinical.csv to 4 columns of your choice
+# 13a) Filter penguins to only include Adelie penguins and save as an object called filtered_rows
+```{r}
+
+```
+
+# 13b) Subset penguins to 4 columns of your choice
 ```{r}
 
 
@@ -147,19 +164,12 @@ str(clinical)
 ```
 
 # creating vectors
-# 14) Create a vector by setting it equal to a column in clinical.csv (choose a column made up of numbers, not words) 
-# hint: to see the columns, run View(clinical.csv)
+# 14) Create a vector by setting it equal to a column in penguins (choose a column made up of numerics or integers) 
+# hint: to see the columns, run View(penguins)
 ```{r}
 
 
 ```
-
-# creating vectors
-# 15) Create a vector by setting it equal to a column in clinical.csv (choose a column made up of numbers, not words) hint: to see the columns, run View(clinical.csv)
-```{r}
-
-```
-
 
 # using na.rm and is.na
 # 16a) Are there any NAs in your vector? 
@@ -169,7 +179,6 @@ str(clinical)
 
 
 ```
-
 
 Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
 
