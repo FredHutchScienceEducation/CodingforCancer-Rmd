@@ -159,35 +159,43 @@ You should see the value for weight_kg change in your Environment window.
 # Write the answers to these questions below your code as a comment (don't forget to use #)
 # 12b) how many rows and columns are there in pokemon_df?
 # 12c) what is the name of the 12th column in the pokemon data frame?
+
+```{r}
+
+```
+
 # 12d) what is the name of a column containing character data?
 # 12e) what is the name of a column containing numeric or integers?
 ```{r}
 
 ```
-# 13a) in your chosen column from 13e (column with numerics or integers)
-# are there any NA values?
+# 13a) in your chosen column from 12e (column with numerics or integers):
+# compute the following math with your chosen column containing numerics or integers: max, min, median, mean, standard deviation.
+# Are there any NA values?
+```{r}
+
+
+
+
+```
+
+# 13b) how many datapoints are less than the median?
+# 13c) how many datapoints are more than or equal to the mean?
 ```{r}
 
 ```
 
-# 13b) compute the following quantities with your chosen column containing numerics or integers: max, min, median, mean, standard deviation
-```{r}
-
-```
-
-# 13c) how many datapoints are less than the median?
-# 13d) how many datapoints are more than or equal to the mean?
-```{r}
-
-```
-
-# 13e) how many datapoints are within 30% of the median?
+# 13d) how many datapoints are within 30% of the median?
 ```{r}
 
 ```
 
 # 14a) create a vector called pokemon_Total containing the column called Total in the pokemon_df
 # 14b) how many pokemon have a total higher than 450?
+```{r}
+
+```
+
 # 14c) create a vector called pokemon_Defense containing the column called Defense
 # in the pokemon_df.
 # challenge question 14d) which pokemon has the most Defense? (hint: use the which() function)
