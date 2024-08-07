@@ -37,10 +37,8 @@ We are going to use these Rmd files to write and save our code from now on!
 
 Click on the run button to see the answer! It's the triangle button in the top right corner of the grey code chunk.
 
-# 2a) assign the value 10 to the object weight_kg, by typing weight_kg <- 10
-# 2b) what is weight_kg?
+# 2) assign the value 15 to the object weight_kg
 ```{r}
-
 
 ```
 
@@ -48,10 +46,11 @@ Once you run the code chunk, you should see weight_kg show up in the Environment
 
 # 3) convert kg to lb by multiplying weight_kg by 2.2
 ```{r}
+
 ```
 
 # 4a) assign a new object called weight_lb with the value you got above
-# 4b) what is the data type of weight_lb
+# 4b) what is the data type of weight_lb?
 ```{r}
 
 
@@ -82,10 +81,6 @@ You should see the value for weight_kg change in your Environment window.
 
 ```
 
-```{r}
-
-```
-
 # Additional fun with the animal party!
 # 8) What are 2 other things/functions you could do to add on or edit the vector animal party? Add them below!
 ```{r}
@@ -109,7 +104,7 @@ You should see the value for weight_kg change in your Environment window.
 ```
 
 # 11a) what kind of data is in the vector heights?
-# 11b) Add one more thing or use a different function with the vector heights! 
+# 11b) Add one new thing or use a different function with the vector heights! 
 # Remember you can always review the slides or previous worksheets to see what
 # functions we've used before! Or use the ?function_name to try a new one
 ```{r}
@@ -120,16 +115,16 @@ You should see the value for weight_kg change in your Environment window.
 # Data Frames/tidyverse Review
 # Creating your own data frame
 # 12a) create 3 different vectors with the length of 6:
-# boolean_vector containing boolean data
-# numeric_vector containing numeric data
-# character_vector containing character data
+# The first vector called boolean_vector containing TRUE or FALSE (boolean data)
+# The second vector called favorite_foods containing your favorite foods
+# The third vector called my_numbers containing 6, 10, 24, 61, 3, and 200
 
-```r{}
+```{r}
 
 ```
 
-# 12b) put boolean_vector, numeric_vector, and character_vector into a dataframe
-# called my_df. The column names should be boolean, numeric, and character.
+# 12b) put boolean_vector, favorite_foods, and my_numbers into a dataframe
+# called my_df. The column names should be boolean, character, and number.
 ```{r}
 
 
@@ -140,47 +135,70 @@ You should see the value for weight_kg change in your Environment window.
 
 ```
 
-# Utilizing already created dataframe pokemon.csv
-# 13a) load both the tidyverse package and read in the pokemon.csv file
+# Utilizing the .csv file dataframe
+# 13a) read in the pokemon.csv file as the object called pokemon_df
 ```{r}
 
 ```
 
-# 13b) get the dimensions of the pokemon.csv file (number of rows and columns)
+# 13b) how many rows and columns are there in pokemon_df?
+# 13c) what is the name of the 12th column in the pokemon data frame?
+# 13d) what is the name of a column containing character data?
+# 13e) what is the name of a column containing numeric or integers?
+```{r}
+
+```
+# 14a) in your chosen column from 13e (column with numerics or integers)
+# are there any NA values?
 ```{r}
 
 ```
 
-# subsetting dataframes rows and columns
-# 14a) Filter penguins to only include 
+# 14b) compute the following quantities with your chosen column containing numerics or integers: max, min, median, mean, standard deviation
 ```{r}
 
 ```
 
-# 14b) Subset penguins to 4 columns of your choice
+# 14c) how many datapoints are less than the median?
+# 14d) how many datapoints are more than or equal to the mean?
 ```{r}
-
-
 
 ```
 
-# creating vectors
-# 15) Create a vector by setting it equal to a column in penguins (choose a column made up of numerics or integers) 
-# hint: to see the columns, run View(penguins)
+# 14e) how many datapoints are within 30% of the median?
 ```{r}
 
+```
+# 15a) create a vector called pokemon_Total containing the column called Total in the pokemon_df
+# 15b) how many pokemon have a total higher than 450?
+# 15c) create a vector called pokemon_Defense containing the column called Defense
+# in the pokemon_df.
+# challenge question 15d) which pokemon has the most Defense? (hint: use the which() function)
+```{r}
 
 ```
 
-# using na.rm and is.na
-# 16a) Are there any NAs in your vector? 
-# 16b) If so, remove them.
+# Debugging: Based on the given code, find the error! This could be using the wrong
+# function, spelling, or using the wrong variable etc.! If you're stuck, try running the code 
+# what is the error? What do you change to get the expected result?
 ```{r}
-
-
-
+# 16a)  I want to find the max time of my vector called sprint_times. I am expecting 17.10 as the result.
+sprint_times <- c(10.55, 17.10, 8.24, 11.45)
+max(sprint_time)
 ```
 
+```{r}
+# 16b) I want to determine the median of my vector called years. I am expecting 2002.5 as the result
+years <- c(2011, 2024, 2022, 1988, 1994)
+mean(years)
+```
+
+```{r}
+# 16c) I want to remove the NAs from my vector called route_numbers and calculate the mean.
+route_numbers <- c(25, 12, NA, NA, 99, 84)
+mean(route_numbers, rm.na(route_numbers))
+```
+Excellent job!! 
 Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
 
 
