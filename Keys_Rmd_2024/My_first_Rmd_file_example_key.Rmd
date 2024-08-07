@@ -1,0 +1,340 @@
+---
+title: "My first Rmd file"
+output: html_document
+date: "2024-01-12"
+---
+
+This is a R Markdown document.
+
+You can take notes just like you can in word or google docs. 
+
+Try writing a few notes!
+
+Your name: Katherine Brower
+Today's date: 8/7/24
+More notes: example key
+
+
+R Markdown documents can also contain code chunks. The grey area below is a code chunk:
+
+```{r}
+# I am a code chunk, when there is a # at the beginning of the code, this will
+# be read as a comment.
+
+```
+
+Code written in a code chunk can be run just like you wrote it in the Console pane below.
+To run the code in the code chunk, click on the play button in the top right corner
+of each code chunk. For any notes within a code chunk, don't forget to use the # symbol!
+
+We are going to use these Rmd files to write and save our code from now on!
+
+# Rmd file practice/Intro to R Review
+# 1) add 3 and 4 together, using the '+' operator, just like in math class
+```{r}
+3 + 4 
+
+```
+
+Click on the run button to see the answer! It's the triangle button in the top right corner of the grey code chunk.
+
+# 2) assign the value 15 to the object weight_kg
+```{r}
+weight_kg <- 15
+```
+
+Once you run the code chunk, you should see weight_kg show up in the Environment window!
+
+# 3) convert kg to lb by multiplying weight_kg by 2.2
+```{r}
+weight_kg * 2.2
+```
+
+# 4a) assign a new object called weight_lb with the value you got above
+# 4b) what is the data type of weight_lb?
+```{r}
+weight_lb <- weight_kg * 2.2
+
+```
+
+Once you run the code chunk, you should see weight_lb pop up in the Environment window.
+
+# 5) re-assign weight_kg to 100
+```{r}
+
+weight_kg <- 100
+```
+
+You should see the value for weight_kg change in your Environment window. 
+
+# 6) round 3.14159 to 3 digits
+```{r}
+round(3.14159, 3)
+
+```
+
+
+# Vector Review!
+# 7a) create a vector of your breakout group member's favorite animals called animal_party
+# 7b) then add one animal to the front of the vector animal_party
+# 7c) then add one marine animal to the end of the vector animal_party
+# 7d) extract the 3rd animal and save it to an object called party_star
+```{r}
+#7a
+animal_party <- c("dog", "penguin", "kakapo", "cat", "bear")
+
+```
+
+```{r}
+#7b
+animal_party <- c("octopus", animal_party)
+```
+
+```{r}
+#7c
+animal_party <- c(animal_party, "starfish")
+animal_party[7]
+```
+
+```{r}
+#7d 
+party_star <- animal_party[3]
+party_star
+```
+
+```{r}
+# 7e 
+animal_party <- animal_party[-length(animal_party)]
+animal_party
+```
+
+```{r}
+#example if we wanted to remove the 5th animal
+animal_party <- animal_party[-5]
+animal_party
+```
+# Addi tional fun with the animal party!
+# 8) What are 2 other things/functions you could do to add on or edit the vector animal party? Add them below!
+```{r}
+# example 1 adding an animal in the 4th index/spot (challenge, there are)
+# other functions from packages that we will use in future lessons that
+# will do this same action!
+animal_party <- c(animal_party[1:3], "rabbit", animal_party[4:length(animal_party)])
+
+# example 2: we had some late guests, let's add them to the party!
+# adding a new vector called late_arrival to the end of the animal_party vector
+
+late_arrival <- c("sloth", "elephant", "giraffe", "tortoise")
+```
+
+```{r}
+# combined animal_party with the late_arrival
+animal_party <- c(animal_party, late_arrival)
+animal_party
+```
+
+
+# Vector and Functions Review
+# 9a) Create a vector called heights in your vector, add the heights of your breakout room group members in inches
+# 9b) at the beginning of the vector, add your age
+# 9c) at the end of the vector, add the height of one of someone from your family
+
+```{r}
+#9a
+heights <- c(65, 58, 70, 68)
+
+#9b
+heights <- c(28, heights)
+
+#9c
+heights <- c(heights, 72)
+```
+
+# 10a) what kind of data is in the vector heights?
+# 10b) Use 3 different functions  with the vector heights! 
+# Remember you can always review the slides or previous worksheets to see what
+# functions we've used before! Or use the ?function_name to try a new one
+```{r}
+# 10a
+class(heights)
+
+# 10b ex. calculating the standard deviation
+sd(heights)
+```
+
+
+# Data Frames/tidyverse Review
+# Creating your own data frame
+# 11a) create 3 different vectors with the length of 6:
+# The first vector called boolean_vector containing TRUE or FALSE (boolean data)
+# The second vector called favorite_foods containing your favorite foods
+# The third vector called my_numbers containing 6, 10, 24, 61, 3, and 200
+
+```{r}
+boolean_vector <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE)
+favorite_foods <- c("ramen", "gnocchi", "tacos", "dark chocolate", "pho", "horchata")
+my_numbers <- c(6, 10, 24, 61, 3, 200)
+
+```
+
+# 11b) put boolean_vector, favorite_foods, and my_numbers into a dataframe
+# called my_df. The column names should be boolean, character, and number.
+```{r}
+my_df = data.frame(boolean = boolean_vector, character = favorite_foods,
+                   number = my_numbers)
+
+```
+
+# 11c) look at the first few rows of my_df.
+```{r}
+head(my_df)
+```
+
+# Utilizing the .csv file dataframe
+# 12a) read in the pokemon.csv file as the object called pokemon_df
+```{r}
+pokemon_df <- read.csv("pokemon.csv")
+```
+
+# 12b) how many rows and columns are there in pokemon_df?
+# 12c) what is the name of the 12th column in the pokemon data frame?
+# 12d) what is the name of a column containing character data?
+# 12e) what is the name of a column containing numeric or integers?
+```{r}
+dim(pokemon_df)
+# 1196 rows and 13 columns
+
+pokemon_df[12]
+# column is called speed
+
+View(pokemon_df)
+# columns: Name, Form, Type1, and Type2 contain character data
+# columns: Total, HP, Attack, Defense, Sp.. Atk, Sp.. Def, Speed, Generation
+# for this key, I will choose the Sp.. Def column
+
+```
+# 13a) in your chosen column from 13e (column with numerics or integers)
+# are there any NA values?
+```{r}
+sum(is.na(pokemon_df$Sp..Def))
+# yes there are 2 NA values
+```
+
+# 13b) compute the following quantities with your chosen column containing numerics or integers: max, min, median, mean, standard deviation
+```{r}
+pokemon_sp.DEF <- pokemon_df$Sp..Def
+
+# this changes the integer/numeric data to boolean data (true false) and isn't
+# what we're looking for
+pokemon_sp.DEF_noNA <- !(is.na(pokemon_sp.DEF))
+
+# we can use na.omit() to remove the NAs from the vector
+pokemon_sp.DEF_noNA <- na.omit(pokemon_sp.DEF)
+
+# alternatively can use max(pokemon_sp.DEF, na.rm = TRUE)
+max_sp.DEF <- max(pokemon_sp.DEF_noNA)
+max_sp.DEF
+
+min_sp.DEF <- min(pokemon_sp.DEF_noNA)
+min_sp.DEF
+
+mean_sp.DEF <- mean(pokemon_sp.DEF_noNA)
+mean_sp.DEF
+
+sd_sp.DEF <- sd(pokemon_sp.DEF_noNA)
+sd_sp.DEF
+```
+
+# 13c) how many datapoints are less than the median?
+# 13d) how many datapoints are more than or equal to the mean?
+# 13e) how many datapoints are more than 195 OR less than 80
+```{r}
+#13c
+median_sp.DEF <- median(pokemon_sp.DEF_noNA)
+length(pokemon_sp.DEF_noNA[pokemon_sp.DEF_noNA < median_sp.DEF])
+
+# this makes sense because half the data should be less than the median
+# 572 datapoints
+
+# 13d
+length(pokemon_sp.DEF_noNA[pokemon_sp.DEF_noNA >= mean_sp.DEF])
+# 529 datapoints
+
+# 13e 
+length(pokemon_sp.DEF_noNA[pokemon_sp.DEF_noNA > 195 | pokemon_sp.DEF_noNA < 80])
+# 737 datapoints
+```
+
+# 13e) how many datapoints are within 30% of the median?
+```{r}
+median_30_top <- median_sp.DEF * 1.3
+median_30_low <- median_sp.DEF * 0.7
+
+median_30_values <- length(pokemon_sp.DEF_noNA[pokemon_sp.DEF_noNA <= median_30_top & pokemon_sp.DEF_noNA >= median_30_low])
+
+median_30_values
+# 707 datapoints
+```
+
+# 14a) create a vector called pokemon_Total containing the column called Total in the pokemon_df
+# 14b) how many pokemon have a total higher than 450?
+# 14c) create a vector called pokemon_Defense containing the column called Defense
+# in the pokemon_df.
+# challenge question 14d) which pokemon has the most Defense? (hint: use the which() function)
+```{r}
+pokemon_Total <- pokemon_df$Total
+
+#14b
+higher <- length(pokemon_Total[pokemon_Total > 450])
+# 638 pokemon
+
+#14c
+pokemon_Defense <- pokemon_df$Defense
+
+#14d
+pokemon_Defense <- pokemon_df$Defense
+max_defense <- max(pokemon_Defense, na.rm = TRUE) # finding max defense stat
+index_max_row <- which(pokemon_Defense == 250) # getting the index row for the max defense stat
+whos_that_pokemon <- pokemon_df[index_max_row,] # extracting based on the index
+whos_that_pokemon
+
+# Eternatus
+
+```
+
+# Debugging: Based on the given code, find the error! This could be using the wrong
+# function, spelling, or using the wrong variable etc.! If you're stuck, try running the code 
+# what is the error? What do you change to get the expected result?
+```{r}
+# 15a)  I want to find the max time of my vector called sprint_times. I am expecting 17.10 as the result.
+sprint_times <- c(10.55, 17.10, 8.24, 11.45)
+max(sprint_time)
+
+# wrong variable name in the function max()
+# correct:
+max(sprint_times)
+```
+
+```{r}
+# 15b) I want to determine the median of my vector called years. I am expecting 2002.5 as the result
+years <- c(2011, 2024, 2022, 1988, 1994)
+mean(years)
+
+# used the function mean() instead of median()
+```
+
+```{r}
+# 15c) I want to remove the NAs from my vector called route_numbers and calculate the mean.
+route_numbers <- s(25, 12, NA, NA, 99, 84)
+mean(route_numbers, rm.na = route_numbers))
+
+# A) wrote a non-existent function called s() it should be c() to make a vector
+# B) rm.na should be na.rm()
+# C) na.rm = TRUE and should not contain a variable
+```
+
+Excellent job!! 
+Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
+
+
+
