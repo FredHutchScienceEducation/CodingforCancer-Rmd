@@ -56,4 +56,40 @@ If you want to read more about piping,  https://magrittr.tidyverse.org/
 
 ```
 
+## create a subsetted dataframe containing the column range tissue_or_organ_of_origin through total.number.Indels and contains RB1
+## call this subsetted dataframe RB1_clinical
+
+```{r}
+RB1_clinical <- select(clinical,
+                       tissue_or_organ_of_origin:total.number.Indels,
+                       contains("RB1"))
+```
+
+# filter RB1_clinical for just the "Primary Tumor" samples types in "sample_type"
+```{r}
+
+
+```
+
+
+# filter RB1_clinical for patients who have either "Del" or "Loss" in focal.deletion.in.RB1 OR "yes" in mutations.in.RB1 
+# hint: we can use the "|" operator for OR. 
+```{r}
+
+```
+
+
+
+# use the pipe operator to combine the selecting/filtering steps above
+# you'll need a total of three expressions in your filtering step using the form: 
+
+my_data_frame %>%
+  fuction(inputs) %>%
+  function(inputs)
+  
+```{r}
+
+```
+
+
 Great work!
