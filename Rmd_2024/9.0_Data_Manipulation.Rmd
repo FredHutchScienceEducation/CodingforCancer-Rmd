@@ -26,6 +26,17 @@ unique(clinical$gender) # remember, the $ extracts the column as a vector
 ```
 
 
+# convert the column, age_at_diagnosis from days to years using pipes, as a new column called clinical_years 
+```{r}
+
+```
+
+# convert days to year and months at same time, and we don't always need to assign to object
+```{r}
+
+``` 
+
+
 # count number of individuals by gender
 ```{r}
 gender_count <- 
