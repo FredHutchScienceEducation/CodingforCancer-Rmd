@@ -56,16 +56,4 @@ If you want to read more about piping,  https://magrittr.tidyverse.org/
 
 ```
 
-# convert days to years using pipes, assign this to clinical years 
-```{r}
-
-```
-
-# convert days to year and months at same time, and we don't always need to assign to object
-
-```{r}
-
-``` 
-
-
 Great work!
