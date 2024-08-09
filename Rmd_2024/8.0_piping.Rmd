@@ -19,14 +19,14 @@ library(tidyverse)
 clinical <- read.csv("data/clinical.csv") 
 ```
 
-# yesterday we used nested commands to execute multiple commands at once 
+# earlier we used nested commands to execute multiple commands at once 
 
 ```{r}
 # select patients with Stage IV cancer, then select only the race, ethnicity, and stage columns
 race_stage <- select(filter(clinical, ajcc_pathologic_stage == 'Stage IV'), race, ethnicity, ajcc_pathologic_stage)
 
 ```
-Take a look at the code above, what does the function filter for?
+Take a look at the code above, what is the function filter doing?
 
 
 
