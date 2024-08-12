@@ -3,8 +3,6 @@ title: "8.0_piping.Rmd"
 output: html_document
 date: "2024-01-23"
 ---
-
-
 # load library/package 
 
 ```{r}
@@ -12,11 +10,11 @@ date: "2024-01-23"
 library(tidyverse)
 ```
 
-# import data (same as yesterday!)
+# import clinical dataset
 
 ```{r}
 # run me
-clinical <- read.csv("data/clinical.csv") 
+clinical <- read.csv("clinical.csv") 
 ```
 
 # earlier we used nested commands to execute multiple commands at once 
@@ -33,7 +31,7 @@ Take a look at the code above, what is the function filter doing?
 What is the inner most nest (layer) of code?
 
 
-#lets do the same task as above, but with pipes
+# let's do the same task as above, but with pipes
 
 # first, start off the pipe with the pipe operator, %>%, call this piped
 # then write the first layer filtering for ajcc_pathologic_stage == "Stage IV",  use. to reference the clinical dataset
@@ -43,15 +41,17 @@ What is the inner most nest (layer) of code?
 ```
 If you want to read more about piping,  https://magrittr.tidyverse.org/
 
-
-
 # extract race, ethnicity, and age at diagnosis from cases born prior to 1930, filter before you select your columns, call this piped2
 ```{r}
 
 ```
 
-
 # do the same as above, but this time select your columms before filtering rows, call this piped3
+```{r}
+
+```
+
+# what is the difference between piped2 and piped3? Write the answer as a comment!
 ```{r}
 
 ```
@@ -78,18 +78,36 @@ RB1_clinical <- select(clinical,
 
 ```
 
-
-
-# use the pipe operator to combine the selecting/filtering steps above
-# you'll need a total of three expressions in your filtering step using the form: 
-
-my_data_frame %>%
-  fuction(inputs) %>%
-  function(inputs)
+# use the pipe operator to combine the selecting and filtering steps above
   
 ```{r}
 
 ```
 
+# Let's further explore the clinical dataframe with variables that you're intersted in!
+# Make a subsetted dataframe called my_experiment containing at least 3 different columns of your choice.
+# Use piping and filter for at least one condition! Describe the relationship or what you're looking at.
+# Example: I'm interested in seeing if patients in this dataset that are taller than 170 have more
+# expression in PPARG or ASXL2?
 
+# Hints: Check if the columns you're choosing contain NA values! Also see how the data was recorded using
+# the unique() function.
+```{r}
+# I'm interested in looking at: 
+# columns:
+# rows:
+
+# piped dataframe:
+
+```
+
+# That was an interesting result! Let's try doing that again with a different combination of columns.
+# This time, use a comparison operator (either & or |) 
+```{r}
+# I'm interested in looking at: 
+# columns:
+# rows:
+
+# piped dataframe:
+```
 Great work!
