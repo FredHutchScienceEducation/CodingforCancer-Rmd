@@ -1,0 +1,200 @@
+---
+title: "piping group activity worksheet key"
+output: html_document
+date: "2024-08-09"
+---
+
+#### Use this rmd file to answer the group activity questions!
+
+#### Always load in the packages and datasets that you're planning on using at the beginning of your rmd file!
+
+#### Setup: loading in packages and reading in datasets
+
+```{r}
+#Load in the necessary packages: tidyverse
+library(tidyverse)
+```
+
+```{r}
+# read in the clinical.csv file as an object called clinical
+clinical <- read.csv("clinical.csv")
+```
+
+### Getting to know the clinical dataframe
+
+##### When you are first looking at a new dataframe, it's very helpful to have a basic understanding of what is in it.
+
+##### Let's use 5 functions to learn more! What does each function do? Write the answer as a comment
+
+##### dim(), head(), str(), colnames(), and rownames()
+
+```{r}
+dim(clinical)
+```
+
+```{r}
+head(clinical)
+```
+
+```{r}
+str(clinical)
+```
+
+```{r}
+colnames(clinical)
+```
+
+```{r}
+rownames(clinical)
+```
+
+## Start at your group number question, if you finish, please complete the other questions
+
+### Example: Do patients who have smoked more than 40 packs of cigarettes in a year have more mutations in ATM or STAG2?
+
+```{r}
+# rows: packs_years_smoked > 40
+# columns: mutation.in.ATM, mutation.in.STAG2
+
+#2 step
+pack_yr_ATM_STAG2 <- select(clinical, pack_years_smoked, mutation.in.STAG2, mutation.in.ATM,)
+
+pack40_yr_ATM_STAG2 <- filter(pack_yr_ATM_STAG2, pack_years_smoked > 40)
+
+# nested
+ex_nested <- select(filter(clinical, pack_years_smoked > 40), mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+
+# piped
+ex_piped <- clinical %>%
+  filter(., pack_years_smoked > 40) %>%
+  select(., mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+
+# calculate which gene has more mutations
+sum(ex_piped$mutation.in.STAG2 == "yes", na.rm = TRUE)
+sum(ex_piped$mutation.in.ATM == "yes", na.rm = TRUE)
+
+# There are more mutations in STAG2 than ATM for patients who smoked more than 40 packs of cigarettes in a year
+```
+
+### Question 1: Do males or females over of 24000 days old at diagnosis have more ERCC2 expression?
+
+```{r}
+# columns needed: ERBB2_expression, gender
+# rows needed: age_at_diagnosis
+
+# Code in 2 steps
+gender_ERCC2_expr <- select(clinical, ERCC2_expr, gender, age_at_diagnosis)
+
+age_gender_ERCC2_expr <- filter(gender_ERCC2_expr, age_at_diagnosis > 24000)
+
+# Nested version:
+group1_q1_nested <- select(filter(clinical, age_at_diagnosis > 24000), ERCC2_expr, gender, age_at_diagnosis)
+
+# piped version
+group1_q1_piped <- clinical %>%
+  filter(., age_at_diagnosis > 24000) %>%
+  select(., gender, ERCC2_expr, age_at_diagnosis)
+
+# are there any differences between output of NESTED and PIPED (*****make names****)
+```
+
+### Question 2: Do females have more ARID1A expression or KMT2A expression in this dataset?
+
+```{r}
+# columns needed: ARID1A_expr, KMT2A_expr
+# rows needed: gender = female
+
+# 2 step version:
+gender_ARDI1A_KMT2A_expr <- select(clinical, ARID1A_expr, KMT2A_expr, gender)
+
+female_ARDI1A_KMT2A_expr <- filter(gender_ARDI1A_KMT2A_expr, gender == "female")
+
+# nested version:
+group1_q2_nested <- select(filter(clinical, gender == "female"), gender, ARID1A_expr, KMT2A_expr)
+
+# piped version:
+group1_q2_piped <- clinical %>%
+  filter(., gender == "female") %>%
+  select(., gender, ARID1A_expr, KMT2A_expr)
+  
+```
+
+### Question 3: What ajcc pathologic stage has the highest average total number of single nucleotide variants in the year of diagnosis of 2012?
+
+```{r}
+# columns: ajcc_pathologic_stage, total.number.Single.Nucleotide.Variants 
+# rows: year_of_diagnosis (2012)
+
+# 2 step method
+ajcc_SNV_year <- select(clinical, ajcc_pathologic_stage, total.number.Single.Nucleotide.Variants, year_of_diagnosis)
+
+ajcc_SNV_2012 <- filter(ajcc_SNV_year, year_of_diagnosis == "2012")
+
+# nested version:
+group1_q3_nested <- select(filter(clinical, year_of_diagnosis == "2012"), ajcc_pathologic_stage, total.number.Single.Nucleotide.Variants, year_of_diagnosis)
+
+# piped version:
+group1_q3_piped <- clinical %>%
+  filter(., year_of_diagnosis == "2012") %>%
+  select(., ajcc_pathologic_stage, total.number.Single.Nucleotide.Variants, year_of_diagnosis)
+```
+
+### Question 4: Do primary tumor samples (sample type) from patients with a BMI greater than 20 have more mutations in RB1 or TP53?
+
+```{r}
+# looking at how many unique/different sample types there are
+unique(clinical$sample_type)
+
+# Rows: bmi > 20, sample_type = Primary tumor
+# Columns: mutation.in.RB1, mutation.in.TP53
+
+# 2 step process
+samp_RB1_TP53_height <- select(clinical, sample_type, mutation.in.RB1, mutation.in.TP53, bmi)
+
+samp_RB1_TP53_height_165plus <- filter(samp_RB1_TP53_height, sample_type == "Primary Tumor", bmi > 20)
+
+# determine the number of patients with mutations in RB1 and TP53
+# using sum() function
+sum_RB1_mut1 <- sum(samp_RB1_TP53_height_165plus$mutation.in.RB1 == "yes", na.rm = TRUE)
+sum_TP53_mut <- sum(samp_RB1_TP53_height_165plus$mutation.in.TP53 == "yes", na.rm = TRUE)
+
+# comparison between number of mutations
+sum_RB1_mut > sum_TP53_mut
+
+# nested
+group_q4_nested <- select(filter(clinical, sample_type == "Primary Tumor", bmi > 20), sample_type, height, mutation.in.RB1, mutation.in.TP53)
+
+# piping
+group_q4_piped <- clinical %>%
+  filter(., sample_type == "Primary Tumor", bmi > 20) %>%
+  select(., sample_type, bmi, mutation.in.RB1, mutation.in.TP53)
+```
+
+### Question 5: Which racial group has the highest number of patients with prostate cancer who have more than 10 total indels and no mutation in TSC1?
+
+```{r}
+# rows: total.number.Indels > 10 and mutation.in.TSC1 "no"
+# columns: race, Presence of prostate cancer
+
+# 2 steps:
+race_presence_indel_noMutTSC1 <- select(clinical, race, Presence.of.prostate.cancer, total.number.Indels, mutation.in.TSC1)
+
+rp_indel10_noMutTSC1 <- filter(race_presence_indel_fusionFGFR3, total.number.Indels > 10, mutation.in.TSC1 =="no")
+
+# determining which races are present that satisfy these conditions
+unique(rp_indel10_noMutTSC1$race)
+
+# looking at them individually, can also set as intermediate objects and then compare
+sum(rp_indel10_noMutTSC1$race == "white")
+sum(rp_indel10_noMutTSC1$race == "asian")
+sum(rp_indel10_noMutTSC1$race == "black or african american")
+sum(rp_indel10_noMutTSC1$race == "not reported")
+
+# nested
+q5_nested <- select(filter(clinical, total.number.Indels > 10, mutation.in.TSC1 == "no"), race, Presence.of.prostate.cancer, total.number.Indels, mutation.in.TSC1)
+
+# piped
+q5_piped <- clinical %>%
+  filter(., total.number.Indels > 10, mutation.in.TSC1 == "no") %>%
+  select(., race, Presence.of.prostate.cancer, total.number.Indels, mutation.in.TSC1)
+```
