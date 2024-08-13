@@ -42,19 +42,6 @@ unique(clinical$gender) # remember, the $ extracts the column as a vector
 ```{r}
 
 ```
-
-### convert the column, cigarettes_per_day from days to months using pipes, as a new column called cigarettes_per_month
-### Use the average number of days in a month (30)
-```{r}
-
-```
-
-### count number of individuals by gender
-```{r}
-gender_count <- 
-
-```
-
 ### summarize average birth year by gender
 ```{r}
 avg_YOB_by_gender <- 
@@ -65,48 +52,13 @@ avg_YOB_by_gender <-
 avg_age_days_by_gender <-
 ```
 
-### summarize average, median, minimum, and maximum 
-### age at diagnosis (in days) by gender. Don't forget to remove any NAs!
-
+### count number of individuals by gender and arrange in ascending order
 ```{r}
-clinical_summarized_by_gender <- 
+gender_count <- 
+
 ```
 
-### save clinical_summarized as a .csv file in our data directory
-
+### use the %in% operator to extract data specifying primary diagnoses to keep: Transitional cell carcinoma and Papillary transitional cell carcinoma
 ```{r}
-# your code here...
-```
 
-### counting number of distinct diagnoses
-
-```{r}
-diagnosis_counts <- 
-```
-
-### get names of cancer diagnoses with more than 1 patient'
-
-```{r}
-specific_diagnoses <-
-``` 
-  
-### extract data specifying primary diagnoses to keep
-
-```{r}
-clinical_reduced <- 
-
-```
-  
-### confirm diagnoses present are the ones we want
-
-```{r}
-clinical_reduced$primary_diagnosis %>% 
-  unique() # this is the same as unique(clinical$gender) but with a pipe
-```
-
-### same as above but without an intermediate object
-
-```{r}
-clinical_reduced <- clinical %>%
-  filter(primary_diagnosis %in% #fill me in!)
 ```
