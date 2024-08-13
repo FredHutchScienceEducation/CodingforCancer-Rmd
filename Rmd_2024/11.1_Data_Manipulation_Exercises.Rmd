@@ -1,5 +1,5 @@
 ---
-title: 'Lesson 6: Coding Exercises'
+title: 'Lesson 11: Coding Exercises'
 author: "Sam Hart & Katherine Brower"
 date: "2023-08-10"
 output: html_document
@@ -32,7 +32,7 @@ library(tidyverse) ## if this isn't working, be sure to run the above (uncomment
 ## Load the data
 
 ```{r}
-clinical <- read_csv("data/clinical.csv")
+clinical <- read_csv("clinical.csv")
 ```
 
 ## Continue with RB1-relevant subset of data
