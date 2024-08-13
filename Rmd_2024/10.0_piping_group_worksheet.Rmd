@@ -1,0 +1,185 @@
+---
+title: "piping group activity worksheet"
+output: html_document
+date: "2024-08-09"
+---
+
+#### Use this rmd file to answer the group activity questions!
+
+#### Always load in the packages and datasets that you're planning on using at the beginning of your rmd file!
+
+#### Setup: loading in packages and reading in datasets
+
+```{r}
+#Load in the necessary packages: tidyverse
+library(tidyverse)
+```
+
+```{r}
+# read in the clinical.csv file as an object called clinical
+clinical <- read.csv("clinical.csv")
+```
+
+### Getting to know the clinical dataframe
+
+##### When you are first looking at a new dataframe, it's very helpful to have a basic understanding of what is in it.
+
+##### Let's use 5 functions to learn more! What does each function do? Write the answer as a comment
+
+##### dim(), head(), str(), colnames(), and rownames()
+
+```{r}
+dim(clinical)
+```
+
+```{r}
+head(clinical)
+```
+
+```{r}
+str(clinical)
+```
+
+```{r}
+colnames(clinical)
+```
+
+```{r}
+rownames(clinical)
+```
+
+## Start at your group number question, if you finish, please complete the other questions
+
+### Example: Do patients who have smoked more than 40 packs of cigarettes in a year have more mutations in ATM or STAG2?
+
+```{r}
+# rows: packs_years_smoked > 40
+# columns: mutation.in.ATM, mutation.in.STAG2
+
+#2 step
+pack_yr_ATM_STAG2 <- select(clinical, pack_years_smoked, mutation.in.STAG2, mutation.in.ATM,)
+
+pack40_yr_ATM_STAG2 <- filter(pack_yr_ATM_STAG2, pack_years_smoked > 40)
+
+# nested
+ex_nested <- select(filter(clinical, pack_years_smoked > 40), mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+
+# piped
+ex_piped <- clinical %>%
+  filter(., pack_years_smoked > 40) %>%
+  select(., mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+
+# calculate which gene has more mutations
+sum(ex_piped$mutation.in.STAG2 == "yes", na.rm = TRUE)
+sum(ex_piped$mutation.in.ATM == "yes", na.rm = TRUE)
+
+# There are more mutations in STAG2 than ATM for patients who smoked more than 40 packs of cigarettes in a year
+```
+
+### Question 1: Do males or females over of 24000 days old at diagnosis have more ERCC2 expression?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+# Code in 2 steps: name the first object age_gender_ERCC2_expr and second object age_24000+_gender_ERCC2_expr
+
+
+
+# Nested version: call this object q1_nested
+
+
+# piped version: call this object q1_piped
+
+
+# are there any differences between output of q1_step2, q1_nested, or q1_piped?
+
+
+```
+
+### Question 2: Do females have more ARID1A expression or KMT2A expression in this dataset?
+
+```{r}
+# columns needed: ARID1A_expr, KMT2A_expr
+# rows needed: gender = female
+
+# 2 step version: call the first object
+
+
+# nested version named q2_nested
+
+
+
+# piped version named q2_piped
+
+
+# are there any differences between output of q2_step2, q2_nested, or q2_piped?
+
+
+
+```
+
+### Question 3: What ajcc pathologic stage has the highest average total number of single nucleotide variants in the year of diagnosis of 2012?
+
+```{r}
+# columns: 
+# rows: 
+
+# 2 step method
+
+
+
+
+# nested version called q3_nested
+
+
+# piped version called q3_piped
+
+
+```
+
+### Question 4: Do primary tumor samples (sample type) from patients with a BMI greater than 20 have more mutations in RB1 or TP53?
+
+```{r}
+# how many unique/different sample types are there?
+
+
+# Rows: 
+# Columns:
+
+# 2 step process
+
+
+#optional: determine the number of patients with mutations in RB1 and TP53 using sum() function
+
+
+# nested called q4_nested
+
+
+# piping called q4_nested
+
+
+```
+
+### Question 5: Which racial group has the highest number of patients with prostate cancer who have more than 10 total indels and no mutation in TSC1?
+
+```{r}
+# rows: 
+# columns: 
+
+# 2 steps:
+
+
+# optional: determining which races are recorded in the dataset hint: use unique()
+
+
+# optional: determine how many patients in each race meet the conditions
+
+
+# nested called q5_nested
+
+
+# piped called q5_piped
+
+
+```
