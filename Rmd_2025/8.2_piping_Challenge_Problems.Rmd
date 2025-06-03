@@ -1,0 +1,37 @@
+---
+title: "8.2_piping_Challenge_Problems.Rmd"
+output: html_document
+date: "2024-01-24"
+---
+
+All exercises use the clinical object we created in the readings:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("data/clinical.csv")
+```
+
+There is a column “gender” in clinical; its name is not quite accurate. 
+
+We would like to rename this column. Using mutate(), code a way to correct the column header to the more appropriate name “sex” (hint: we can use the minus sign (-) within select to remove columns). Save the new dataframe as “clinical_corrected”.
+
+```{r}
+
+```
+
+The column pack_years_smoked represents the values “pack years” for each patient. One pack year corresponds to the number of years a person has smoked one pack per day. For example, 2 pack years means a person smoked a pack a day for 2 years. Risk for cancer is particularly high for people with 20 pack years and more. Using pipes, determine the number of patients with at least 20 pack years.
+
+```{r}
+
+```
+
+
+Continuing with the above, how many 20 pack year patients are female and have Stage III cancer at the start of the study?
+
+```{r}
+
+```
+
