@@ -47,7 +47,7 @@ bill_df <- penguins %>%
   )
 ```
 
-# Saving data to a file
+## Saving data to a file
 You can save results to a file using the write_csv() function. This can
 be useful for later applications
 ```{r}
@@ -55,10 +55,10 @@ be useful for later applications
 write_csv(bill_df, "data/bill_df.csv")
 ```
 
-# count() & arrange()
-The count() function can be very helpful since it combines group_by() and tally() together
+## `count()` & `arrange()`
+The `count()` function can be very helpful since it combines `group_by()` and `tally()` together
 
-The arrange() function sorts the data. To sort by ascending numbers: arrange(n) and if you want to sort by descending numbers: arrange(desc(n))
+The `arrange()` function sorts the data. To sort by ascending numbers: `arrange(n)` and if you want to sort by descending numbers: `arrange(desc(n))`
 
 ```{r}
 # counting distinct number of penguin species in ascending order
@@ -76,7 +76,7 @@ penguin_counts_desc <- penguins %>%
 penguin_counts_desc
 ```
 
-# Using %in% operator
+## Using %in% operator
 Sometimes we only want to include a specific value, the %in% operator is very helpful! This also works in a similar way to OR statements
 
 ```{r}
@@ -95,8 +95,8 @@ penguins_reduced_same <- penguins %>%
          species == "Chinstrap")
 ```
 
-## Trying these concepts with the new clinical dataframe
-Let's try these functions with the clinical dataframe!
+## Trying these concepts with the new `clinical` dataframe
+Let's try these functions with the `clinical` dataframe!
 - group_by() and tally()
 - group_by() with summarize()
 - write_csv()

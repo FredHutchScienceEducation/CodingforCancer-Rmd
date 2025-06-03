@@ -1,0 +1,81 @@
+---
+title: "Data Manipulation Challenge problems"
+author: "Sam Hart & Katherine Brower"
+date: "2023-08-10"
+output: html_document
+---
+
+All exercises use the clinical object:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+
+# Load the data
+clinical <- read.csv("clinical.csv")
+```
+
+Question 1:
+A datafrane called sample contains the following columns with categorical data (distinct categories are also specified):
+
+    column_tissues with categories “breast”, “prostate”, “lung”, “bladder”, “colon”
+    column_cancer with categories “adenocarcinoma”, “squamous cell carcinoma”, “DCIS”
+    column_p53_mutation with categories “yes”, “no”
+
+Which of the following commands are equivalent to 
+
+    sample %>% 
+      filter((column_tissues == "breast") | (column_tissues == "lung")) %>% 
+      filter((column_cancer == "DCIS") | (column_cancer == "adenocarcinoma")) %>% 
+      filter(column_p53_mutation != "yes")
+
+Select all that apply.
+
+    a)	sample %>% 
+      filter(column_tissues %in% c("breast", "lung")) %>% 
+      filter(column_cancer %in% c("DCIS", "adenocarcinoma")) %>% 
+      filter(column_p53_mutation == "yes")
+      
+    b)	sample %>% 
+      filter(column_tissues %in% c("breast", "lung")) %>% 
+      filter(column_cancer %in% c("DCIS", "adenocarcinoma")) %>% 
+      filter(column_p53_mutation %in% c("no"))
+      
+    c)	sample %>% 
+      filter(column_tissues %in% c("breast", "lung"),
+               column_cancer %in% c("DCIS", "adenocarcinoma"),
+               column_p53_mutation == "no")
+           
+# The above question is conceptual - no code needed!
+```{r}
+# your answer here:
+```
+           
+Question 2:
+Create an object called smoke_complete from clinical that contains no missing data for cigarettes per day or age at diagnosis.
+```{r}
+
+```
+
+Save the file as Lesson_11_Challenge.csv
+```{r}
+
+```
+
+Question 3:
+Create a new object called birth_complete that contains no missing data for year of birth or vital status.
+```{r}
+
+```
+
+Question 4:
+Extract all tumor stages with more than 100 cases (Hint: also check to see if there are any other missing/ambiguous data!)
+```{r}
+
+```
+
+Question 5:
+How many hispanic or latino individuals in clinical are not also white?
+```{r}
+
+```
