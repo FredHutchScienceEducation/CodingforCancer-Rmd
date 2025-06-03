@@ -1,0 +1,110 @@
+---
+title: "Tidyverse 7.0 worksheet"
+author: "Katherine Brower (kbrower)"
+date: "2024-06-11"
+output: html_document
+---
+# 7.0 Tidyverse
+
+We will start with a fresh, clean environment. 
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Tidyverse
+Today we will start using the tidyverse package. Tidyverse is one of the most commonly used R packages and actually contains many packages!
+
+Let's install and load the tidyverse package. Double check that for install.packages("") you have the "" marks and for library() there are no quotation marks. 
+
+Remember that once you install a package once, you do not need to reinstall again! To use a package, you need to use library(package_name) at the top of your file.
+
+```{r}
+#install package
+install.packages("tidyverse")
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Importing the penguins data from the palmerpenguins package
+```{r}
+data(package = "palmerpenguins")
+```  
+
+```{r}
+head(penguins)
+```
+We can extract columns using select()
+variable <- select(df, helper_function) or select(df, column names)
+```{r}
+# Let's select three columns using tidyverse: flipper_length_mm, body_mass_g, 
+# and year
+
+sel_columns <- select(penguins, flipper_length_mm, body_mass_g, year)
+
+# Select a range of columns from bill_length_mm containing everything between 
+# and including body_mass_g
+
+sel_columns2 <- select(penguins, bill_length_mm : body_mass_g)
+```
+
+We can also use helper functions: 
+- starts_with() : starts with a prefix
+- ends_with() : ends with a prefix
+- contains() : contains a literal string
+- matches() : matches a regular expression
+- num_range() : a numerical range
+- one_of() : variables in character vector
+- everything() : all variables
+
+```{r}
+# Use the ends_with() function to select columns containing mm
+sel_columns3 <- select(penguins, ends_with("mm"))
+
+# Use the contains() function to select columns containing length
+
+sel_columns4 <- select(penguins, contains("length"))
+
+
+# Use the starts_with() function to select columns containing 
+sel_columns_5 <- select(penguins, contains("bill"))
+
+# Can also combine many conditions together using | and & symbols!
+
+sel_columns_lots <- select(penguins, contains("Species") | ends_with("mm"))
+```
+
+We can extract rows with the filter() function. This function works the same way as select() does for columns
+
+```{r}
+# filter rows for only male penguins
+male_rows <- filter(penguins, sex == "male")
+```
+
+# Combining commands
+Keep in mind that there are many ways to accomplish the same goal in R!
+
+Intermediate objects can be very useful if you want to save or keep "intermediate" steps before the final object.
+```{r}
+# let's try choosing rows with filter using our sel_columns_lots dataframe as an intermediate object
+
+# keep only "Adelie" penguin data
+filtered_rows <- filter(sel_columns_lots, species == "Adelie")
+
+# keep only penguins (of all types) with bill_length_mm over 20mm
+
+filtered_rows2 <- filter(sel_columns_lots, bill_length_mm > 20)
+
+# combine two conditions: keep only penguins with flipper length under 185 mm and Chinstrap
+
+filtered_rows3 <- filter(sel_columns_lots, flipper_length_mm < 185 & species == "Chinstrap")
+```
+
+We can also combine them together as a nested function:
+```{r}
+nested_df <- select(filter(penguins, species == "Gentoo"), bill_length_mm, year, sex)
+```
