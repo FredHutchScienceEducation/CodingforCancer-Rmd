@@ -1,0 +1,163 @@
+---
+title: "My first Rmd file"
+output: html_document
+date: "2025-07-11"
+---
+
+# My first Rmd file
+
+This is a R Markdown document.
+
+You can take notes just like you can in word or google docs. 
+
+Try writing a few notes!
+
+Your name: 
+
+Today's date:
+
+More notes:
+
+
+R Markdown documents can also contain code chunks. The grey area below is a code chunk:
+
+```{r}
+
+```
+
+Code written in a code chunk can be run just like you wrote it in the Console pane below.
+To run the code in the code chunk, click on the play button in the top right corner
+of each code chunk. For any notes within a code chunk, don't forget to use the # symbol!
+
+```{r}
+print("Hello world")
+
+```
+
+We are going to use these Rmd files to write and save our code from now on!
+
+## Rmd file practice/Intro to R Review
+
+1. add 3 and 4 together, using the `+` operator.
+    ```{r}
+
+
+    ```
+
+    Click on the run button to see the answer! It's the triangle button in the top right corner of the grey code chunk.
+
+1. assign the value `15` to the object `weight_kg`
+    ```{r}
+
+    ```
+
+    Once you run the code chunk, you should see `weight_kg` show up in the Environment window!
+
+1. convert kilograms to pounds by multiplying `weight_kg` by 2.2
+    ```{r}
+
+    ```
+
+1. assign a new object called weight_lb with the value you got above
+
+    ```{r}
+
+
+    ```
+
+    Once you run the code chunk, you should see `weight_lb` pop up in the Environment window.
+
+
+1. What is the data type of `weight_lb`?
+
+    **Answer**: _________
+
+
+5. re-assign `weight_kg` to 100
+    ```{r}
+
+    ```
+
+    You should see the value for `weight_kg` change in your Environment window. 
+
+1. round 3.14159 to 3 digits
+    ```{r}
+
+
+    ```
+
+
+## Vector Review!
+1. create a vector of your breakout group member's favorite animals called `animal_party`
+
+    ```{r}
+
+
+    ```
+
+
+1. then add one animal to the front of the vector `animal_party`
+    ```{r}
+
+
+    ```
+
+1. then add one marine animal to the end of the vector animal_party
+    ```{r}
+   
+
+    ```
+
+1. extract the 3rd animal and save it to an object called party_star
+    ```{r}
+
+
+    ```
+
+
+1. unfortunately the marine animal wasn't able to make it to the party, remove them from the vector
+    ```{r}
+
+
+    ```
+
+
+
+## Vector and Functions Review
+1. Create a vector called `heights` in your vector, add the heights of your breakout room group members in inches.
+
+    ```{r}
+
+    ```
+
+1. At the beginning of the vector, add your age.
+    
+    ```{r}
+
+    ```
+
+
+1. at the end of the vector, add the height of one of someone from your family
+
+    ```{r}
+
+    ```
+
+1. what kind of data is in the vector heights?
+
+    **Answer:** __________
+
+1. Use 3 different functions with the vector heights (Ex. `max`, `min`, etc.) 
+
+    Hint: Remember you can always review the slides or previous worksheets to see what functions we've used before! Or use the `?function_name` to try a new one
+
+    ```{r}
+
+    ```
+
+
+## Excellent job!! 
+Don't forget to save your work! Click on the save icon or (Ctrl/Cmd + S).  
+
+
+
