@@ -1,0 +1,124 @@
+# 6.0 Data Frames
+
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## 1. Importing Data - Penguins
+
+We'll be using the `palmerpenguins` package dataframe to do more practice!
+
+Load packages using: `library(package_name)`. The penguin data is now in the `penguins` object.
+
+```{r}
+#load the palmerpenguins package
+library(palmerpenguins)
+penguins = penguins
+```
+
+Let's look at the dataframe we just loaded!
+
+We can assess the size of data frames using `dim(dataframe)`
+
+```{r}
+#assess the size of the penguins dataframe
+dim(penguins)
+
+```
+
+We can preview the first few rows with `head(dataframe)`
+
+```{r}
+# look at the first few rows
+head(penguins)
+```
+
+## 2. Accessing data in columns
+
+We use the `$` operator to access data in a specific column, like this: `dataframe$column_name`.
+
+If we wanted the data in the `bill_length_mm` column, we access like so: `penguins$bill_length_mm`.
+
+```{r}
+
+
+```
+
+Access the data in the `year` column.
+
+```{r}
+
+```
+
+What is the bill depth of the 30th penguin recorded?
+
+```{r}
+
+```
+
+## 3. Subsetting columns
+
+Let's try subsetting columns from the data frame penguins. To subset the second column, we use the square brackets `[]` like this: `penguins[2]` .
+
+Subset the second column and assign it to the object `second_column`
+
+```{r}
+
+```
+
+Alternatively, we can use rows, columns notation: `penguins[, 2]`.
+
+```{r}
+
+```
+
+With rows, columns notation, we can specify a specific row and a column.
+
+Subset the first row of the second column.
+
+```{r}
+
+```
+
+We can subset columns by name. Let's subset the `year` column.
+
+```{r}
+year_column <- 
+```
+
+Use the `:` to subset columns within a range.
+
+```{r}
+
+```
+
+## 4. Plot data from columns
+
+Let's access the `bill_length_mm` data from `penguins` and assign it to `bill_length`.
+
+```{r}
+
+
+```
+
+Now, let's access the `flipper_length_mm` data from `penguins` and assign it to `flipper_length`.
+
+```{r}
+
+
+```
+
+If you extract the columns correctly, we can plot the data in the two columns using this code chunk below. Don't worry about how this code chunk works yet, we'll learn more about it later in the program.
+
+```{r}
+library(tidyverse)
+ggplot()  + aes(x = bill_length, y = flipper_length) + geom_point()
+```

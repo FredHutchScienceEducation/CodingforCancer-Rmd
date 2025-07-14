@@ -1,0 +1,186 @@
+# 6.1 Dataframes Group Activity
+
+In this activity, we will explore and navigate through different dataframes.
+
+As always, we will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+------------------------------------------------------------------------
+
+This is a list of datasets from the [tidytuesday](https://github.com/rfordatascience/tidytuesday) project, a social data project that provide real-world datasets for anyone to use!
+
+| Date | Data | Source | Article |
+|:---|:---|:---|:---|
+| 2023-10-17 | [Taylor Swift data](2023-10-17/readme.md) | [taylor R package](https://taylor.wjakethompson.com/) | [Taylor Swift data analysis](https://rpubs.com/salvatoremancino/1065547) |
+| 2025-01-14 | [posit::conf talks](data/2025/2025-01-14/readme.md) | [posit::conf attendee portal 2023](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog), [posit::conf attendee portal 2024](https://reg.conf.posit.co/flow/posit/positconf24/attendee-portal/page/sessioncatalog) | [posit::conf(2025) in-person registration is now open!](https://posit.co/blog/positconf2025-in-person-registration-is-now-open/) |
+| 2025-01-21 | [The History of Himalayan Mountaineering Expeditions](data/2025/2025-01-21/readme.md) | [The Himalayan Database](https://www.himalayandatabase.com/downloads.html) | [The Expedition Archives of Elizabeth Hawley](https://www.himalayandatabase.com/index.html) |
+| 2025-01-28 | [Water Insecurity](data/2025/2025-01-28/readme.md) | [US Census Data from tidycensus](https://cran.r-project.org/package=tidycensus) | [Mapping water insecurity in R with tidycensus](https://waterdata.usgs.gov/blog/acs-maps/) |
+| 2025-02-18 | [Agencies from the FBI Crime Data API](data/2025/2025-02-18/readme.md) | [FBI Crime Data API](https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/docApi) | [Uniform Crime Reporting Program: Still Vital After 90 Years](https://le.fbi.gov/cjis-division/cjis-link/uniform-crime-reporting-program-still-vital-after-90-years-) |
+| 2025-02-25 | [Academic Literature on Racial and Ethnic Disparities in Reproductive Medicine in the US](data/2025/2025-02-25/readme.md) | [Racial and ethnic disparities in reproductive medicine in the United States: a narrative review of contemporary high-quality evidence](https://www.ajog.org/article/S0002-9378(24)00775-0/fulltext) | [This Art is HARD](https://katcorr.github.io/this-art-is-HARD/) |
+| 2025-03-04 | [Long Beach Animal Shelter](data/2025/2025-03-04/readme.md) | [City of Long Beach Animal Care Services](https://data.longbeach.gov/explore/dataset/animal-shelter-intakes-and-outcomes/information/) | [Long Beach Animal Care Services Hits Highest Adoption Rate Ever, Surpasses 2024 Strategic Plan Goal](https://www.longbeach.gov/press-releases/long-beach-animal-care-services-hits-highest-adoption-rate-ever-surpasses-2024--strategic-plan-goal/) |
+| 2025-03-11 | [Pixar Films](data/2025/2025-03-11/readme.md) | [pixarfilms R package](https://erictleung.com/pixarfilms/index.html) | [Pixar Film Ratings](https://erictleung.com/pixarfilms/articles/pixar_film_ratings.html) |
+| 2025-03-18 | [Palm Trees](data/2025/2025-03-18/readme.md) | [{palmtrees} R package](https://github.com/EmilHvitfeldt/palmtrees) | [PalmTraits 1.0, a species-level functional trait database of palms worldwide](https://www.nature.com/articles/s41597-019-0189-0) |
+| 2025-04-01 | [Pokemon](data/2025/2025-04-01/readme.md) | [pokemon R package](https://github.com/williamorim/pokemon/) | [Pokemon Data Visualization and Analysis with R](https://medium.com/@hanahshih46/pokemon-data-visualization-and-analysis-with-r-60970c8e37f4) |
+| 2025-04-08 | [Timely and Effective Care by US State](data/2025/2025-04-08/readme.md) | [Centers for Medicare & Medicaid Services](https://data.cms.gov/provider-data/dataset/apyc-v239) | [Mapped: Emergency Room Visit Times by State](https://www.visualcapitalist.com/mapped-emergency-room-visit-times-by-state/) |
+| 2025-04-22 | [Fatal Car Crashes on 4/20](data/2025/2025-04-22/readme.md) | [420 (data-raw)](https://osf.io/qnrg6/) | [The Annual Cannabis Holiday and Fatal Traffic Crashes](https://osf.io/preprints/osf/tzcsy_v1) |
+| 2025-05-13 | [Seismic Events at Mount Vesuvius](data/2025/2025-05-13/readme.md) | [Italian Istituto Nazionale di Geofisica e Vulcanologia (INGV)](https://www.ingv.it/) | [Somma Vesuvio](https://www.ingv.it/somma-vesuvio) |
+| 2025-05-20 | [Water Quality at Sydney Beaches](data/2025/2025-05-20/readme.md) | [BeachwatchNSW](https://www.beachwatch.nsw.gov.au/waterMonitoring/waterQualityData), [Open-Meteo](https://open-meteo.com/) | [Sydney beachgoers urged not to swim in waterways, amid pollution warnings and bull shark activity](https://www.abc.net.au/news/2025-01-10/pollution-risks-in-sydney-beaches-contaminated-waterways-rain/104790856) |
+| 2025-05-27 | [Dungeons and Dragons Monsters (2024)](data/2025/2025-05-27/readme.md) | [System Reference Document v5.2.1](https://www.dndbeyond.com/srd) | [You Can Now Publish Your Own Creations Using the New Core Rules](https://www.dndbeyond.com/posts/1949-you-can-now-publish-your-own-creations-using-the) |
+| 2025-06-24 | [Measles cases across the world](data/2025/2025-06-24/readme.md) | [World Health Organisation Provisional monthly measles and rubella data](https://immunizationdata.who.int/global?topic=Provisional-measles-and-rubella-data&location=) | [Measles cases reach 1,046 in US as infections confirmed in 30 states: CDC](https://abcnews.go.com/Health/measles-cases-reach-1046-us-infections-confirmed-30/story?id=122108194) |
+| 2025-07-01 | [Weekly US Gas Prices](data/2025/2025-07-01/readme.md) | [U.S. Gasoline and Diesel Retail Prices](https://www.eia.gov/dnav/pet/xls/PET_PRI_GND_DCUS_NUS_W.xls) | [Weekly U.S. Gasoline and Diesel Retail Prices](https://www.eia.gov/petroleum/gasdiesel/) |
+
+## Step 1: Pick a dataset
+
+For the dataset that you want to use, assign `date` with the date in `"YYYY-MM-DD"` format and as a string.
+
+For example: `date = "2025-07-01"`
+
+```{r}
+
+date <- 
+```
+
+Run this code chunk below to download the dataset and extract the dataframes into its own object. After running this code chunk, you should see the downloaded dataframe(s) in the Environment pane.
+
+```{r}
+#### Do not alter the code below. This is a function that will download your dataset. 
+load_and_extract_tt_data <- function(date) {
+  # Load the TidyTuesday dataset
+  data_list <- tidytuesdayR::tt_load(date)
+  cat("\n")
+  cat("\n")
+  # Extract each dataframe from data_list into separate objects
+  # in the global environment with the same names
+  for (name in names(data_list)) {
+    assign(name, data_list[[name]], envir = .GlobalEnv)
+    cat("Extracted", name, "and assigned to the object",name,"\n")
+  }
+  
+  # Return the original data_list for reference
+  return(data_list)
+}
+
+data_list <- load_and_extract_tt_data(date)
+```
+
+## Step 2: Calculate the number of dimensions in a `your_dataframe`
+
+From the extracted data, choose a dataframe object. The next instructions will refer to your chosen dataframe as just `your_dataframe`. You can replace `your_dataframe` with the dataframe object that you have chosen.
+
+Calculate the number of rows and columns in the `your_dataframe` . Provide the code and final answer below:
+
+```{r}
+### Your code here
+
+
+```
+
+**Answer: Number of rows = \_\_\_**
+
+**Answer: Number of columns = \_\_\_**
+
+## Step 3: Access a column data by index
+
+Provide the code to obtain the data in the **fifth** column in `your_dataframe`.
+
+If you do not have a fifth column, use the last column.
+
+```{r}
+### Your code here
+
+
+```
+
+**Answer: What is the name of the fifth column?** \_\_\_\_\_\_\_\_\_\_
+
+## Step 4: Access a numeric or integer column by name
+
+Choose a column name in `your_dataframe` that contains either numeric or integer data types.
+
+If you click on `your_dataframe` on the environment pane, you can see the table and find the column names on the top row.
+
+**Answer: Chosen column name**: \_\_\_\_\_\_\_\_\_\_
+
+Provide the code that can access the column by specifying the column name you chosen above. Assign this column to `number_column`.
+
+Hint: this uses the `$` operator.
+
+```{r}
+### Your code here
+
+```
+
+## Step 5: Calculate statistics on column data
+
+Now that we have `number_column`, we can try to calculate some interesting statistics about the data.
+
+Calculate the following in `number_column`. Hint: if `number_column` has `NA` then you have to include the `na.rm=TRUE` when you calculate the value.
+
+1.  **Max** =
+2.  **Min** =
+3.  **Median** =
+4.  **Mean** =
+5.  **Standard deviation** =
+
+You can use the code chunk to calculate these values
+
+```{r}
+
+
+```
+
+## Step 6: Recap from last lessons
+
+Recall from yesterday, we introduced comparison operators:
+
+-   `>` greater than
+
+-   `<` less than
+
+-   `==` equal to
+
+-   `!=` not equal to. Note: `!` means **not**
+
+-   `<=` less than or equal to
+
+-   `>=` greater than or equal to
+
+We can use these comparison operators on `number_column` to learn about the data more.
+
+For example, how many datapoints in `number_column` are greater than the mean.
+
+**Hint:** You will need to use the `length()` function alongside a comparison operator.
+
+```{r}
+### Your code here
+
+```
+
+```{r}
+
+```
+
+**Answer: Number of datapoints greater than the mean:** \_\_\_\_\_\_\_
+
+## Step 7: Plot data to assess correlation
+
+Choose a different column with either `numeric`, `integer`, or `date` data.
+
+**Answer: Chosen column name**: \_\_\_\_\_\_\_\_\_\_
+
+Provide the code that can access the column by specifying the column name you chosen above. Assign this column to `number_column2`.
+
+Hint: this uses the `$` operator.
+
+```{r}
+
+```
+
+If you run the code chunk below, it may produce in informative plot. Let's try it out.
+
+```{r}
+ggplot()  + aes(x = number_column, y = number_column2) + geom_point()
+```

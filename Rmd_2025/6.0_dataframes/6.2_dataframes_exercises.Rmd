@@ -1,0 +1,215 @@
+# 6.2 Dataframes Exercises
+
+In this exericse, we will explore data about Starbucks coffee
+
+As always, we will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+------------------------------------------------------------------------
+
+## Load the dataset
+
+Run the code chunk below. It will load download the data and assign it to the object `starbucks`. We will use this dataframe for the exercise.
+
+```{r}
+#### Do not alter the code below. This is a function that will download your dataset. 
+load_and_extract_tt_data <- function(date) {
+  # Load the TidyTuesday dataset
+  data_list <- tidytuesdayR::tt_load(date)
+  cat("\n")
+  cat("\n")
+  # Extract each dataframe from data_list into separate objects
+  # in the global environment with the same names
+  for (name in names(data_list)) {
+    assign(name, data_list[[name]], envir = .GlobalEnv)
+    cat("Extracted", name, "and assigned to the object",name,"\n")
+  }
+  
+  # Return the original data_list for reference
+  return(data_list)
+}
+
+data_list <- load_and_extract_tt_data("2021-12-21")
+```
+
+## Explore the dataframe
+
+1.  Let's view the plastics data frame you just downloaded using the `View()` function.
+
+    ```{r}
+
+    ```
+
+2.  You can assess the size of the data frame using the function `dim(dataframe).`
+
+    ```{r}
+
+    ```
+
+    **Answer: Number of rows = \_\_\_**
+
+    **Answer: Number of columns = \_\_\_**
+
+3.  You can preview the first few rows using the function `head(dataframe)`.
+
+    ```{r}
+
+    ```
+
+4.  Use the `colnames()` function on the `starbucks` dataframe.
+
+    ```{r}
+
+    ```
+
+5.  Use the `str()` function on the `starbucks` dataframe.
+
+    ```{r}
+
+    ```
+
+    In your own words, what does the `str()` function do?
+
+    ```         
+    ```
+
+6.  Finally, use the `summary()` function on the `starbucks` dataframe.
+
+    ```{r}
+
+    ```
+
+    In your own words, what does the `summary()` function do?
+
+    ```         
+    ```
+
+## Subsetting data
+
+Now that we know how to make and look at dataframes, you can extract values from a data rame using the `[]` accessor.
+
+Recall the format is `dataframe[rows, cols]`.
+
+1.  Extract the value at row 1, column 1 in `starbucks`
+
+    ```{r}
+
+    ```
+
+2.  Try accessing the first row in `starbucks`
+
+    ```{r}
+
+    ```
+
+3.  You can also use this to access an entire column by doing the opposite. Try accessing the first column in `starbucks`.
+
+    ```{r}
+
+    ```
+
+4.  If you don't include the comma, R will assume you want the column. Try extracting the first column of `starbucks`, but this time don't use the comma.
+
+    ```{r}
+
+    ```
+
+5.  Take a look at the output for `plastics[,1]` and `plastics[1]`, do they look the same?
+
+    ```{r}
+
+    ```
+
+6.  You can also extract a range of rows and columns by using `:`. Try extracting the rows 1 through 3 in the second column of `starbucks`.
+
+    ```{r}
+
+    ```
+
+7.  You can exclude things by using `-`. To exclude the first column, you can use `dataframe[-1]`. Try it below:
+
+    ```{r}
+
+    ```
+
+8.  Now we can assess the data in the column by the name of its column, like this: `dataframe["column_name"]`. Subset the `year` from `starbucks`.
+
+    ```{r}
+
+    ```
+
+9.  We can list all the column names we want to extract using commas `,` , like this: `dataframe["``column_name1``", "``column_name2``", "``column_name3``"].` Subset the `calories`, `sugar_g`, and `caffeine_mg` from `starbucks`.
+
+    ```{r}
+
+    ```
+
+## Accessing data
+
+We can use the `$` the access column data into a vector. The general format is `dataframe$column_name`.
+
+1.  Try accessing the `total_carbs_g` column data, using the `$` syntax.
+
+    ```{r}
+
+    ```
+
+2.  Now access the column data in `cholesterol_mg` using the `$` syntax.
+
+    ```{r}
+
+    ```
+
+3.  Assign the `sugar_g` column data to an object called `sugar`.
+
+    ```{r}
+
+
+    ```
+
+4.  Now let's combine our knowledge of accessing data from dataframes with some functions we learned earlier.
+
+    Calculate the range for `sugar`.
+
+    ```{r}
+
+    ```
+
+5.  Now calculate the mean of `sugar`
+
+    ```{r}
+
+    ```
+
+6.  What is the maximum sugar content?
+
+    ```{r}
+
+    ```
+
+## Plotting data
+
+1.  Assign the `calories` column data to an object called `drink_calories`.
+
+    ```{r}
+
+    ```
+
+2.  Below is the code the making a scatter plot. There is a part in the code that specifies what data goes on the x-axis and what data goes on the y-axis. Put the `calories` and `sugar` vector in either `x=` or `y=`. Run the code chunk to make a scatter plot.
+
+    ```{r}
+    ggplot() + aes(x = , y = ) + geom_point()
+    ```
+
+3.  **Challenge**. Access another column from the `starbucks` dataframe. Assign that data into a vector object and update the plot code to compare the two columns.
+
+    ```{r}
+
+    ```
+
+    ```{r}
+
+    ```
