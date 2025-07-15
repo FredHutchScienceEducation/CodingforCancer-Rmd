@@ -16,7 +16,7 @@ clinical <- read.csv("clinical.csv")
 ```
 
 Question 1:
-A datafrane called sample contains the following columns with categorical data (distinct categories are also specified):
+A tibble called sample contains the following columns with categorical data (distinct categories are also specified):
 
     column_tissues with categories “breast”, “prostate”, “lung”, “bladder”, “colon”
     column_cancer with categories “adenocarcinoma”, “squamous cell carcinoma”, “DCIS”
@@ -35,21 +35,17 @@ Select all that apply.
       filter(column_tissues %in% c("breast", "lung")) %>% 
       filter(column_cancer %in% c("DCIS", "adenocarcinoma")) %>% 
       filter(column_p53_mutation == "yes")
-      
     b)	sample %>% 
       filter(column_tissues %in% c("breast", "lung")) %>% 
       filter(column_cancer %in% c("DCIS", "adenocarcinoma")) %>% 
       filter(column_p53_mutation %in% c("no"))
-      
     c)	sample %>% 
       filter(column_tissues %in% c("breast", "lung"),
                column_cancer %in% c("DCIS", "adenocarcinoma"),
                column_p53_mutation == "no")
            
 # The above question is conceptual - no code needed!
-```{r}
-# your answer here:
-```
+           
            
 Question 2:
 Create an object called smoke_complete from clinical that contains no missing data for cigarettes per day or age at diagnosis.
@@ -57,7 +53,7 @@ Create an object called smoke_complete from clinical that contains no missing da
 
 ```
 
-Save the file as Lesson_11_Challenge.csv
+How do you save the resulting table to file? How would you find this answer? Save the file as Lesson_6_Challenge_2.csv
 ```{r}
 
 ```
@@ -79,3 +75,6 @@ How many hispanic or latino individuals in clinical are not also white?
 ```{r}
 
 ```
+
+
+

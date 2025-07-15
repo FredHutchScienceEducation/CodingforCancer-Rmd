@@ -5,7 +5,8 @@ date: "2023-08-10"
 output: html_document
 ---
 
-**Under each heading below, type your code and run it. Feel free to add notes and comments to help you learn.**
+__Under each heading below, type your code and run it. Feel free to add notes and comments to help you learn.__ 
+
 
 ### load library/package
 
@@ -13,82 +14,51 @@ output: html_document
 library(tidyverse)
 ```
 
-### import data
 
+### import data
 ```{r}
-clinical <- read.csv("clinical.csv")
+clinical <- read_csv("clinical.csv")
 ```
 
 ### show categories in gender
-
 ```{r}
 unique(clinical$gender) # remember, the $ extracts the column as a vector
 ```
 
-### convert the column, age_at_diagnosis from days to years using pipes, as a new column called clinical_years. Call the new data frame clinical_ageYear_at_diagnosis
 
+### convert the column, age_at_diagnosis from days to years using pipes, as a new column called clinical_years 
 ```{r}
-#mutate() let's make new columns
-
-clinical_ageYear_at_diagnosis <- clinical %>%
-  mutate(clinical_year = age_at_diagnosis / 365)
 
 ```
 
 ### determine the total small mutations (nucleotide variants and insertions/deletions). name this new column total_small_mutations
-
 ### insertions and deletions are combined and called indels in this dataset
-
 ```{r}
-clinical2 <- clinical %>%
-  mutate(total_small_mutations = total.number.Single.Nucleotide.Variants + total.number.Indels)
 
-clinical2$total_small_mutations
+
 ```
 
 ### combine the columns, ATM_expr and KMT2D_expr together as a new column called ATM_KMT2D_total_expr
-
 ```{r}
-clinical3 <- clinical %>%
-  mutate(ATM_KMT2D_total_expr = ATM_expr + KMT2D_expr)
-```
 
+```
 ### summarize average birth year by gender
-
 ```{r}
-avg_YOB_by_gender <- clinical %>%
-  group_by(gender) %>%
-  summarize(
-    avg_year_birth = mean(year_of_birth, na.rm = TRUE)
-  )
-
-avg_YOB_by_gender
-```
-
-```{r}
-clinical %>%
-  group_by(gender, race)  %>%
-  summarize(
-    avg_year_birth = mean(year_of_birth, na.rm = TRUE)
-  )
-
+avg_YOB_by_gender <- 
 ```
 
 ### summarize average age at diagnosis (in days) by gender
-
 ```{r}
 avg_age_days_by_gender <-
 ```
 
 ### count number of individuals by gender and arrange in ascending order
-
 ```{r}
-gender_count <-
+gender_count <- 
 
 ```
 
 ### use the %in% operator to extract data specifying primary diagnoses to keep: Transitional cell carcinoma and Papillary transitional cell carcinoma
-
 ```{r}
 
 ```

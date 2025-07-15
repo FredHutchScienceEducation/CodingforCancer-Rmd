@@ -1,26 +1,18 @@
----
-title: "Data Manipulation 9.0"
-author: "Katherine Brower (kbrower)"
-date: "2024-06-11"
-output: html_document
----
-
 # 9.0 Data Manipulation
 
-We will start with a fresh, clean environment. 
-The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
 rm(list = ls())
 ```
 
 ## Split - Apply - Combine
+
 We can also use the tidyverse package to do what we call a "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
 
-For categorical data, it can be helpful to count members of a group.
-We can do this by group_by() and tally()
+For categorical data, it can be helpful to count members of a group. We can do this by `group_by()` and `tally()`
 
-```{r} 
+```{r}
 # Count the number of penguins of each sex
 penguins %>%
   group_by(sex) %>%
@@ -48,14 +40,16 @@ bill_df <- penguins %>%
 ```
 
 ## Saving data to a file
-You can save results to a file using the write_csv() function. This can
-be useful for later applications
+
+You can save results to a file using the write_csv() function. This can be useful for later applications
+
 ```{r}
 # save bill_df as a .csv file in our data directory
 write_csv(bill_df, "data/bill_df.csv")
 ```
 
 ## `count()` & `arrange()`
+
 The `count()` function can be very helpful since it combines `group_by()` and `tally()` together
 
 The `arrange()` function sorts the data. To sort by ascending numbers: `arrange(n)` and if you want to sort by descending numbers: `arrange(desc(n))`
@@ -77,6 +71,7 @@ penguin_counts_desc
 ```
 
 ## Using %in% operator
+
 Sometimes we only want to include a specific value, the %in% operator is very helpful! This also works in a similar way to OR statements
 
 ```{r}
@@ -96,12 +91,8 @@ penguins_reduced_same <- penguins %>%
 ```
 
 ## Trying these concepts with the new `clinical` dataframe
-Let's try these functions with the `clinical` dataframe!
-- group_by() and tally()
-- group_by() with summarize()
-- write_csv()
-- count() and arrange()
-- %in%
+
+Let's try these functions with the `clinical` dataframe! - group_by() and tally() - group_by() with summarize() - write_csv() - count() and arrange() - %in%
 
 ```{r}
 # Count the number of each ajcc pathological stage and remove the NAs.
@@ -115,6 +106,7 @@ clinical %>%
 ```
 
 Let's try with group_by() and summarize() together
+
 ```{r}
 # summarize the average bill_length_mm (in mm) by sex
 # summarize the average age at diagnosis (in days) by tissue or organ of origin
@@ -136,14 +128,15 @@ ERCC2_year_df <- ERCC2_age_df %>%
   mutate(mean_year = mean_age / 365)
 ```
 
-Let's save the new data frame that includes both mean age in days and years in
-a new csv file called ERCC2_year_df.csv
+Let's save the new data frame that includes both mean age in days and years in a new csv file called ERCC2_year_df.csv
+
 ```{r}
 # save  as a .csv file in our data directory
 write_csv(ERCC2_year_df, "data/ERCC2_year_df.csv")
 ```
 
 count() and arrange()
+
 ```{r}
 # counting distinct number of tissues of organs of origin in ascending order
 tissue_organ_counts <- clinical %>%
@@ -154,6 +147,7 @@ tissue_organ_counts
 ```
 
 Using %in%
+
 ```{r}
 # extract data specifying which year_of_diagnosis to keep: 2010 - 2013
 
