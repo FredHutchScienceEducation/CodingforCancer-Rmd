@@ -10,8 +10,11 @@ rm(list = ls())
 ## Tidyverse
 Today we will start using the tidyverse package. Tidyverse is one of the most commonly used R packages and actually contains many packages!
 
+<center>
+<img src="./img/tidy_workflow.png", width = 500>
+</center>
 
-
+<small>Image source: https://ajsmit.github.io/Intro_R_Official/tidy.html</small>
 
 
 ```{r}
@@ -27,21 +30,40 @@ data(package = "palmerpenguins")
 ```{r}
 head(penguins)
 ```
-We can extract columns using select()
-variable <- select(df, helper_function) or select(df, column names)
+
+## Selecting columns
+
+We can extract columns using `select()` like this: `variable <- select(dataframe, column_name)`
+
+Let's select three columns from the `penguins` dataframe using `select()`: `flipper_length_mm`, `body_mass_g`, and `year`.
+
 ```{r}
-# Let's select three columns using tidyverse: flipper_length_mm, body_mass_g, 
-# and year
 
-sel_columns <- select(penguins, flipper_length_mm, body_mass_g, year)
 
-# Select a range of columns from bill_length_mm containing everything between 
-# and including body_mass_g
-
-sel_columns2 <- select(penguins, bill_length_mm : body_mass_g)
 ```
 
-We can also use helper functions: 
+Answer: sel_columns <- select(penguins, flipper_length_mm, body_mass_g, year)
+
+
+
+To select a range of columns, we can use the colon `:`, just like for vectors. 
+
+Select the columns from `bill_length_mm` to `body_mass_g`.
+
+```{r}
+
+
+```
+
+Answer: sel_columns2 <- select(penguins, bill_length_mm : body_mass_g)
+
+
+---
+
+
+## Helper functions
+
+We can also use helper functions to select multiple columns: 
 - starts_with() : starts with a prefix
 - ends_with() : ends with a prefix
 - contains() : contains a literal string
@@ -49,6 +71,7 @@ We can also use helper functions:
 - num_range() : a numerical range
 - one_of() : variables in character vector
 - everything() : all variables
+
 
 ```{r}
 # Use the ends_with() function to select columns containing mm
@@ -67,14 +90,27 @@ sel_columns_5 <- select(penguins, contains("bill"))
 sel_columns_lots <- select(penguins, contains("Species") | ends_with("mm"))
 ```
 
-We can extract rows with the filter() function. This function works the same way as select() does for columns
+## Keep rows using `filter()`. 
+
+
+We can extract rows with the `filter()` function. We can use comparison operators to help us filter rows based on a selection.
+
+Recall the comparision operators are:
+    - 
+
 
 ```{r}
 # filter rows for only male penguins
 male_rows <- filter(penguins, sex == "male")
 ```
 
-# Combining commands
+
+
+
+
+
+## Combining commands
+
 Keep in mind that there are many ways to accomplish the same goal in R!
 
 Intermediate objects can be very useful if you want to save or keep "intermediate" steps before the final object.
