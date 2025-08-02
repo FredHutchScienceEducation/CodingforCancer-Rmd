@@ -1,12 +1,6 @@
----
-title: "Tidyverse 7.0 worksheet"
-author: "Katherine Brower (kbrower)"
-date: "2024-06-11"
-output: html_document
----
 # 7.0 Tidyverse
 
-We will start with a fresh, clean environment. 
+First, we will start with a fresh, clean environment. 
 The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
@@ -16,14 +10,9 @@ rm(list = ls())
 ## Tidyverse
 Today we will start using the tidyverse package. Tidyverse is one of the most commonly used R packages and actually contains many packages!
 
-Let's install and load the tidyverse package. Double check that for install.packages("") you have the "" marks and for library() there are no quotation marks. 
 
-Remember that once you install a package once, you do not need to reinstall again! To use a package, you need to use library(package_name) at the top of your file.
 
-```{r}
-#install package
-install.packages("tidyverse")
-```
+
 
 ```{r}
 library(tidyverse)
