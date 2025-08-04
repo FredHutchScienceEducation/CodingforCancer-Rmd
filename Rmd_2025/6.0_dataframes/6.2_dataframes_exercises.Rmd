@@ -125,7 +125,7 @@ Recall the format is `dataframe[rows, cols]`.
 
     ```
 
-9.  We can list all the column names we want to extract using commas `,` , like this: ``` dataframe["``column_name1``", "``column_name2``", "``column_name3``"]. ``` Subset the `calories`, `sugar_g`, and `caffeine_mg` from `starbucks`.
+9.  We can list all the column names we want to extract using commas `,` , like this: `dataframe["column_name1", "column_name2", "column_name3"].` Subset the `calories`, `sugar_g`, and `caffeine_mg` from `starbucks`.
 
     ```{r}
 
