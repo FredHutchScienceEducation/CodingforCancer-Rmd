@@ -23,20 +23,19 @@ penguins = penguins
 Recall that we can use the `head()` function to look at the first few rows of our dataframe.
 
 ```{r}
-
+head(penguins)
 ```
 
 ------------------------------------------------------------------------
 
 ## Selecting columns
 
-![](img/select.png){width="345"}
-
 We can extract columns using `select()` like this: `variable <- select(dataframe, column_name)`
 
 Let's select three columns from the `penguins` dataframe using `select()`: `flipper_length_mm`, `body_mass_g`, and `year`.
 
 ```{r}
+sel_columns <- select(penguins, flipper_length_mm, body_mass_g, year)
 
 ```
 
@@ -45,6 +44,7 @@ To select a range of columns, we can use the colon `:`, just like for vectors.
 Select the columns from `bill_length_mm` to `body_mass_g`.
 
 ```{r}
+sel_columns2 <- select(penguins, bill_length_mm : body_mass_g)
 
 ```
 
@@ -65,19 +65,20 @@ We can also use helper functions to select multiple columns:
 Use the `ends_with()` function to select columns containing mm.
 
 ```{r}
+sel_columns3 <- select(penguins, ends_with("mm"))
 
 ```
 
 Use the `contains()` function to select columns containing the word length
 
 ```{r}
-
+sel_columns4 <- select(penguins, contains("length"))
 ```
 
 **Practice**: Use a helper function to select columns containing bill
 
 ```{r}
-
+sel_columns_5 <- select(penguins, contains("bill"))
 ```
 
 ------------------------------------------------------------------------
@@ -87,14 +88,12 @@ You can also combine many conditions together using `|` and `&` symbols!
 Here is an example to select columns that contains "Species" OR ends with "mm".
 
 ```{r}
-
+sel_columns_lots <- select(penguins, contains("Species") | ends_with("mm"))
 ```
 
 ------------------------------------------------------------------------
 
 ## Keep rows using `filter()`.
-
-![](img/filter.png){width="345"}
 
 We can extract rows with the `filter()` function. We can use comparison operators to help us filter rows based on a selection.
 
@@ -113,7 +112,7 @@ As an example, you might only be interested in penguins that were recording in t
 3.  Use the `filter` function to extract rows.
 
 ```{r}
-
+sel_rows <- filter(penguins, year == 2007)
 ```
 
 **Practice**: Keep rows of penguins that have a bill length of 40 mm.
@@ -144,7 +143,7 @@ Now we can put dataframes in the plotting code and specify the columns we want d
 Note the `data=penguins`, `x=bill_length_mm`, and `y=flipper_length_mm`.
 
 ```{r}
-
+ggplot(data=penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()
 ```
 
 If we filter the dataframe first and then use it as an input for `data=`, we can see how the plot changes.
@@ -154,16 +153,15 @@ Filter the `penguins` to have only penguins with a bill length of less than 50mm
 ```{r}
 
 ## Filter the penguins dataframe
+filtered_penguins = filter(penguins, bill_length_mm < 50)
 
 ## Plot the data from the filted dataframe.
-ggplot(data=) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()
+ggplot(data=filtered_penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()
 ```
 
 ------------------------------------------------------------------------
 
 ## Combining commands
-
-![](img/combine.png){width="434"}
 
 Keep in mind that there are many ways to accomplish the same goal in R!
 
@@ -178,18 +176,19 @@ Here is an example to select columns that contains "Species" OR ends with "mm".
 3.  Keep penguins that only have a bill length of over 20mm.
 
 ```{r}
-# select the columns that contains "Species" OR ends with "mm".
+selected_columns <- select(penguins, contains("Species") | ends_with("mm"))
 
 # keep only "Adelie" penguin data
+filtered_rows <- filter(selected_columns, species == "Adelie")
 
 # keep Adelie penguins with bill_length_mm over 20mm
-
+filtered_rows2 <- filter(filtered_rows, bill_length_mm > 20)
 ```
 
 Alternatively, you can combine all the steps in a nested function:
 
 ```{r}
-
+nested_dataframe <- filter(filter(select(penguins, contains("Species") | ends_with("mm")), species == "Adelie"), bill_length_mm > 20)
 ```
 
 However, the order of `select()` and `filter()` do matter.
@@ -200,5 +199,9 @@ Try this example:
 2.  Keep only the penguins from `Dream` island.
 
 ```{r}
+
+selected_columns = select(penguins, ends_with("mm"))
+
+filter(selected_columns, island == "Dream")
 
 ```

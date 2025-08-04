@@ -106,7 +106,6 @@ Let's access the `bill_length_mm` data from `penguins` and assign it to `bill_le
 
 ```{r}
 
-
 ```
 
 Now, let's access the `flipper_length_mm` data from `penguins` and assign it to `flipper_length`.

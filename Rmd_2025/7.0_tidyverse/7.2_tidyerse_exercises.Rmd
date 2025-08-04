@@ -1,0 +1,220 @@
+# 7.2 Tidyverse Exercises
+
+In this exericse, we will explore data about trash that has been collected in the Baltimore River by Mr. Trash Wheel.
+
+![Check out Mr. Trash Wheel at: <https://www.mrtrashwheel.com>](https://media.wbur.org/wp/2019/04/0416_trashwheel01.jpg){width="300"}
+
+> Mr. Trash Wheel is a semi-autonomous trash interceptor that is placed at the end of a river, stream or other outfall. Far too lazy to chase trash around the ocean, Mr. Trash Wheel stays put and waits for the waste to flow to him. Sustainably powered and built to withstand the biggest storms, Mr. Trash Wheel uses a unique blend of solar and hydro power to pull hundreds of tons of trash out of the water each year.
+>
+> The Healthy Harbor initiative has four Trash Wheels collecting trash. Mr. Trash Wheel was the first to start, and since then three more have joined the family. The Trash Wheel Family has collected more than 2,362 tons of trash. See more about [how Mr. Trash Wheel works](https://www.mrtrashwheel.com/technology/).
+
+As always, we will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+------------------------------------------------------------------------
+
+## Load the dataset
+
+Run this code chunk below to download the dataset and extract the dataframes into its own object. After running this code chunk, you should see the downloaded dataframe(s) in the Environment pane.
+
+```{r}
+#### Do not alter the code below. This is a function that will download your dataset. 
+date <- "2024-03-05"
+
+load_and_extract_tt_data <- function(date) {
+  # Load the TidyTuesday dataset
+  data_list <- tidytuesdayR::tt_load(date)
+  cat("\n")
+  cat("\n")
+  # Extract each dataframe from data_list into separate objects
+  # in the global environment with the same names
+  for (name in names(data_list)) {
+    assign(name, data_list[[name]], envir = .GlobalEnv)
+    cat("Extracted", name, "and assigned to the object",name,"\n")
+  }
+  
+  # Return the original data_list for reference
+  return(data_list)
+}
+
+data_list <- load_and_extract_tt_data(date)
+```
+
+------------------------------------------------------------------------
+
+## Explore the dataframe
+
+1.  Let's view the `trashwheel` data frame you just downloaded using the `View()` function.
+
+    ```{r}
+
+    ```
+
+2.  You can assess the size of the data frame using the function `dim(dataframe)`.
+
+    ```{r}
+
+    ```
+
+    \*\*Answer: Number of rows = \_\_\_\*\*
+
+    \*\*Answer: Number of columns = \_\_\_\*\*
+
+3.  You can preview the first few rows using the function `head(dataframe)`.
+
+    ```{r}
+
+    ```
+
+4.  Use the `colnames()` function on the `trashwheel` dataframe.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Selecting columns
+
+1.  Use the `select()` function to select the `Name`, `Weight` and `Year` columns from the `trashwheel` dataframe. Assign the result to an object called `selected_cols`.
+
+    ```{r}
+
+    ```
+
+2.  Use the `select()` function to select columns from `PlasticBottles` to `SportsBalls`. Assign the result to an object called `trash_types`.
+
+    ```{r}
+
+    ```
+
+3.  Select all columns that end with "s" (like PlasticBottles, GlassBottles, etc.).
+
+    ```{r}
+
+    ```
+
+4.  Select all columns that contain the word "Plastic".
+
+    ```{r}
+
+    ```
+
+5.  Select all columns that start with the letter "P".
+
+    ```{r}
+
+    ```
+
+6.  Select columns that either contain "Bottle" OR end with "s".
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Filtering rows
+
+1.  Use the `filter()` function to keep only rows where the `Year` is equal to 2020. Assign the result to an object called `year_2020`.
+
+    ```{r}
+
+    ```
+
+2.  Use the `filter()` function to keep only rows where the `Weight` is greater than 3 tons.
+
+    ```{r}
+
+    ```
+
+3.  Keep only rows where the `Name` is equal to "Mister Trash Wheel".
+
+    ```{r}
+
+    ```
+
+4.  Keep only rows where `PlasticBottles` is greater than 1000.
+
+    ```{r}
+
+    ```
+
+5.  Keep only rows where `CigaretteButts` is less than or equal to 10000.
+
+    ```{r}
+
+    ```
+
+6.  Keep only rows where `Year` is 2019 AND `Weight` is greater than 2. Use the `&` symbol to combine conditions.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Combining `select()` and `filter()`
+
+1.  First, use `select()` to choose the columns `Name`, `Year`, `Weight`, and `PlasticBottles`. Then use `filter()` to keep only rows from 2021. Do this in two steps using intermediate variables.
+
+    ```{r}
+    # Step 1: Select columns
+
+
+    # Step 2: Filter rows
+
+    ```
+
+2.  Now try combining the same operations using nested functions (putting one function inside another).
+
+    ```{r}
+
+    ```
+
+3.  Select the columns `Name`, `Month`, `Year`, and `CigaretteButts`. Then filter to keep only data from "Mister Trash Wheel". Do this in two steps.
+
+    ```{r}
+    # Step 1: Select columns
+
+
+    # Step 2: Filter rows
+
+    ```
+
+4.  Select columns that contain "Plastic" OR end with "s", then filter to keep only rows where `Weight` is greater than 1 and `Year` is greater than or equal to 2018.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Challenge questions
+
+1.  How many different trash wheels are in the dataset? Use the `unique()` function on the `Name` column to find out.
+
+    ```{r}
+
+    ```
+
+2.  What is the range of years in the dataset? Use the `range()` function on the `Year` column.
+
+    ```{r}
+
+    ```
+
+3.  Which trash wheel collected the most plastic bottles in a single collection? First filter the data to find the row with the maximum `PlasticBottles`, then look at the `Name` column.
+
+    ```{r}
+
+    ```
+
+4.  Create a subset of data that includes only collections from 2020 or later, with more than 2 tons of weight, and only includes the columns `Name`, `Date`, `Weight`, and `PlasticBottles`. How many rows are in this subset?
+
+    ```{r}
+
+    ```

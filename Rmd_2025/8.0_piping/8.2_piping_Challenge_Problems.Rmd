@@ -1,37 +1,72 @@
----
-title: "8.2_piping_Challenge_Problems.Rmd"
-output: html_document
-date: "2024-01-24"
----
+# 8.2 Piping Challenge Problems
 
-All exercises use the clinical object we created in the readings:
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+In this exercise, we will work on more advanced piping challenges using the clinical dataset.
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
-# install.packages("tidyverse")
-library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+rm(list = ls())
+```
 
+## Load the data and packages
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
 # Load the data
 clinical <- read.csv("data/clinical.csv")
 ```
 
-There is a column “gender” in clinical; its name is not quite accurate. 
-
-We would like to rename this column. Using mutate(), code a way to correct the column header to the more appropriate name “sex” (hint: we can use the minus sign (-) within select to remove columns). Save the new dataframe as “clinical_corrected”.
+Let's look at our data:
 
 ```{r}
-
+head(clinical)
 ```
 
-The column pack_years_smoked represents the values “pack years” for each patient. One pack year corresponds to the number of years a person has smoked one pack per day. For example, 2 pack years means a person smoked a pack a day for 2 years. Risk for cancer is particularly high for people with 20 pack years and more. Using pipes, determine the number of patients with at least 20 pack years.
+------------------------------------------------------------------------
 
-```{r}
+## Challenge Problems
 
-```
+1.  **Renaming columns with mutate()**: There is a column `gender` in `clinical`; its name is not quite accurate. We would like to rename this column to the more appropriate name "sex".
 
+    Using `mutate()` and `select()`, create a way to correct the column header. Save the new dataframe as `clinical_corrected`.
 
-Continuing with the above, how many 20 pack year patients are female and have Stage III cancer at the start of the study?
+    *Hint: We can use the minus sign (-) within select to remove columns.*
 
-```{r}
+    ```{r}
 
-```
+    ```
 
+2.  **Filtering with pack years**: The column `pack_years_smoked` represents the values "pack years" for each patient. One pack year corresponds to the number of years a person has smoked one pack per day. For example, 2 pack years means a person smoked a pack a day for 2 years.
+
+    Risk for cancer is particularly high for people with 20 pack years and more. Using pipes, determine the number of patients with at least 20 pack years.
+
+    ```{r}
+
+    ```
+
+3.  **Complex filtering**: Continuing with the above, how many patients with at least 20 pack years are female and have Stage III cancer at the start of the study?
+
+    *Hint: You'll need to combine multiple filter conditions using `&` (AND).*
+
+    ```{r}
+
+    ```
+
+4.  **Challenge**: Create a summary that shows the average age at diagnosis for patients grouped by their smoking status. Create three groups:
+
+    -   Non-smokers (pack_years_smoked is 0 or NA)
+    -   Light smokers (pack_years_smoked between 1-19)
+    -   Heavy smokers (pack_years_smoked 20 or more)
+
+    ```{r}
+
+    ```

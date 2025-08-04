@@ -1,94 +1,116 @@
----
-title: "8.1_piping_Exercises.Rmd"
-output: html_document
-date: "2024-01-24"
----
+# 8.1 Piping Practice
 
-# Data: The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics
+Name:
 
-## Import packages
+Date:
+
+------------------------------------------------------------------------
+
+In this exercise, we will practice piping with data from The Cancer Genome Atlas (TCGA) bladder cancer sequencing and patient characteristics.
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
-# install.packages("tidyverse")
-library(tidyverse) ## if this isn't working, be sure to run the above (uncomment first)
+rm(list = ls())
 ```
 
-## Load the data
+## Load the data and packages
+
+```{r}
+library(tidyverse)
+```
 
 ```{r}
 clinical <- read.csv("data/clinical.csv")
 
-# this is the selection procedure you used yesterday to select a subset of the columns
+# This is the selection procedure you used yesterday to select a subset of the columns
 RB1_clinical <- select(clinical,
                        tissue_or_organ_of_origin:total.number.Indels,
                        contains("RB1"))
 ```
 
+Let's look at our data:
 
-# Part I: Piping practice
-
-# filter RB1_clinical for just the "Primary Tumor" samples types in "sample_type"
 ```{r}
-# your code here...
+head(RB1_clinical)
 ```
 
+------------------------------------------------------------------------
 
-# filter RB1_clinical for patients who have either "Del" or "Loss" in focal.deletion.in.RB1 OR "yes" in mutations.in.RB1 
-# hint: we can use the "|" operator for OR. 
-```{r}
+## Part I: Piping practice
 
-```
+1.  Filter `RB1_clinical` for just the "Primary Tumor" sample types in the `sample_type` column.
 
+    ```{r}
 
+    ```
 
-# use the pipe operator to combine the selecting/filtering steps above
-# you'll need a total of three expressions in your filtering step using the form: 
+2.  Filter `RB1_clinical` for patients who have either "Del" or "Loss" in `focal.deletion.in.RB1` OR "yes" in `mutations.in.RB1`.
 
-my_data_frame %>%
-  fuction(inputs) %>%
-  function(inputs)
-  
-```{r}
+    *Hint: We can use the `|` operator for OR.*
 
-```
+    ```{r}
 
+    ```
 
-# Part 2: Working with dataframes, mutate and pipe
+3.  Use the pipe operator to combine the selecting/filtering steps above. You'll need a total of three expressions using the form:
 
-Because RB1 is a tumor suppressor (when it's present, it helps prevent cells from becoming cancerous) we mostly care about whether the gene is "broken" regardless of how it happened. 
+    `my_data_frame %>% function(inputs) %>% function(inputs)`
 
-Use pipes to do the following:
+    ```{r}
 
-# use RB1_clinical and create a new column called "any.RB1.mut"; set it equal to the statement that you used to filter earlier (the three equals expressions. This will create a logical column for whether there's any mutation in RB1 in the cancers.
-```{r}
+    ```
 
-```
+------------------------------------------------------------------------
 
-# create two new dataframes: one that contains TRUEs for this new col and one that contains just FALSEs. Name them something you can remember. Hint: By "create" we just mean to assign it to a variable. You'll need to use one of the functions we learned today to limit the rows to just the ones that meet the criteria (i.e. either TRUE or FALSE)
-```{r}
+## Part II: Working with dataframes, mutate and pipe
 
-```
+Because RB1 is a tumor suppressor (when it's present, it helps prevent cells from becoming cancerous) we mostly care about whether the gene is "broken" regardless of how it happened.
 
+1.  Use pipes with `RB1_clinical` to create a new column called `any.RB1.mut`. Set it equal to the logical statement you used to filter earlier (the three equals expressions). This will create a logical column for whether there's any mutation in RB1 in the cancers.
 
-# extract the "RB1_expr" column as a vector and assign it to variable for each of your two new dataframes (created above). Hint: Review the vectors lesson if you don't remember how to extract a column as a vector.
-```{r}
+    ```{r}
 
-```
+    ```
 
-# does the median expression of RB1 (RB1_expr) differ between these groups?
-```{r}
+2.  Create two new dataframes: one that contains `TRUE` values for this new column and one that contains just `FALSE` values. Name them something you can remember.
 
-```
+    *Hint: By "create" we just mean to assign it to a variable. You'll need to use `filter()` to limit the rows to just the ones that meet the criteria (either TRUE or FALSE).*
 
+    ```{r}
 
-# does the mean expression of RB1 (RB1_expr) differ between these groups?
-```{r}
+    ```
 
-```
+3.  Extract the `RB1_expr` column as a vector and assign it to a variable for each of your two new dataframes (created above).
 
- 
-Why might this result be, based on your knowledge of gene structure and types of cancer-relevant mutations?
+    *Hint: Review the vectors lesson if you don't remember how to extract a column as a vector.*
 
+    ```{r}
 
+    ```
 
-RB1 is a tumor suppressor, meaning that if it's there it can help prevent cancers from developing. Would you expect a higher rate of cancer in th expr.RB1_wildtype or expr.RB1_mutants?
+4.  Does the median expression of RB1 (`RB1_expr`) differ between these groups?
+
+    ```{r}
+
+    ```
+
+5.  Does the mean expression of RB1 (`RB1_expr`) differ between these groups?
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part III: Reflection questions
+
+1.  Why might this result be, based on your knowledge of gene structure and types of cancer-relevant mutations?
+
+    ```         
+    ```
+
+2.  RB1 is a tumor suppressor, meaning that if it's there it can help prevent cancers from developing. Would you expect a higher rate of cancer in the RB1_wildtype or RB1_mutants?
+
+    ```         
+    ```

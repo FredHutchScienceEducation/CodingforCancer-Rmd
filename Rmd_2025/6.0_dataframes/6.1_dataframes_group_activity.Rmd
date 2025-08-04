@@ -13,7 +13,7 @@ rm(list = ls())
 This is a list of datasets from the [tidytuesday](https://github.com/rfordatascience/tidytuesday) project, a social data project that provide real-world datasets for anyone to use!
 
 | Date | Data | Source | Article |
-|:---|:---|:---|:---|
+|:-----------------|:-----------------|:-----------------|:-----------------|
 | 2023-10-17 | [Taylor Swift data](2023-10-17/readme.md) | [taylor R package](https://taylor.wjakethompson.com/) | [Taylor Swift data analysis](https://rpubs.com/salvatoremancino/1065547) |
 | 2025-01-14 | [posit::conf talks](data/2025/2025-01-14/readme.md) | [posit::conf attendee portal 2023](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog), [posit::conf attendee portal 2024](https://reg.conf.posit.co/flow/posit/positconf24/attendee-portal/page/sessioncatalog) | [posit::conf(2025) in-person registration is now open!](https://posit.co/blog/positconf2025-in-person-registration-is-now-open/) |
 | 2025-01-21 | [The History of Himalayan Mountaineering Expeditions](data/2025/2025-01-21/readme.md) | [The Himalayan Database](https://www.himalayandatabase.com/downloads.html) | [The Expedition Archives of Elizabeth Hawley](https://www.himalayandatabase.com/index.html) |
@@ -34,7 +34,7 @@ This is a list of datasets from the [tidytuesday](https://github.com/rfordatasci
 
 ## Step 1: Pick a dataset
 
-For the dataset that you want to use, assign `date` with the date in `"YYYY-MM-DD"` format and as a string.
+For the dataset that you want to use, assign `date` with the date in `"YYYY-MM-DD"` format and as a **string**. Don't forget the quotations!
 
 For example: `date = "2025-07-01"`
 
