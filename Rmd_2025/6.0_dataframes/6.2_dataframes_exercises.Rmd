@@ -16,28 +16,12 @@ Run the code chunk below. It will load download the data and assign it to the ob
 
 ```{r}
 #### Do not alter the code below. This is a function that will download your dataset. 
-load_and_extract_tt_data <- function(date) {
-  # Load the TidyTuesday dataset
-  data_list <- tidytuesdayR::tt_load(date)
-  cat("\n")
-  cat("\n")
-  # Extract each dataframe from data_list into separate objects
-  # in the global environment with the same names
-  for (name in names(data_list)) {
-    assign(name, data_list[[name]], envir = .GlobalEnv)
-    cat("Extracted", name, "and assigned to the object",name,"\n")
-  }
-  
-  # Return the original data_list for reference
-  return(data_list)
-}
-
-data_list <- load_and_extract_tt_data("2021-12-21")
+starbucks <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2021/2021-12-21/starbucks.csv')
 ```
 
 ## Explore the dataframe
 
-1.  Let's view the plastics data frame you just downloaded using the `View()` function.
+1.  Let's view the starbucks data frame you just downloaded using the `View()` function.
 
     ```{r}
 
@@ -89,7 +73,7 @@ data_list <- load_and_extract_tt_data("2021-12-21")
 
 ## Subsetting data
 
-Now that we know how to make and look at dataframes, you can extract values from a data rame using the `[]` accessor.
+Now that we know how to make and look at dataframes, you can extract values from a dataframe using the `[]` accessor.
 
 Recall the format is `dataframe[rows, cols]`.
 
