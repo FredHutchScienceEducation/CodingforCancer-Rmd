@@ -1,0 +1,179 @@
+# 9.1 Data Manipulation Exercises
+
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+In this exercise, we will practice data manipulation techniques using the clinical dataset.
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Load the packages and dataset
+
+```{r}
+# Load in the necessary packages: tidyverse
+library(tidyverse)
+```
+
+```{r}
+# Read in the clinical.csv file as an object called clinical
+clinical <- read.csv("clinical.csv")
+```
+
+------------------------------------------------------------------------
+
+## Part I: Piping and `mutate()` practice
+
+1.  **Question 1A**: Create a piped dataframe to explore the relationship between height and genetic mutations. What is the relationship between the height of patients having a mutation in TP53 or a mutation in EP300?
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object height_TP53mut_EP300mut_df
+
+
+    # mutate() question: Convert height from cm to inches (divide by 2.54) and call the new column height_inches
+
+    ```
+
+2.  **Question 1B**: Create a piped dataframe to explore the correlation between age at diagnosis and gene expression. Is there a correlation between age at diagnosis and E2F3 expression and SPTAN1 expression?
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object ageDiagnosis_E2F3expr_SPTAN1expr
+
+
+    # mutate() question: Convert age from days to years (divide by 365) and call the new column age_of_diagnosis_years
+
+    ```
+
+3.  **Question 1C**: Explore the correlation between gender and gene expression for patients born in 2013. Is there a correlation between gender and ATM expression and FGFR3 expression for patients born in 2013?
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object gender_ATMexpr_FGFR3expr_2013
+
+
+    # mutate() question: Combine ATM expression and KDM6A expression by adding them together and call the new column combo_expr
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part II: Grouping and counting with `group_by()` and `tally()`
+
+1.  **Question 2A**: Using the clinical dataframe, determine how many patients are classified in each `ajcc_pathologic_stage` using `group_by()` and `tally()`.
+
+    ```{r}
+
+    # Which ajcc pathologic stage has the most patients?
+
+    ```
+
+2.  **Question 2B**: Using the clinical dataframe, how many patients are classified in each tobacco smoking history category? Use `group_by()` and `tally()`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 2C**: Count how many patients are in each gender category.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part III: Summarizing data with `group_by()` and `summarise()`
+
+1.  **Question 3A**: Using the clinical dataframe, summarize the average year of birth by gender. Call this `avg_year_byGender`.
+
+    ```{r}
+
+    # Round the average year of birth to the nearest whole number using mutate() and round(). Call the new column yob_avg_rounded and name the dataframe avg_year_byGender_rounded_df
+
+    ```
+
+2.  **Question 3B**: Using the clinical dataframe, summarize the average total number of indels by race. Call this `avg_total_indels_byRace`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 3C**: Using the clinical dataframe, summarize the median count of ERCC2 signature mutations by mutation in ERCC2. Call this `ERCC2_median_df`.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part IV: Saving data to files
+
+1.  **Question 4A**: Save your `avg_year_byGender_rounded_df` as a CSV file. Call the new file "clinical_YOB_byGender.csv".
+
+    ```{r}
+
+    # The new file should be visible in your Files tab on the bottom right panel
+    ```
+
+2.  **Question 4B**: Save your `ERCC2_median_df` as a CSV file. Call the new file "clinical_ERCC2_median.csv".
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part V: Counting and arranging data
+
+1.  **Question 5A**: Using the clinical dataframe, count the number of distinct races and arrange in descending order.
+
+    ```{r}
+
+    ```
+
+2.  **Question 5B**: Using the clinical dataframe, count the number of distinct `tissue_or_organ_of_origin` and arrange in ascending order.
+
+    ```{r}
+
+    ```
+
+3.  **Question 5C**: Count the number of patients by year of diagnosis and arrange in descending order.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part VI: Filtering with the `%in%` operator
+
+1.  **Question 6A**: Using the `%in%` operator, create a new subsetted dataframe called `clinical_reduced1` that filters for tobacco smoking history and only includes "Lifelong Non-smoker" and "Current smoker".
+
+    ```{r}
+
+    ```
+
+2.  **Question 6B**: Using the `%in%` operator, create a new subsetted dataframe called `clinical_reduced2` that filters for `ajcc_pathologic_stage` and only includes "Stage II" and "Stage III".
+
+    ```{r}
+
+    ```
+
+3.  **Question 6C**: **Challenge**: Using the `%in%` operator, create a subset that includes only patients from specific years of diagnosis (2010, 2012, 2014) and specific genders ("male", "female").
+
+    ```{r}
+
+    ```

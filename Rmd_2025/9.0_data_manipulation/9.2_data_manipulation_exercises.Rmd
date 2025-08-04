@@ -1,146 +1,213 @@
----
-title: "11.0 data manipulation group worksheet"
-output: html_document
-date: "2024-08-13"
----
+# 9.2 Data Manipulation Exercises
 
-#### Setup: loading in packages and reading in the clinical dataset
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+In this exercise, we will explore data about palm trees.
+
+> Plant traits are critical to plant form and function —including growth, survival and reproduction— and therefore shape fundamental aspects of population and ecosystem dynamics as well as ecosystem services. Here, we present a global species-level compilation of key functional traits for palms (Arecaceae), a plant family with keystone importance in tropical and subtropical ecosystems.
+
+As always, we will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
-#Load in the necessary packages: tidyverse
+rm(list = ls())
+```
+
+## Load the dataset and packages
+
+Load the tidyverse package:
+
+```{r}
 library(tidyverse)
 ```
 
-```{r}
-# read in the clinical.csv file as an object called clinical
-clinical <- read.csv("clinical.csv")
-```
-
-#### Piped dataframe practice and mutate()
+Run this code chunk below to download the dataset and extract the dataframes into its own object. After running this code chunk, you should see the downloaded dataframe(s) in the Environment pane.
 
 ```{r}
-# Question 1A:
-# create a piped dataframe to answer the question:
-# What is the relationship between the height of patients having a mutation in TP53 or a mutation in EP300?
+#### Do not alter the code below. This is a function that will download your dataset. 
+date <- "2025-03-18"
 
-# rows and columns needed:
-# row: 
-# column:
-
-
-# piped dataframe: call this object height_TP53mut_EP300mut_df
-
-
-# mutate() question: In height_TP53mut_EP300mut_df we currently have the height data in cm, let's convert this to inches and call the new column height_cm. Name the new dataframe as heightCM_2013_TP53mut_EP300mut 
-
-```
-
-```{r}
-# Question 1B:
-# create a piped dataframe to answer the question:
-# Is there a correlation between the age at diagnosis and E2F3 expression and SPTAN1 expression?
-
-# rows and columns needed:
-# row:
-# column:  
-
-
-# piped dataframe: call this object ageDiagnosis_E2F3expr_SPTAN1expr
-
-
-# Currently, the age of diagnosis data is in days, let’s convert this into years and call the new column age_of_diagnosis_years
-
-
-```
-
-```{r}
-# Question 1C:
-# Is there a correlation between gender and ATM expression and FGFR3 expression for patients born in 1956 or 1957?
-# rows and columns needed:
-# row:
-# column: 
-
-# piped dataframe: call this object gender_ATMexpr_FGFR3expr_1956
-
-
-# We’re interested in combining ATM expression and KDM6A expression together, let’s add these together and call the new column combo_expr
-```
-
-#### Question 2A: Using the clinical dataframe, determine how many of patients are classified in each ajcc_pathologic_stage using group_by() & tally()
-
-```{r}
-# Question 2A:
-
+load_and_extract_tt_data <- function(date) {
+  # Load the TidyTuesday dataset
+  data_list <- tidytuesdayR::tt_load(date)
+  cat("\n")
+  cat("\n")
+  # Extract each dataframe from data_list into separate objects
+  # in the global environment with the same names
+  for (name in names(data_list)) {
+    assign(name, data_list[[name]], envir = .GlobalEnv)
+    cat("Extracted", name, "and assigned to the object",name,"\n")
+  }
   
-# which ajcc pathologic stage has the most patients?
+  # Return the original data_list for reference
+  return(data_list)
+}
 
-
+data_list <- load_and_extract_tt_data(date)
 ```
 
-##### Question 2B: Using the clinical dataframe, how many patients are classified in each tobacco smoking history category? Use group_by() and tally()
+Let's explore our palm tree dataset:
 
 ```{r}
-
+head(palm_trees)
 ```
-
-#### Question 3: Using the clinical dataframe, summarize the average total number indels by race. Call this avg_total_indels_byRace
 
 ```{r}
-
+colnames(palm_trees)
 ```
 
-#### Question 4A: Using the clinical dataframe, summarize the average year of birth by gender. call this avg_year_byGender
+------------------------------------------------------------------------
 
-```{r}
+## Part I: Piping and `mutate()` practice
 
+1.  **Question 1A**: Create a piped dataframe to explore the relationship between palm height and stem diameter for palms that are native to specific biogeographic regions.
 
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
 
-# Our average year of birth is currently a numeric, let's round to the nearest whole number and put the result in a new column called yob_avg_rounded. Name the dataframe as avg_year_byGender_rounded_df
-
-
-```
-
-#### Question 4B: We want to save our new avg_year_byGender_rounded_df as a csv file. Call the new file, clinical_YOB_byGender.csv
-
-```{r}
-
-# the new file should be visible in your files tab on the bottom right panel
-```
-
-#### Question 5A: Using the clinical dataframe, summarize the median count ERCC2 signature mutations by mutation in ERCC2.
-
-```{r}
+    # Piped dataframe: call this object height_diameter_region_df
 
 
-```
+    # mutate() question: Convert height from meters to feet (multiply by 3.28) and call the new column height_feet
 
-#### Question 5B: We want to save our new ERC22_median_df as a csv file. Call the new file, clinical_ERCC2_median.csv
+    ```
 
-```{r}
+2.  **Question 1B**: Create a piped dataframe to explore the relationship between fruit length and fruit width for climbing palms.
 
-```
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
 
-#### Question 6A: Using the clinical dataframe, count the number of distinct races and arrange this in a descending order
-
-```{r}
-
-```
-
-#### Question 6B: Using the clinical dataframe, count the number of distinct tissue_or_organ_of_origin and arrange in ascending order
-
-```{r}
+    # Piped dataframe: call this object fruit_climbing_df
 
 
-```
+    # mutate() question: Create a fruit_ratio column by dividing fruit_length by fruit_width
 
-#### Question 7A: Using the %in% operator, make a new subsetted dataframe called clinical_reduced1 and filter for Tobacco smoking history and only include Lifelong Non-smoker and Current smoker
+    ```
 
-```{r}
+3.  **Question 1C**: Explore the relationship between maximum height and stem diameter for palms from tropical regions with armed stems.
 
-```
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
 
-#### Question 7B: Using the %in% operator, make a new subsetted dataframe called clinical_reduced2 and filter for ajcc_pathologic_stage and only include Stage II and Stage III
+    # Piped dataframe: call this object tropical_armed_df
 
-```{r}
 
-```
+    # mutate() question: Create a size_category column that classifies palms as "Small" (height < 5m), "Medium" (5-15m), or "Large" (>15m)
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part II: Grouping and counting with `group_by()` and `tally()`
+
+1.  **Question 2A**: Using the palm trees dataframe, determine how many palm species are in each biogeographic region using `group_by()` and `tally()`.
+
+    ```{r}
+
+    # Which biogeographic region has the most palm species?
+
+    ```
+
+2.  **Question 2B**: Using the palm trees dataframe, how many palm species are classified in each growth form category? Use `group_by()` and `tally()`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 2C**: Count how many palm species have armed vs. unarmed stems.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part III: Summarizing data with `group_by()` and `summarise()`
+
+1.  **Question 3A**: Using the palm trees dataframe, summarize the average maximum height by growth form. Call this `avg_height_by_growth_form`.
+
+    ```{r}
+
+    ```
+
+2.  **Question 3B**: Summarize the average stem diameter by biogeographic region. Call this `avg_diameter_by_region`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 3C**: Calculate the median fruit length by climbing status (climbing vs non-climbing palms).
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part IV: Data transformation and export
+
+1.  **Question 4A**: Create a summary of average fruit length by biogeographic region and round to 2 decimal places. Call this `avg_fruit_by_region_rounded`.
+
+    ```{r}
+
+    # Round the average fruit length to 2 decimal places using mutate() and round()
+
+    ```
+
+2.  **Question 4B**: Save your `avg_fruit_by_region_rounded` dataframe as a CSV file called "palm_fruit_summary.csv".
+
+    ```{r}
+
+    # The new file should be visible in your Files tab on the bottom right panel
+    ```
+
+------------------------------------------------------------------------
+
+## Part V: Advanced grouping and arranging
+
+1.  **Question 5A**: Using the palm trees dataframe, count the number of species by growth form and arrange in descending order.
+
+    ```{r}
+
+    ```
+
+2.  **Question 5B**: Calculate the maximum height by biogeographic region and arrange in ascending order of height.
+
+    ```{r}
+
+    ```
+
+3.  **Question 5C**: Find the average stem diameter for each combination of growth form and climbing status.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part VI: Filtering with `%in%` operator
+
+1.  **Question 6A**: Using the `%in%` operator, create a new subsetted dataframe called `palm_subset1` that includes only palms from "Neotropics" and "Africa" biogeographic regions.
+
+    ```{r}
+
+    ```
+
+2.  **Question 6B**: Using the `%in%` operator, create a new subsetted dataframe called `palm_subset2` that includes only palms with growth forms of "Tree" and "Shrub".
+
+    ```{r}
+
+    ```
+
+3.  **Question 6C**: **Challenge**: Combine multiple conditions to create a subset of tall tree palms from tropical regions.
+
+    ```{r}
+    # Filter for: Tree growth form, height > 10m, and from Neotropics or Africa
+
+    ```

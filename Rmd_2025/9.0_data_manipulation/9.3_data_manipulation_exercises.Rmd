@@ -1,0 +1,246 @@
+# 9.3 Data Manipulation Exercises
+
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+In this exercise, we will explore data about March Madness
+
+> March Madness is the NCAA Division I basketball tournament for women and men. It's a single-elimination tournament of 68 teams that compete in six rounds for the national championship. (The "March Madness" branding and logo was only extended to women in 2022.)
+
+Each round of the tournament has a name:
+
+-   First round: Round of 64
+-   Second round: Round of 32
+-   Third round: Sweet 16
+-   Fourth round: Elite 8
+-   Fifth round: Final 4
+-   Sixth round: Finals
+
+> The data is from 2008 - 2024 for the men's teams. The year 2020 is not included because the tournament was canceled due to Covid. The first column of almost every dataset displays the year the data is from.
+
+As always, we will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+## Load the dataset and packages
+
+Load the tidyverse package:
+
+```{r}
+library(tidyverse)
+```
+
+Run this code chunk below to download the dataset and extract the dataframes into its own object. After running this code chunk, you should see the downloaded dataframe(s) in the Environment pane.
+
+```{r}
+#### Do not alter the code below. This is a function that will download your dataset. 
+date <- "2024-03-26"
+
+load_and_extract_tt_data <- function(date) {
+  # Load the TidyTuesday dataset
+  data_list <- tidytuesdayR::tt_load(date)
+  cat("\n")
+  cat("\n")
+  # Extract each dataframe from data_list into separate objects
+  # in the global environment with the same names
+  for (name in names(data_list)) {
+    assign(name, data_list[[name]], envir = .GlobalEnv)
+    cat("Extracted", name, "and assigned to the object",name,"\n")
+  }
+  
+  # Return the original data_list for reference
+  return(data_list)
+}
+
+data_list <- load_and_extract_tt_data(date)
+```
+
+Let's explore our March Madness team results dataset:
+
+```{r}
+head(team_results)
+```
+
+```{r}
+colnames(team_results)
+```
+
+------------------------------------------------------------------------
+
+## Part I: Piping and `mutate()` practice
+
+1.  **Question 1A**: Create a piped dataframe to explore the relationship between team seed and tournament performance for teams from recent years (2015 onwards).
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object recent_seed_performance_df
+
+
+    # mutate() question: Create a seed_category column that classifies teams as "High" (seeds 1-4), "Mid" (seeds 5-8), or "Low" (seeds 9-16)
+
+    ```
+
+2.  **Question 1B**: Create a piped dataframe to explore the performance of teams that made it to the Elite 8 or beyond.
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object elite_teams_df
+
+
+    # mutate() question: Create a performance_score by multiplying the round number by (17 - seed) to give bonus points for lower seeds going far
+
+    ```
+
+3.  **Question 1C**: Explore teams that were upset early (high seeds eliminated in early rounds) from tournaments after 2010.
+
+    ```{r}
+    # Columns needed: 
+    # Rows needed: 
+
+    # Piped dataframe: call this object early_upsets_df
+
+
+    # mutate() question: Create an upset_factor column by dividing seed by round (higher values indicate bigger upsets)
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part II: Grouping and counting with `group_by()` and `tally()`
+
+1.  **Question 2A**: Using the team_results dataframe, determine how many teams from each seed have appeared in the tournament using `group_by()` and `tally()`.
+
+    ```{r}
+
+    # Which seed has appeared most frequently in the tournament?
+
+    ```
+
+2.  **Question 2B**: Using the team_results dataframe, how many teams made it to each round? Use `group_by()` and `tally()`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 2C**: Count how many championship appearances each team has had (teams that made it to round 6).
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part III: Summarizing data with `group_by()` and `summarise()`
+
+1.  **Question 3A**: Using the team_results dataframe, summarize the average seed by tournament year. Call this `avg_seed_by_year`.
+
+    ```{r}
+
+    ```
+
+2.  **Question 3B**: Calculate the average round reached by each seed. Call this `avg_round_by_seed`.
+
+    ```{r}
+
+    ```
+
+3.  **Question 3C**: Find the maximum round reached by teams from each tournament year.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part IV: Data transformation and export
+
+1.  **Question 4A**: Create a summary of average round reached by seed and round to 2 decimal places. Call this `avg_round_by_seed_rounded`.
+
+    ```{r}
+
+    # Round the average round to 2 decimal places using mutate() and round()
+
+    ```
+
+2.  **Question 4B**: Save your `avg_round_by_seed_rounded` dataframe as a CSV file called "march_madness_seed_performance.csv".
+
+    ```{r}
+
+    # The new file should be visible in your Files tab on the bottom right panel
+    ```
+
+------------------------------------------------------------------------
+
+## Part V: Advanced grouping and arranging
+
+1.  **Question 5A**: Using the team_results dataframe, count the number of tournament appearances by team and arrange in descending order.
+
+    ```{r}
+
+    ```
+
+2.  **Question 5B**: Calculate the total number of teams that reached each round across all years and arrange in ascending order.
+
+    ```{r}
+
+    ```
+
+3.  **Question 5C**: Find the average seed for each combination of year and round.
+
+    ```{r}
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part VI: Filtering with `%in%` operator
+
+1.  **Question 6A**: Using the `%in%` operator, create a new subsetted dataframe called `madness_subset1` that includes only teams from years 2015, 2018, and 2021.
+
+    ```{r}
+
+    ```
+
+2.  **Question 6B**: Using the `%in%` operator, create a new subsetted dataframe called `madness_subset2` that includes only teams with seeds 1, 2, 8, and 16 (to compare top seeds with potential upset teams).
+
+    ```{r}
+
+    ```
+
+3.  **Question 6C**: **Challenge**: Create a subset of "Cinderella teams" - teams with seeds 12 or higher that made it to round 4 or beyond (Sweet 16+).
+
+    ```{r}
+    # Filter for: seed >= 12 AND round >= 4
+
+    ```
+
+------------------------------------------------------------------------
+
+## Part VII: Tournament Analysis Questions
+
+1.  **Question 7A**: Which seed has the best average performance (highest average round reached) in the tournament?
+
+    ```{r}
+
+    ```
+
+2.  **Question 7B**: How many times has a #16 seed beaten a #1 seed? (16 seeds that made it past round 1)
+
+    ```{r}
+
+    ```
+
+3.  **Question 7C**: **Challenge**: What percentage of #1 seeds make it to at least the Elite 8 (round 4)?
+
+    ```{r}
+
+    ```

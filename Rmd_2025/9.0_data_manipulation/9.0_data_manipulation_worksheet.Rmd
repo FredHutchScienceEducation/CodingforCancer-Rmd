@@ -1,68 +1,118 @@
 # 9.0 Data Manipulation
 
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
 We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
 ```{r}
 rm(list = ls())
 ```
 
-## Split - Apply - Combine
+## 1. Loading packages and data
 
-We can also use the tidyverse package to do what we call a "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
+Today we will learn about data manipulation using the "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
 
-For categorical data, it can be helpful to count members of a group. We can do this by `group_by()` and `tally()`
+Load the necessary packages:
 
 ```{r}
-# Count the number of penguins of each sex
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Load the penguins data:
+
+```{r}
+penguins = penguins
+```
+
+---
+
+## 2. Grouping and counting with `group_by()` and `tally()`
+
+For categorical data, it can be helpful to count members of a group. We can do this by combining `group_by()` and `tally()`.
+
+Count the number of penguins of each sex:
+
+```{r}
 penguins %>%
   group_by(sex) %>%
   tally()
+```
 
-# Currently we have 11 NA penguins included, we should remove these and 
-# create a new table
+Currently we have 11 NA penguins included. We should remove these and create a clean table:
+
+```{r}
 clean_penguins <- penguins %>%
   group_by(sex) %>%
   filter(!is.na(sex)) %>%
   tally()
+
+clean_penguins
 ```
 
-We can also use group_by() with summarize(). The main difference is that the non-grouping and non-output columns are removed
+---
+
+## 3. Summarizing data with `group_by()` and `summarize()`
+
+We can also use `group_by()` with `summarize()`. The main difference is that the non-grouping and non-output columns are removed.
+
+Summarize the average bill length (in mm) by sex:
 
 ```{r}
-# summarize the average bill_length_mm (in mm) by sex
 bill_df <- penguins %>%
   group_by(sex) %>%
   filter(!is.na(sex)) %>%
   summarize(
-  mean_bill_length =
-      mean(bill_length_mm, na.rm = TRUE)
+    mean_bill_length = mean(bill_length_mm, na.rm = TRUE)
   )
+
+bill_df
 ```
 
-## Saving data to a file
-
-You can save results to a file using the write_csv() function. This can be useful for later applications
+**Practice**: Summarize the average flipper length by species.
 
 ```{r}
-# save bill_df as a .csv file in our data directory
+
+
+```
+
+---
+
+## 4. Saving data to a file
+
+You can save results to a file using the `write_csv()` function. This can be useful for later applications.
+
+Save `bill_df` as a .csv file in our data directory:
+
+```{r}
 write_csv(bill_df, "data/bill_df.csv")
 ```
 
-## `count()` & `arrange()`
+---
 
-The `count()` function can be very helpful since it combines `group_by()` and `tally()` together
+## 5. Using `count()` and `arrange()`
 
-The `arrange()` function sorts the data. To sort by ascending numbers: `arrange(n)` and if you want to sort by descending numbers: `arrange(desc(n))`
+The `count()` function can be very helpful since it combines `group_by()` and `tally()` together.
+
+The `arrange()` function sorts the data: - To sort by ascending numbers: `arrange(n)` - To sort by descending numbers: `arrange(desc(n))`
+
+Count distinct number of penguin species in ascending order:
 
 ```{r}
-# counting distinct number of penguin species in ascending order
 penguin_counts <- penguins %>%
   count(species) %>%
   arrange(n)
 
 penguin_counts
+```
 
-# counting distinct number of penguin species in descending order
+Count distinct number of penguin species in descending order:
+
+```{r}
 penguin_counts_desc <- penguins %>%
   count(species) %>%
   arrange(desc(n))
@@ -70,75 +120,114 @@ penguin_counts_desc <- penguins %>%
 penguin_counts_desc
 ```
 
-## Using %in% operator
-
-Sometimes we only want to include a specific value, the %in% operator is very helpful! This also works in a similar way to OR statements
+**Practice**: Count the number of penguins by island and arrange in descending order.
 
 ```{r}
-# extract data specifying which species to keep: Adelie and Chinstrap
 
-penguins_reduced <- penguins %>%
-  filter(
-    species %in%
-      c("Adelie", "Chinstrap")
-  )
 
-# this will create the same result:
-
-penguins_reduced_same <- penguins %>%
-  filter(species == "Adelie"|
-         species == "Chinstrap")
 ```
 
-## Trying these concepts with the new `clinical` dataframe
+---0
 
-Let's try these functions with the `clinical` dataframe! - group_by() and tally() - group_by() with summarize() - write_csv() - count() and arrange() - %in%
+## 6. Using the `%in%` operator
+
+Sometimes we only want to include specific values. The `%in%` operator is very helpful! This works similarly to OR statements.
+
+Extract data specifying which species to keep: Adelie and Chinstrap:
 
 ```{r}
-# Count the number of each ajcc pathological stage and remove the NAs.
-# ajcc pathological stage is used to determine to what the first course of 
-# treatment will be for a patient
+penguins_reduced <- penguins %>%
+  filter(species %in% c("Adelie", "Chinstrap"))
+```
 
+This will create the same result as using multiple OR statements:
+
+```{r}
+penguins_reduced_same <- penguins %>%
+  filter(species == "Adelie" | species == "Chinstrap")
+```
+
+**Practice**: Filter penguins to include only those from "Biscoe" and "Dream" islands.
+
+```{r}
+
+
+```
+
+---
+
+## 7. Applying concepts with the clinical dataframe
+
+Let's try these functions with the `clinical` dataframe!
+
+Load the clinical data:
+
+```{r}
+clinical <- read_csv("data/clinical.csv")
+```
+
+Count the number of each AJCC pathological stage and remove the NAs:
+
+```{r}
 clinical %>%
   group_by(ajcc_pathologic_stage) %>%
   filter(!is.na(ajcc_pathologic_stage)) %>%
   tally()
 ```
 
-Let's try with group_by() and summarize() together
+**Practice**: Count the number of patients by gender and remove NAs.
 
 ```{r}
-# summarize the average bill_length_mm (in mm) by sex
-# summarize the average age at diagnosis (in days) by tissue or organ of origin
-ERCC2_age_df <- clinical %>%
+
+
+```
+
+---
+
+## 8. Advanced summarizing with clinical data
+
+Summarize the average age at diagnosis (in days) by tissue or organ of origin:
+
+```{r}
+age_tissue_df <- clinical %>%
   group_by(tissue_or_organ_of_origin) %>%
   filter(!is.na(tissue_or_organ_of_origin)) %>%
   summarize(
-  mean_age =
-      mean(age_at_diagnosis, na.rm = TRUE)
+    mean_age = mean(age_at_diagnosis, na.rm = TRUE)
   )
 
-ERCC2_age_df
-
-# It can be difficult to tell how old someone is by days. Let's add a new column
-# to the ERCC2_age_df called mean_age_years and call the new dataframe 
-# ERCC2_year_df. Remember that we can use the mutate() function to create columns.
-
-ERCC2_year_df <- ERCC2_age_df %>%
-  mutate(mean_year = mean_age / 365)
+age_tissue_df
 ```
 
-Let's save the new data frame that includes both mean age in days and years in a new csv file called ERCC2_year_df.csv
+It can be difficult to tell how old someone is in days. Let's add a new column to convert to years:
 
 ```{r}
-# save  as a .csv file in our data directory
-write_csv(ERCC2_year_df, "data/ERCC2_year_df.csv")
+age_tissue_years_df <- age_tissue_df %>%
+  mutate(mean_age_years = mean_age / 365)
+
+age_tissue_years_df
 ```
 
-count() and arrange()
+Save the new dataframe as a CSV file:
 
 ```{r}
-# counting distinct number of tissues of organs of origin in ascending order
+write_csv(age_tissue_years_df, "data/age_tissue_years_df.csv")
+```
+
+**Practice**: Summarize the average pack years smoked by gender.
+
+```{r}
+
+
+```
+
+---
+
+## 9. More practice with `count()` and `arrange()`
+
+Count distinct number of tissues or organs of origin in ascending order:
+
+```{r}
 tissue_organ_counts <- clinical %>%
   count(tissue_or_organ_of_origin) %>%
   arrange(n)
@@ -146,25 +235,37 @@ tissue_organ_counts <- clinical %>%
 tissue_organ_counts
 ```
 
-Using %in%
+**Practice**: Count the number of patients by race and arrange in descending order.
 
 ```{r}
-# extract data specifying which year_of_diagnosis to keep: 2010 - 2013
 
+
+```
+
+---
+
+## 10. Using `%in%` with clinical data
+
+Extract data specifying which years of diagnosis to keep: 2010-2013:
+
+```{r}
 clinical_reduced <- clinical %>%
-  filter(
-    year_of_diagnosis %in%
-      c(2010:2013)
-  )
+  filter(year_of_diagnosis %in% c(2010:2013))
+```
 
-clinical_reduced
-# this will create the same result:
+This creates the same result as using multiple OR statements:
 
+```{r}
 clinical_reduced_same <- clinical %>%
-  filter(year_of_diagnosis == 2010|
+  filter(year_of_diagnosis == 2010 |
          year_of_diagnosis == 2011 |
          year_of_diagnosis == 2012 |
          year_of_diagnosis == 2013)
+```
 
-clinical_reduced_same
+**Practice**: Filter the clinical data to include only patients with "Primary Tumor" or "Metastatic" sample types.
+
+```{r}
+
+
 ```
