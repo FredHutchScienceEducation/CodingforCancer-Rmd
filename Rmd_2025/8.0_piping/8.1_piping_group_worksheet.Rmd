@@ -1,0 +1,290 @@
+# 8.1 Piping Group Activity
+
+Name:
+
+Date:
+
+------------------------------------------------------------------------
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+Use this rmd file to answer the group activity questions!
+
+Always load in the packages and datasets that you're planning on using at the beginning of your rmd file!
+
+```{r}
+#Load in the necessary packages: tidyverse
+library(tidyverse)
+```
+
+```{r}
+# read in the clinical.csv file as an object called clinical
+clinical <- read.csv("clinical.csv")
+```
+
+------------------------------------------------------------------------
+
+## Getting to know the clinical dataframe
+
+When you are first looking at a new dataframe, it's very helpful to have a basic understanding of what is in it.
+
+Let's use 5 functions to learn more! What does each function do? Write the answer as a comment - `dim()` - `head()` - `str()` - `colnames()` - `rownames()`
+
+```{r}
+dim(clinical)
+# 433 rows, 79 columns
+```
+
+```{r}
+head(clinical)
+
+```
+
+```{r}
+str(clinical)
+
+```
+
+```{r}
+colnames(clinical)
+
+```
+
+```{r}
+rownames(clinical)
+
+```
+
+------------------------------------------------------------------------
+
+Start at your group number question, if you finish, please complete the other questions
+
+Example: Do patients who have smoked more than 40 packs of cigarettes in a year have more mutations in ATM or STAG2?
+
+```{r}
+# rows: packs_years_smoked > 40
+# columns: mutation.in.ATM, mutation.in.STAG2
+```
+
+```{r}
+#2 steps
+pack_yr_ATM_STAG2 <- select(clinical, pack_years_smoked, mutation.in.STAG2, mutation.in.ATM,)
+
+pack40_yr_ATM_STAG2 <- filter(pack_yr_ATM_STAG2, pack_years_smoked > 40)
+```
+
+```{r}
+# nested
+pack40_yr_ATM_STAG2_nested <- select(filter(clinical, pack_years_smoked > 40), mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+```
+
+```{r}
+# piped
+pack40_yr_ATM_STAG2_piped <- clinical %>%
+  filter(., pack_years_smoked > 40) %>%
+  select(., mutation.in.STAG2, mutation.in.ATM, pack_years_smoked)
+```
+
+------------------------------------------------------------------------
+
+## Question 1: Do males or females over of 24000 days old at diagnosis have more ERCC2 expression?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+```
+
+Code in 2 steps: name the first object `age_gender_ERCC2_expr` and second object `age_24000+_gender_ERCC2_expr_df`
+
+```{r}
+# Code in 2 steps: name the first object age_gender_ERCC2_expr and second object age_24000+_gender_ERCC2_expr_df
+
+```
+
+Nested version: call this object `age_24000+_gender_ERCC2_expr_df_nested`
+
+```{r}
+# Nested version: call this object age_24000+_gender_ERCC2_expr_df_nested
+
+
+```
+
+Piped version. Call this object `age_24000+_gender_ERCC2_expr_df`
+
+```{r}
+# piped version: call this object age_24000+_gender_ERCC2_expr_df
+
+```
+
+Are there any differences between output of `age_24000+_gender_ERCC2_expr_df`, `age_24000+_gender_ERCC2_expr_df_nested`, and `age_24000+_gender_ERCC2_expr_df_piped`?
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+## Question 2: Do females have more ARID1A expression or KMT2A expression in this dataset?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+```
+
+Code in 2 steps: name the first object `gender_ARID1A_KMT2A_expr` and second object `female_ARID1A_KMT2A_expr_df`
+
+```{r}
+# Step 1: gender_ARID1A_KMT2A_expr
+
+
+# Step 2: female_ARID1A_KMT2A_expr_df
+
+```
+
+Nested version: call this object `female_ARID1A_KMT2A_expr_df_nested`
+
+```{r}
+
+
+```
+
+Piped version: call this object `female_ARID1A_KMT2A_expr_df_piped`
+
+```{r}
+
+
+```
+
+Are there any differences between output of `female_ARID1A_KMT2A_expr_df`, `female_ARID1A_KMT2A_expr_df_nested`, and `female_ARID1A_KMT2A_expr_df_piped`?
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+## Question 3: What ajcc pathologic stage has the highest average total number of single nucleotide variants in the year of diagnosis of 2012?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+```
+
+Code in 2 steps: name the first object `ajcc_totalSNV_year` and second object `ajcc_totalSNV_2012_df`
+
+```{r}
+# Step 1: ajcc_totalSNV_year
+
+
+# Step 2: ajcc_totalSNV_2012_df
+
+```
+
+Nested version: call this object `ajcc_totalSNV_2012_df_nested`
+
+```{r}
+
+
+```
+
+Piped version: call this object `ajcc_totalSNV_2012_df_piped`
+
+```{r}
+
+
+```
+
+Are there any differences between output of `ajcc_totalSNV_2012_df`, `ajcc_totalSNV_2012_df_nested`, and `ajcc_totalSNV_2012_df_piped`?
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+## Question 4: Do primary tumor samples (sample type) from patients with a BMI greater than 20 have more mutations in RB1 or TP53?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+```
+
+Code in 2 steps: name the first object `sampleType_bmi_RB1_TP53_df` and second object `primaryTumor_bmi20_RB1mut_TP53mut_df`
+
+```{r}
+# Step1: sampleType_bmi_RB1_TP53_df 
+
+
+# Step2: primaryTumor_bmi20_RB1mut_TP53mut_df
+
+```
+
+Nested version: call this object `primaryTumor_bmi20_RB1mut_TP53mut_df_nested`
+
+```{r}
+# nested called primaryTumor_bmi20_RB1mut_TP53mut_df_nested
+
+
+```
+
+Piped version: call this object `primaryTumor_bmi20_RB1mut_TP53mut_df_piped`
+
+```{r}
+
+
+```
+
+Are there any differences between output of `primaryTumor_bmi20_RB1mut_TP53mut_df`, `primaryTumor_bmi20_RB1mut_TP53mut_df_nested`, and `primaryTumor_bmi20_RB1mut_TP53mut_df_piped`?
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+## Question 5: Which racial group has the highest number of patients with prostate cancer who have more than 10 total indels and no mutation in TSC1?
+
+```{r}
+# columns needed: 
+# rows needed: 
+
+```
+
+Code in 2 steps: name the first object `race_cancer_totalIndels_TSCmut` and second object `race_cancer_totalIndels10_noTSC1mut_df`
+
+```{r}
+# Step 1: race_cancer_totalIndels_TSCmut
+
+
+# Step 2: race_cancer_totalIndels10_noTSC1mut_df
+
+```
+
+Nested version: call this object `race_cancer_totalIndels10_noTSC1mut_df_nested`
+
+```{r}
+
+
+
+```
+
+Piped version: call this object `race_cancer_totalIndels10_noTSC1mut_df_piped`
+
+```{r}
+
+
+```
+
+Are there any differences between output of `race_cancer_totalIndels10_noTSC1mut_df`, `race_cancer_totalIndels10_noTSC1mut_df_nested`, and `race_cancer_totalIndels10_noTSC1mut_df_piped`?
+
+```{r}
+
+```

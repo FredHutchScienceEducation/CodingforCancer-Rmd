@@ -1,0 +1,62 @@
+# 7.1 Tidyverse Group Activity Worksheet
+
+Use this Rmd file to answer the `tidyverse` group activity questions.
+
+The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+penguins = penguins
+```
+
+
+## Question 1
+
+```{r}
+
+```
+
+## Question 2
+
+```{r}
+
+```
+
+## Question 3
+
+```{r}
+
+```
+
+## Question 4
+
+```{r}
+
+```
+
+## Question 5
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
