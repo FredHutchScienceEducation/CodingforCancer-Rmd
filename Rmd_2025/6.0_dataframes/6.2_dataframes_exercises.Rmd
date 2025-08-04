@@ -101,7 +101,7 @@ Recall the format is `dataframe[rows, cols]`.
 
     ```
 
-5.  Take a look at the output for `plastics[,1]` and `plastics[1]`, do they look the same?
+5.  Take a look at the output for `starbucks[,1]` and `starbucks[1]`, do they look the same?
 
     ```{r}
 
@@ -119,7 +119,7 @@ Recall the format is `dataframe[rows, cols]`.
 
     ```
 
-8.  Now we can assess the data in the column by the name of its column, like this: `dataframe["column_name"]`. Subset the `year` from `starbucks`.
+8.  Now we can assess the data in the column by the name of its column, like this: `dataframe["column_name"]`. Subset the `product_name` from `starbucks`.
 
     ```{r}
 
