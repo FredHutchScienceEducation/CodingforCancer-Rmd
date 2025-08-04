@@ -38,14 +38,20 @@ For categorical data, it can be helpful to count members of a group. We can do t
 Count the number of penguins of each sex:
 
 ```{r}
-
+penguins %>%
+  group_by(sex) %>%
+  tally()
 ```
 
 Currently we have 11 NA penguins included. We should remove these and create a clean table:
 
 ```{r}
+clean_penguins <- penguins %>%
+  group_by(sex) %>%
+  filter(!is.na(sex)) %>%
+  tally()
 
-
+clean_penguins
 ```
 
 ---
@@ -57,7 +63,14 @@ We can also use `group_by()` with `summarize()`. The main difference is that the
 Summarize the average bill length (in mm) by sex:
 
 ```{r}
+bill_df <- penguins %>%
+  group_by(sex) %>%
+  filter(!is.na(sex)) %>%
+  summarize(
+    mean_bill_length = mean(bill_length_mm, na.rm = TRUE)
+  )
 
+bill_df
 ```
 
 **Practice**: Summarize the average flipper length by species.
@@ -76,7 +89,7 @@ You can save results to a file using the `write_csv()` function. This can be use
 Save `bill_df` as a .csv file in our data directory:
 
 ```{r}
-
+write_csv(bill_df, "data/bill_df.csv")
 ```
 
 ---
@@ -90,13 +103,21 @@ The `arrange()` function sorts the data: - To sort by ascending numbers: `arrang
 Count distinct number of penguin species in ascending order:
 
 ```{r}
+penguin_counts <- penguins %>%
+  count(species) %>%
+  arrange(n)
 
+penguin_counts
 ```
 
 Count distinct number of penguin species in descending order:
 
 ```{r}
+penguin_counts_desc <- penguins %>%
+  count(species) %>%
+  arrange(desc(n))
 
+penguin_counts_desc
 ```
 
 **Practice**: Count the number of penguins by island and arrange in descending order.
@@ -115,14 +136,15 @@ Sometimes we only want to include specific values. The `%in%` operator is very h
 Extract data specifying which species to keep: Adelie and Chinstrap:
 
 ```{r}
-
-
+penguins_reduced <- penguins %>%
+  filter(species %in% c("Adelie", "Chinstrap"))
 ```
 
 This will create the same result as using multiple OR statements:
 
 ```{r}
-
+penguins_reduced_same <- penguins %>%
+  filter(species == "Adelie" | species == "Chinstrap")
 ```
 
 **Practice**: Filter penguins to include only those from "Biscoe" and "Dream" islands.
@@ -141,15 +163,16 @@ Let's try these functions with the `clinical` dataframe!
 Load the clinical data:
 
 ```{r}
-
-
+clinical <- read_csv("data/clinical.csv")
 ```
 
 Count the number of each AJCC pathological stage and remove the NAs:
 
 ```{r}
-
-
+clinical %>%
+  group_by(ajcc_pathologic_stage) %>%
+  filter(!is.na(ajcc_pathologic_stage)) %>%
+  tally()
 ```
 
 **Practice**: Count the number of patients by gender and remove NAs.
@@ -166,22 +189,29 @@ Count the number of each AJCC pathological stage and remove the NAs:
 Summarize the average age at diagnosis (in days) by tissue or organ of origin:
 
 ```{r}
+age_tissue_df <- clinical %>%
+  group_by(tissue_or_organ_of_origin) %>%
+  filter(!is.na(tissue_or_organ_of_origin)) %>%
+  summarize(
+    mean_age = mean(age_at_diagnosis, na.rm = TRUE)
+  )
 
-
+age_tissue_df
 ```
 
 It can be difficult to tell how old someone is in days. Let's add a new column to convert to years:
 
 ```{r}
+age_tissue_years_df <- age_tissue_df %>%
+  mutate(mean_age_years = mean_age / 365)
 
-
+age_tissue_years_df
 ```
 
 Save the new dataframe as a CSV file:
 
 ```{r}
-
-
+write_csv(age_tissue_years_df, "data/age_tissue_years_df.csv")
 ```
 
 **Practice**: Summarize the average pack years smoked by gender.
@@ -198,8 +228,11 @@ Save the new dataframe as a CSV file:
 Count distinct number of tissues or organs of origin in ascending order:
 
 ```{r}
+tissue_organ_counts <- clinical %>%
+  count(tissue_or_organ_of_origin) %>%
+  arrange(n)
 
-
+tissue_organ_counts
 ```
 
 **Practice**: Count the number of patients by race and arrange in descending order.
@@ -216,15 +249,18 @@ Count distinct number of tissues or organs of origin in ascending order:
 Extract data specifying which years of diagnosis to keep: 2010-2013:
 
 ```{r}
-
-
+clinical_reduced <- clinical %>%
+  filter(year_of_diagnosis %in% c(2010:2013))
 ```
 
 This creates the same result as using multiple OR statements:
 
 ```{r}
-
-
+clinical_reduced_same <- clinical %>%
+  filter(year_of_diagnosis == 2010 |
+         year_of_diagnosis == 2011 |
+         year_of_diagnosis == 2012 |
+         year_of_diagnosis == 2013)
 ```
 
 **Practice**: Filter the clinical data to include only patients with "Primary Tumor" or "Metastatic" sample types.
