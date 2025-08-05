@@ -1,6 +1,6 @@
 # 7.2 Tidyverse Exercises
 
-In this exericse, we will explore data about trash that has been collected in the Baltimore River by Mr. Trash Wheel.
+In this exercise, we will explore data about trash that has been collected in the Baltimore River by Mr. Trash Wheel.
 
 ![Check out Mr. Trash Wheel at: <https://www.mrtrashwheel.com>](https://media.wbur.org/wp/2019/04/0416_trashwheel01.jpg){width="300"}
 
@@ -22,25 +22,11 @@ Run this code chunk below to download the dataset and extract the dataframes int
 
 ```{r}
 #### Do not alter the code below. This is a function that will download your dataset. 
-date <- "2024-03-05"
 
-load_and_extract_tt_data <- function(date) {
-  # Load the TidyTuesday dataset
-  data_list <- tidytuesdayR::tt_load(date)
-  cat("\n")
-  cat("\n")
-  # Extract each dataframe from data_list into separate objects
-  # in the global environment with the same names
-  for (name in names(data_list)) {
-    assign(name, data_list[[name]], envir = .GlobalEnv)
-    cat("Extracted", name, "and assigned to the object",name,"\n")
-  }
-  
-  # Return the original data_list for reference
-  return(data_list)
-}
+# install.packages("tidytuesdayR") - uncomment and run this code if the library is not found
+library(tidytuesdayR)
+trashwheel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-03-05/trashwheel.csv')
 
-data_list <- load_and_extract_tt_data(date)
 ```
 
 ------------------------------------------------------------------------
@@ -50,29 +36,29 @@ data_list <- load_and_extract_tt_data(date)
 1.  Let's view the `trashwheel` data frame you just downloaded using the `View()` function.
 
     ```{r}
-
+View(trashwheel)
     ```
 
 2.  You can assess the size of the data frame using the function `dim(dataframe)`.
 
     ```{r}
-
+dim(trashwheel)
     ```
 
-    \*\*Answer: Number of rows = \_\_\_\*\*
+    \*\*Answer: Number of rows = \_\_993\_\*\*
 
-    \*\*Answer: Number of columns = \_\_\_\*\*
+    \*\*Answer: Number of columns = \_\_16\_\*\*
 
 3.  You can preview the first few rows using the function `head(dataframe)`.
 
     ```{r}
-
+head(trashwheel)
     ```
 
 4.  Use the `colnames()` function on the `trashwheel` dataframe.
 
     ```{r}
-
+colnames(trashwheel)
     ```
 
 ------------------------------------------------------------------------
@@ -82,37 +68,37 @@ data_list <- load_and_extract_tt_data(date)
 1.  Use the `select()` function to select the `Name`, `Weight` and `Year` columns from the `trashwheel` dataframe. Assign the result to an object called `selected_cols`.
 
     ```{r}
-
+selected_cols <- select(trashwheel, Name, Weight, Year)
     ```
 
 2.  Use the `select()` function to select columns from `PlasticBottles` to `SportsBalls`. Assign the result to an object called `trash_types`.
 
     ```{r}
-
+trash_types <- select(trashwheel, PlasticBottles:SportsBalls)
     ```
 
 3.  Select all columns that end with "s" (like PlasticBottles, GlassBottles, etc.).
 
     ```{r}
-
+s_cols <- select(trashwheel, contains("s"))
     ```
 
 4.  Select all columns that contain the word "Plastic".
 
     ```{r}
-
+select(trashwheel, contains("Plastic"))
     ```
 
 5.  Select all columns that start with the letter "P".
 
     ```{r}
-
+p_cols <- select(trashwheel, starts_with("P"))
     ```
 
 6.  Select columns that either contain "Bottle" OR end with "s".
 
     ```{r}
-
+or_cols <- select(trashwheel, (contains("Bottle") | ends_with("s")))
     ```
 
 ------------------------------------------------------------------------
@@ -122,37 +108,37 @@ data_list <- load_and_extract_tt_data(date)
 1.  Use the `filter()` function to keep only rows where the `Year` is equal to 2020. Assign the result to an object called `year_2020`.
 
     ```{r}
-
+year_2020 <- filter(trashwheel, Year == 2020)
     ```
 
-2.  Use the `filter()` function to keep only rows where the `Weight` is greater than 3 tons.
+2.  Use the `filter()` function to keep only rows where the `Weight` is greater than 3 tons. Hint: the values in the `Weight` column are measured in tons.
 
     ```{r}
-
+filter(trashwheel, Weight > 3)
     ```
 
 3.  Keep only rows where the `Name` is equal to "Mister Trash Wheel".
 
     ```{r}
-
+filter(trashwheel, Name == "Mister Trash Wheel")
     ```
 
 4.  Keep only rows where `PlasticBottles` is greater than 1000.
 
     ```{r}
-
+filter(trashwheel, PlasticBottles > 1000)
     ```
 
 5.  Keep only rows where `CigaretteButts` is less than or equal to 10000.
 
     ```{r}
-
+filter(trashwheel, CigaretteButts <= 10000)
     ```
 
 6.  Keep only rows where `Year` is 2019 AND `Weight` is greater than 2. Use the `&` symbol to combine conditions.
 
     ```{r}
-
+filter(trashwheel, (Year == 2019) & Weight > 2)
     ```
 
 ------------------------------------------------------------------------
@@ -163,32 +149,34 @@ data_list <- load_and_extract_tt_data(date)
 
     ```{r}
     # Step 1: Select columns
-
+select_first <- select(trashwheel, Name, Year, Weight, PlasticBottles)
 
     # Step 2: Filter rows
-
+filter_second <- filter(select_first, Year == 2021)
     ```
 
 2.  Now try combining the same operations using nested functions (putting one function inside another).
 
     ```{r}
-
+nested <- filter(select(trashwheel, Name, Year, Weight, PlasticBottles), Year == 2021)
     ```
 
 3.  Select the columns `Name`, `Month`, `Year`, and `CigaretteButts`. Then filter to keep only data from "Mister Trash Wheel". Do this in two steps.
 
     ```{r}
     # Step 1: Select columns
-
+intermediate <- select(trashwheel, Name, Month, Year, CigaretteButts)
 
     # Step 2: Filter rows
-
+filter(intermediate, Name == "Mister Trash Wheel")
     ```
 
 4.  Select columns that contain "Plastic" OR end with "s", then filter to keep only rows where `Weight` is greater than 1 and `Year` is greater than or equal to 2018.
 
     ```{r}
-
+plastic_s <- select(trashwheel, (contains("Plastic") | ends_with("s")))
+# Weight was not in the selected set of columns so this line will return an error that 'Weight' is not found
+filter(plastic_s, (Weight > 1) & Year >= 2018)
     ```
 
 ------------------------------------------------------------------------
@@ -198,23 +186,25 @@ data_list <- load_and_extract_tt_data(date)
 1.  How many different trash wheels are in the dataset? Use the `unique()` function on the `Name` column to find out.
 
     ```{r}
-
+unique(trashwheel$Name)
     ```
 
 2.  What is the range of years in the dataset? Use the `range()` function on the `Year` column.
 
     ```{r}
-
+range(trashwheel$Year)
     ```
 
 3.  Which trash wheel collected the most plastic bottles in a single collection? First filter the data to find the row with the maximum `PlasticBottles`, then look at the `Name` column.
 
     ```{r}
-
+max_plastic <- max(trashwheel$PlasticBottles, na.rm = TRUE)
+filter(trashwheel, PlasticBottles == max_plastic)
     ```
 
 4.  Create a subset of data that includes only collections from 2020 or later, with more than 2 tons of weight, and only includes the columns `Name`, `Date`, `Weight`, and `PlasticBottles`. How many rows are in this subset?
 
     ```{r}
-
+subset_df <- filter(trashwheel, ((Year >=2020) & (Weight > 2)))
+select(subset_df, Name, Date, Weight, PlasticBottles)
     ```

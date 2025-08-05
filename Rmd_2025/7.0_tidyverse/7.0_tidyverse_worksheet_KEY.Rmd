@@ -115,10 +115,10 @@ As an example, you might only be interested in penguins that were recording in t
 sel_rows <- filter(penguins, year == 2007)
 ```
 
-**Practice**: Keep rows of penguins that have a bill length of 40 mm.
+**Practice**: Keep rows of penguins that have a bill length of 40.9 mm.
 
 ```{r}
-
+filter(penguins, bill_length_mm == 40.9)
 ```
 
 ------------------------------------------------------------------------
@@ -133,17 +133,19 @@ bill_length = penguins$bill_length_mm
 flipper_length = penguins$flipper_length_mm
 
 ## Plot the two columns as a scatter plot.
-ggplot()  + aes(x = bill_length, y = flipper_length) + geom_point()
+ggplot()  + aes(x = bill_length, y = flipper_length) + geom_point() + xlim(30, 60)
 ```
+
+To the plotting code above, we have added the code `+ xlim(30, 60)`. ggplot will automatically set the appropriate scale on each axis for your plots. In this example, we want to showcase what filtering the dataframe does, so we are forcing each plot to have the same x-axis for easier comparison. Here the minimum is set to 30 and the maximum is set to 60.
 
 Now we can put dataframes in the plotting code and specify the columns we want directly as `x` and `y`.
 
-`ggplot(data=penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()`
+`ggplot(data=penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()  + xlim(30, 60)`
 
 Note the `data=penguins`, `x=bill_length_mm`, and `y=flipper_length_mm`.
 
 ```{r}
-ggplot(data=penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()
+ggplot(data=penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()  + xlim(30, 60)
 ```
 
 If we filter the dataframe first and then use it as an input for `data=`, we can see how the plot changes.
@@ -156,7 +158,7 @@ Filter the `penguins` to have only penguins with a bill length of less than 50mm
 filtered_penguins = filter(penguins, bill_length_mm < 50)
 
 ## Plot the data from the filted dataframe.
-ggplot(data=filtered_penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point()
+ggplot(data=filtered_penguins) + aes(x = bill_length_mm, y = flipper_length_mm) + geom_point() + xlim(30, 60)
 ```
 
 ------------------------------------------------------------------------
