@@ -12,7 +12,7 @@ We will start with a fresh, clean environment. The code chunk below clears your 
 rm(list = ls())
 ```
 
-## 1. Loading packages and data
+## Loading packages and data
 
 Today we will learn about data manipulation using the "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
 
@@ -29,7 +29,26 @@ Load the penguins data:
 penguins = penguins
 ```
 
----
+------------------------------------------------------------------------
+
+## 1. Adding new columns with `mutate()`
+
+We can add new columns to our dataframe using the `mutate()` function. This is especially powerful when combined with piping.
+
+Use piping to create a new column called `bill_length_cm` where the `bill_length_mm` is converted to centimeters (divide by 10).
+
+```{r}
+bill_cm_df <- penguins %>%
+  mutate(bill_length_cm = bill_length_mm / 10)
+```
+
+**Practice**: Use piping to create a new column called `mass_kg` where the `body_mass_g` is converted to kilograms (divide by 1000).
+
+```{r}
+penguins %>%
+  mutate(mass_kg = body_mass_g / 1000)
+
+```
 
 ## 2. Grouping and counting with `group_by()` and `tally()`
 
