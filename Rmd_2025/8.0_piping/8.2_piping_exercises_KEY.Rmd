@@ -171,24 +171,38 @@ trashwheel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
 
 1.  **Multi-step piping practice**: Use piping to select only the columns `Name`, `Year`, `Month`, `Weight`, and all columns that contain "Bottle". Then filter to keep only data from 2019-2021 where the weight is between 1 and 4 tons (inclusive). How many rows remain in your final dataset?
 
-    *Hint: Use the `nrow()`* function on your piped dataframe to get the number of rows.
-
     ```{r}
+    # Solution
+    result1 <- trashwheel %>%
+      select(Name, Year, Month, Weight, contains("Bottle")) %>%
+      filter(Year >= 2019 & Year <= 2021,
+             Weight >= 1 & Weight <= 4)
 
+    nrow(result1)  # To see number of rows
     ```
 
 2.  **Advanced filtering with column selection**: Create a pipeline that first selects the `Name` column and all columns ending with "s", then filters to keep only rows from "Professor Trash Wheel" OR "Captain Trash Wheel" where `CigaretteButts` is greater than 5000. The pipe the filtered dataframe to `head(n=10)` to display the first 10 rows of your result.
 
     ```{r}
+    # Solution
+    result2 <- trashwheel %>%
+      select(Name, ends_with("s")) %>%
+      filter((Name == "Professor Trash Wheel" | Name == "Captain Trash Wheel"),
+             CigaretteButts > 5000) %>%
+      head(n = 10)
 
+    result2
     ```
 
-3.  **Conditional selection and filtering**: Use piping to select `Name`, `Date`, `Weight`, and any columns that start with "P". Then filter to keep only collections where `Weight` is above the median weight AND `PlasticBottles` is above 500. What is the total number of plastic bottles collected in these high-weight, high-plastic collections?
-
-    *Hint: Use `sum()` on the `PlasticBottles` column*
+3.  **Conditional selection and filtering**: Use piping to select `Name`, `Date`, `Weight`, and any columns that start with "P". Then filter to keep only collections where `Weight` is above the median weight AND `PlasticBottles` is above 500. What is the total number of plastic bottles collected in these high-weight, high-plastic collections? (Hint: Use `sum()` on the `PlasticBottles` column)
 
     ```{r}
+    # Solution
+    result3 <- trashwheel %>%
+      select(Name, Date, Weight, starts_with("P")) %>%
+      filter(Weight > median(Weight, na.rm = TRUE), PlasticBottles > 500)
 
+    sum(result3$PlasticBottles, na.rm = TRUE)  # Total plastic bottles
     ```
 
 4.  **Complex filtering with multiple conditions**: Create a pipeline that selects `Name`, `Year`, `Month`, `Weight`, `PlasticBottles`, and `CigaretteButts`. Then filter for collections that meet ALL of these criteria:
@@ -200,7 +214,15 @@ trashwheel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
     How many collections meet these criteria, and which trash wheel appears most frequently in your filtered data?
 
     ```{r}
+    # Solution
+    result4 <- trashwheel %>%
+      select(Name, Year, Month, Weight, PlasticBottles, CigaretteButts) %>%
+      filter(Year >= 2020,
+             Month >= 4 & Month <= 9,
+             PlasticBottles > 800 | CigaretteButts > 8000)
 
+    nrow(result4)  # Number of collections
+    table(result4$Name)  # Frequency of each trash wheel
     ```
 
 5.  **Piping with helper functions**: Use `select()` with helper functions to choose `Name`, `Date`, `Weight` and all columns that either contain "Ball" or contain "Bottle". Then pipe to the `slice_max(Weight, n = 20)` function to keep only the top 20 collections by weight.
@@ -208,5 +230,12 @@ trashwheel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
     Which trash wheel collected the heaviest load, and what was the weight?
 
     ```{r}
+    # Solution
+    result5 <- trashwheel %>%
+      select(Name, Date, Weight, contains("Ball") | contains("Bottle")) %>%
+      slice_max(Weight, n = 20)
 
+    result5[1, ]  # First row shows heaviest collection
+    # Or to just see the name and weight:
+    result5 %>% select(Name, Weight) %>% head(1)
     ```

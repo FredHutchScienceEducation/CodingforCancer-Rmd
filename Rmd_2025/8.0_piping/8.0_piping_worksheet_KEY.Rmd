@@ -35,13 +35,15 @@ As an example, let's ask the question: What is the bill length of female penguin
 If we wanted to do both `select()` and `filter()`, we can store intermediate variables in multiple steps:
 
 ```{r}
+selected_columns <- select(penguins, island, bill_length_mm, sex)
+female_penguins <- filter(selected_columns, sex == "female")
 
 ```
 
 We can also use a nested function:
 
 ```{r}
-
+filter(select(penguins, island, bill_length_mm, sex), sex == "female")
 ```
 
 ------------------------------------------------------------------------
@@ -53,13 +55,17 @@ The piping operator is `%>%`. It takes the result from the left side and passes 
 We can use piping to make it more readable:
 
 ```{r}
-
+penguins %>%
+  select(., island, bill_length_mm, year) %>%
+  filter(., sex == "female")
 ```
 
 Let's try our first pipe! Use piping to create a dataframe containing only penguins recorded in the year 2007 and select the columns `year`, `flipper_length`, and `species`.
 
 ```{r}
-
+piped <- penguins %>%
+  filter(., year == 2007) %>%
+  select(., year, flipper_length, species)
 ```
 
 Now you try! Use piping to create a dataframe containing only penguins with `flipper_length_mm` over 190mm and select the columns `species`, `sex`, and `year`.
@@ -105,24 +111,24 @@ We can check the data type of specific columns using the `class()` function:
 
 ```{r}
 # Check the data type of year_of_birth
-
+class(clinical$year_of_birth)
 ```
 
 ```{r}
 # Check the data type of Tobacco.smoking.history
-
+class(clinical$Tobacco.smoking.history)
 ```
 
 We can also check for missing values (NA) in our data:
 
 ```{r}
 # Check if there are any NA values in sample_type
-
+is.na(clinical$sample_type)
 ```
 
 ```{r}
 # Count the total number of NA values in pack_years_smoked
-
+sum(is.na(clinical$pack_years_smoked))
 ```
 
 ------------------------------------------------------------------------
@@ -138,7 +144,9 @@ Let's create a subset of the clinical dataframe using piping! Create a new dataf
 -   `cigarettes_per_day`
 
 ```{r}
-
+smoke_clinical <- clinical %>%
+  select(primary_diagnosis, Vital.status, Tobacco.smoking.history, 
+         pack_years_smoked, cigarettes_per_day)
 ```
 
 **Practice**: Create a new dataframe called `filtered_clinical` that:

@@ -32,7 +32,13 @@ clinical <- read.csv("clinical.csv")
 
 When you are first looking at a new dataframe, it's very helpful to have a basic understanding of what is in it.
 
-Let's use 5 functions to learn more! What does each function do? Write the answer as a comment - `dim()` - `head()` - `str()` - `colnames()` - `rownames()`
+Let's use 5 functions to learn more! What does each function do? Write the answer as a comment
+
+-   `dim()`
+-   `head()`
+-   `str()`
+-   `colnames()`
+-   `rownames()`
 
 ```{r}
 dim(clinical)
@@ -60,6 +66,8 @@ rownames(clinical)
 ```
 
 ------------------------------------------------------------------------
+
+## Example
 
 Start at your group number question, if you finish, please complete the other questions
 
@@ -102,14 +110,19 @@ pack40_yr_ATM_STAG2_piped <- clinical %>%
 Code in 2 steps: name the first object `age_gender_ERCC2_expr` and second object `age_24000+_gender_ERCC2_expr_df`
 
 ```{r}
-# Code in 2 steps: name the first object age_gender_ERCC2_expr and second object age_24000+_gender_ERCC2_expr_df
+# Step 1: age_gender_ERCC2_expr
+
+
+# Step 2: age_24000+_gender_ERCC2_expr_df
+
+
+
 
 ```
 
 Nested version: call this object `age_24000+_gender_ERCC2_expr_df_nested`
 
 ```{r}
-# Nested version: call this object age_24000+_gender_ERCC2_expr_df_nested
 
 
 ```
@@ -117,7 +130,6 @@ Nested version: call this object `age_24000+_gender_ERCC2_expr_df_nested`
 Piped version. Call this object `age_24000+_gender_ERCC2_expr_df`
 
 ```{r}
-# piped version: call this object age_24000+_gender_ERCC2_expr_df
 
 ```
 
@@ -230,7 +242,6 @@ Code in 2 steps: name the first object `sampleType_bmi_RB1_TP53_df` and second o
 Nested version: call this object `primaryTumor_bmi20_RB1mut_TP53mut_df_nested`
 
 ```{r}
-# nested called primaryTumor_bmi20_RB1mut_TP53mut_df_nested
 
 
 ```
