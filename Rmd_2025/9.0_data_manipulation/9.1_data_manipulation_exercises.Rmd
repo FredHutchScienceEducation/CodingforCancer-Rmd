@@ -158,7 +158,26 @@ clinical <- read.csv("clinical.csv")
 
 ------------------------------------------------------------------------
 
+## **Challenge Problems**
+
 ## Part VI: Filtering with the `%in%` operator
+
+Extract data specifying which years of diagnosis to keep: 2010-2013:
+
+```{r}
+clinical_reduced <- clinical %>%
+  filter(year_of_diagnosis %in% c(2010:2013))
+```
+
+This creates the same result as using multiple OR statements:
+
+```{r}
+clinical_reduced_same <- clinical %>%
+  filter(year_of_diagnosis == 2010 |
+         year_of_diagnosis == 2011 |
+         year_of_diagnosis == 2012 |
+         year_of_diagnosis == 2013)
+```
 
 1.  **Question 6A**: Using the `%in%` operator, create a new subsetted dataframe called `clinical_reduced1` that filters for tobacco smoking history and only includes "Lifelong Non-smoker" and "Current smoker".
 
@@ -172,7 +191,7 @@ clinical <- read.csv("clinical.csv")
 
     ```
 
-3.  **Question 6C**: **Challenge**: Using the `%in%` operator, create a subset that includes only patients from specific years of diagnosis (2010, 2012, 2014) and specific genders ("male", "female").
+3.  **Question 6C**: Using the `%in%` operator, create a subset that includes only patients from specific years of diagnosis (2010, 2012, 2014) and specific genders ("male", "female").
 
     ```{r}
 

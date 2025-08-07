@@ -28,25 +28,9 @@ Run this code chunk below to download the dataset and extract the dataframes int
 
 ```{r}
 #### Do not alter the code below. This is a function that will download your dataset. 
-date <- "2025-03-18"
 
-load_and_extract_tt_data <- function(date) {
-  # Load the TidyTuesday dataset
-  data_list <- tidytuesdayR::tt_load(date)
-  cat("\n")
-  cat("\n")
-  # Extract each dataframe from data_list into separate objects
-  # in the global environment with the same names
-  for (name in names(data_list)) {
-    assign(name, data_list[[name]], envir = .GlobalEnv)
-    cat("Extracted", name, "and assigned to the object",name,"\n")
-  }
-  
-  # Return the original data_list for reference
-  return(data_list)
-}
+palmtrees <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-18/palmtrees.csv')
 
-data_list <- load_and_extract_tt_data(date)
 ```
 
 Let's explore our palm tree dataset:
@@ -191,7 +175,27 @@ colnames(palm_trees)
 
 ------------------------------------------------------------------------
 
-## Part VI: Filtering with `%in%` operator
+## **Challenge Problems**
+
+## Part VI: Filtering with the `%in%` operator
+
+Extract data specifying which years of diagnosis to keep: 2010-2013:
+
+```{r}
+clinical_reduced <- clinical %>%
+  filter(year_of_diagnosis %in% c(2010:2013))
+```
+
+This creates the same result as using multiple OR statements:
+
+```{r}
+clinical_reduced_same <- clinical %>%
+  filter(year_of_diagnosis == 2010 |
+         year_of_diagnosis == 2011 |
+         year_of_diagnosis == 2012 |
+         year_of_diagnosis == 2013)
+```
+
 
 1.  **Question 6A**: Using the `%in%` operator, create a new subsetted dataframe called `palm_subset1` that includes only palms from "Neotropics" and "Africa" biogeographic regions.
 
@@ -205,7 +209,7 @@ colnames(palm_trees)
 
     ```
 
-3.  **Question 6C**: **Challenge**: Combine multiple conditions to create a subset of tall tree palms from tropical regions.
+3.  **Question 6C**: Combine multiple conditions to create a subset of tall tree palms from tropical regions.
 
     ```{r}
     # Filter for: Tree growth form, height > 10m, and from Neotropics or Africa
