@@ -23,7 +23,7 @@ library(tidyverse)
 
 ```{r}
 # Read in the clinical.csv file as an object called clinical
-clinical <- read.csv("clinical.csv")
+clinical <- read.csv("data/clinical.csv")
 ```
 
 ------------------------------------------------------------------------
@@ -158,9 +158,9 @@ clinical <- read.csv("clinical.csv")
 
 ------------------------------------------------------------------------
 
-## **Challenge Problems**
-
 ## Part VI: Filtering with the `%in%` operator
+
+Sometimes we only want to include specific values. The `%in%` operator is very helpful! This works similarly to OR statements, but reduces repeated code.
 
 Extract data specifying which years of diagnosis to keep: 2010-2013:
 
@@ -191,7 +191,7 @@ clinical_reduced_same <- clinical %>%
 
     ```
 
-3.  **Question 6C**: Using the `%in%` operator, create a subset that includes only patients from specific years of diagnosis (2010, 2012, 2014) and specific genders ("male", "female").
+3.  **Question 6C**: **Challenge**: Using the `%in%` operator, create a subset that includes only patients from specific years of diagnosis (2010, 2012, 2014) and specific genders ("male", "female").
 
     ```{r}
 

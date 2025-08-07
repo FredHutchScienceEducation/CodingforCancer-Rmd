@@ -12,7 +12,7 @@ We will start with a fresh, clean environment. The code chunk below clears your 
 rm(list = ls())
 ```
 
-## 1. Loading packages and data
+## Loading packages and data
 
 Today we will learn about data manipulation using the "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
 
@@ -29,7 +29,34 @@ Load the penguins data:
 penguins = penguins
 ```
 
----
+------------------------------------------------------------------------
+
+## 1. Adding new columns with `mutate()`
+
+We can add new columns to our dataframe using the `mutate()` function. This is especially powerful when combined with piping.
+
+Use piping to create a new column called `bill_length_cm` where the `bill_length_mm` is converted to centimeters (divide by 10).
+
+```{r}
+bill_cm_df <- penguins %>%
+  mutate(bill_length_cm = bill_length_mm / 10)
+```
+
+You can also use mutate to combine the entries in each column. Use piping to create a new column called `total_bill_mm` that is the sum of `bill_length_mm` and `bill_depth_mm`.
+
+```{r}
+total_df <- penguins %>% 
+  mutate(total_bill_mm = bill_length_mm + bill_depth_mm)
+```
+
+**Practice**: Use piping to create a new column called `mass_kg` where the `body_mass_g` is converted to kilograms (divide by 1000).
+
+```{r}
+penguins %>%
+  mutate(mass_kg = body_mass_g / 1000)
+```
+
+------------------------------------------------------------------------
 
 ## 2. Grouping and counting with `group_by()` and `tally()`
 
@@ -54,7 +81,7 @@ clean_penguins <- penguins %>%
 clean_penguins
 ```
 
----
+------------------------------------------------------------------------
 
 ## 3. Summarizing data with `group_by()` and `summarize()`
 
@@ -73,14 +100,16 @@ bill_df <- penguins %>%
 bill_df
 ```
 
-**Practice**: Summarize the average flipper length by species.
+**Practice**: Summarize the average flipper length by island.
 
 ```{r}
-
+penguins %>% 
+  group_by(island) %>% 
+  summarize(avg_flipper_len = mean(flipper_length_mm, na.rm = TRUE))
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 4. Saving data to a file
 
@@ -92,7 +121,7 @@ Save `bill_df` as a .csv file in our data directory:
 write_csv(bill_df, "data/bill_df.csv")
 ```
 
----
+------------------------------------------------------------------------
 
 ## 5. Using `count()` and `arrange()`
 
@@ -123,11 +152,14 @@ penguin_counts_desc
 **Practice**: Count the number of penguins by island and arrange in descending order.
 
 ```{r}
+island_count_desc <- penguins %>% 
+  count(island) %>% 
+  arrange(desc(n))
 
-
+island_count_desc
 ```
 
----0
+------------------------------------------------------------------------
 
 ## 6. Using the `%in%` operator
 
@@ -150,11 +182,12 @@ penguins_reduced_same <- penguins %>%
 **Practice**: Filter penguins to include only those from "Biscoe" and "Dream" islands.
 
 ```{r}
-
+penguins %>% 
+  filter(island %in% c("Biscoe", "Dream"))
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 7. Applying concepts with the clinical dataframe
 
@@ -178,15 +211,18 @@ clinical %>%
 **Practice**: Count the number of patients by gender and remove NAs.
 
 ```{r}
-
+clinical %>%
+  group_by(gender) %>%
+  filter(!is.na(gender)) %>%
+  tally()
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 8. Advanced summarizing with clinical data
 
-Summarize the average age at diagnosis (in days) by tissue or organ of origin:
+Summarize the average age at diagnosis (in days) by tissue or organ of origin in a data frame called `age_tissue_df`:
 
 ```{r}
 age_tissue_df <- clinical %>%
@@ -199,7 +235,7 @@ age_tissue_df <- clinical %>%
 age_tissue_df
 ```
 
-It can be difficult to tell how old someone is in days. Let's add a new column to convert to years:
+It can be difficult to tell how old someone is in days. Let's add a new column to `age_tissue_df` to convert to years:
 
 ```{r}
 age_tissue_years_df <- age_tissue_df %>%
@@ -217,11 +253,15 @@ write_csv(age_tissue_years_df, "data/age_tissue_years_df.csv")
 **Practice**: Summarize the average pack years smoked by gender.
 
 ```{r}
-
+clinical %>% 
+  group_by(gender) %>% 
+  summarise(
+    avg_pack_yr = mean(pack_years_smoked, na.rm = TRUE)
+  )
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 9. More practice with `count()` and `arrange()`
 
@@ -238,8 +278,40 @@ tissue_organ_counts
 **Practice**: Count the number of patients by race and arrange in descending order.
 
 ```{r}
+patient_race_counts <- clinical %>%
+  count(race) %>%
+  arrange(desc(n))
 
+patient_race_counts
 
 ```
 
+------------------------------------------------------------------------
+
+## 10. Using `%in%` with clinical data
+
+Extract data specifying which years of diagnosis to keep: 2010-2013:
+
+```{r}
+clinical_reduced <- clinical %>%
+  filter(year_of_diagnosis %in% c(2010:2013))
+```
+
+This creates the same result as using multiple OR statements:
+
+```{r}
+clinical_reduced_same <- clinical %>%
+  filter(year_of_diagnosis == 2010 |
+         year_of_diagnosis == 2011 |
+         year_of_diagnosis == 2012 |
+         year_of_diagnosis == 2013)
+```
+
+**Practice**: Filter the clinical data to include only patients with "Primary Tumor" or "Metastatic" sample types.
+
+```{r}
+clinical %>% 
+  filter(sample_type %in% c("Primary Tumor", "Metastatic"))
+
+```
 

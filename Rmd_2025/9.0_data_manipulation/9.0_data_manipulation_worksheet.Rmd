@@ -12,7 +12,7 @@ We will start with a fresh, clean environment. The code chunk below clears your 
 rm(list = ls())
 ```
 
-## 1. Loading packages and data
+## Loading packages and data
 
 Today we will learn about data manipulation using the "split-apply-combine" strategy. This is really helpful because you can organize big datasets into more organized pieces and then put it back together.
 
@@ -29,7 +29,33 @@ Load the penguins data:
 penguins = penguins
 ```
 
----
+------------------------------------------------------------------------
+
+## 1. Adding new columns with `mutate()`
+
+We can add new columns to our dataframe using the `mutate()` function. This is especially powerful when combined with piping.
+
+Use piping to create a new column called `bill_length_cm` where the `bill_length_mm` is converted to centimeters (divide by 10).
+
+```{r}
+
+```
+
+You can also use mutate to combine the entries in each column. Use piping to create a new column called `total_bill_mm` that is the sum of `bill_length_mm` and `bill_depth_mm`.
+
+```{r}
+
+```
+
+
+**Practice**: Use piping to create a new column called `mass_kg` where the `body_mass_g` is converted to kilograms (divide by 1000).
+
+```{r}
+
+```
+
+
+------------------------------------------------------------------------
 
 ## 2. Grouping and counting with `group_by()` and `tally()`
 
@@ -48,7 +74,7 @@ Currently we have 11 NA penguins included. We should remove these and create a c
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 3. Summarizing data with `group_by()` and `summarize()`
 
@@ -60,14 +86,14 @@ Summarize the average bill length (in mm) by sex:
 
 ```
 
-**Practice**: Summarize the average flipper length by species.
+**Practice**: Summarize the average flipper length by island.
 
 ```{r}
 
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 4. Saving data to a file
 
@@ -79,7 +105,7 @@ Save `bill_df` as a .csv file in our data directory:
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 5. Using `count()` and `arrange()`
 
@@ -106,7 +132,7 @@ Count distinct number of penguin species in descending order:
 
 ```
 
----0
+------------------------------------------------------------------------
 
 ## 6. Using the `%in%` operator
 
@@ -132,7 +158,7 @@ This will create the same result as using multiple OR statements:
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 7. Applying concepts with the clinical dataframe
 
@@ -159,18 +185,18 @@ Count the number of each AJCC pathological stage and remove the NAs:
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 8. Advanced summarizing with clinical data
 
-Summarize the average age at diagnosis (in days) by tissue or organ of origin:
+Summarize the average age at diagnosis (in days) by tissue or organ of origin in a data frame called `age_tissue_df`:
 
 ```{r}
 
 
 ```
 
-It can be difficult to tell how old someone is in days. Let's add a new column to convert to years:
+It can be difficult to tell how old someone is in days. Let's add a new column to `age_tissue_df` to convert to years:
 
 ```{r}
 
@@ -191,7 +217,7 @@ Save the new dataframe as a CSV file:
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## 9. More practice with `count()` and `arrange()`
 
@@ -208,3 +234,29 @@ Count distinct number of tissues or organs of origin in ascending order:
 
 
 ```
+
+------------------------------------------------------------------------
+
+## 10. Using `%in%` with clinical data
+
+Extract data specifying which years of diagnosis to keep: 2010-2013:
+
+```{r}
+
+
+```
+
+This creates the same result as using multiple OR statements:
+
+```{r}
+
+
+```
+
+**Practice**: Filter the clinical data to include only patients with "Primary Tumor" or "Metastatic" sample types.
+
+```{r}
+
+
+```
+

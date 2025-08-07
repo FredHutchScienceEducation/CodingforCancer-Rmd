@@ -175,8 +175,6 @@ colnames(palm_trees)
 
 ------------------------------------------------------------------------
 
-## **Challenge Problems**
-
 ## Part VI: Filtering with the `%in%` operator
 
 Extract data specifying which years of diagnosis to keep: 2010-2013:
@@ -209,7 +207,7 @@ clinical_reduced_same <- clinical %>%
 
     ```
 
-3.  **Question 6C**: Combine multiple conditions to create a subset of tall tree palms from tropical regions.
+3.  **Question 6C**: **Challenge**: Combine multiple conditions to create a subset of tall tree palms from tropical regions.
 
     ```{r}
     # Filter for: Tree growth form, height > 10m, and from Neotropics or Africa
