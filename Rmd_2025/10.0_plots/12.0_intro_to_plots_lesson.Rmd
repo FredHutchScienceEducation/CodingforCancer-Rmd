@@ -1,0 +1,214 @@
+---
+title: "Intro to Plots"
+author: "Matthew Chan"
+date: "8/13/20224"
+output: html_document
+---
+
+# 12.0 Intro to plots
+
+We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
+
+```{r}
+rm(list = ls())
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+penguins <- penguins
+
+
+```
+
+### Recap: `filter`, `select`, `mutate`, `group_by`, `summarise` all with piping `%>%`
+
+```{r}
+adelie_body_mass_by_island <- penguins %>%
+  filter(., species == "Adelie") %>%    #Filter only Adelie species
+  select(., species, island, body_mass_g) %>%  #Select species, island, and body_mass_g column
+  mutate(., body_mass_kg = body_mass_g / 1000 ) %>%  #Make new column: body_mass_kg
+  group_by(island) %>%   # Group by island
+  summarise(mean_body_mass_kg = mean(body_mass_kg, na.rm=TRUE)) #Summarise island group to calculate mean
+  
+adelie_body_mass_by_island
+```
+
+```{r}
+
+```
+
+## My first plot
+
+We will use the `ggplot` package. The major components to a `ggplot` graph are:
+
+-   Data (the information we want to show)
+
+-   Aesthetics (the axes)
+
+-   Geometry (the shapes, the plot type)
+
+-   Themes (what everything looks like)
+
+```{r}
+ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() 
+
+ggsave("histogram.png")
+```
+
+We can add a preset theme to our plot in a similar grammar structure.
+
+```{r}
+ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() + theme_bw()
+```
+
+Here is a list of themes readily available:
+
+-   `theme_gray()` The signature ggplot2 theme with a grey background and white gridlines, designed to put the data forward yet make comparisons easy.
+
+-   `theme_bw()` The classic dark-on-light ggplot2 theme. May work better for presentations displayed with a projector.
+
+-   `theme_linedraw()` A theme with only black lines of various widths on white backgrounds, reminiscent of a line drawing. Serves a purpose similar to `theme_bw()`.
+
+-   `theme_light()` A theme similar to `theme_linedraw()` but with light grey lines and axes, to direct more attention towards the data.
+
+-   `theme_dark()` The dark cousin of `theme_light()`, with similar line sizes but a dark background. Useful to make thin coloured lines pop out.
+
+-   `theme_minimal()` A minimalistic theme with no background annotations.
+
+-   `theme_classic()` A classic-looking theme, with x and y axis lines and no gridlines.
+
+-   `theme_void()` A completely empty theme.
+
+Try a different theme here:
+
+```{r}
+ggplot(penguins) + aes(x = bill_length_mm) + geom_histogram() + theme_minimal()
+
+ggsave("my_first_plot.png")
+```
+
+## 2. Bar plots
+
+Barplots plots categorical data and makes numerical comparisons, usually counts, between categories.
+
+We will use the clinical dataset for more plotting examples.
+
+```{r}
+clinical <- read_csv("clinical.csv", show_col_types = FALSE)
+```
+
+Plot categorical data in a bar plot for the `mutation.in.TP53` data. For a bar plot, we use `geom_bar()` as the geometry type.
+
+```{r}
+ggplot(data = clinical) + aes(x = mutation.in.FAT1) + geom_bar() + theme_bw()
+```
+
+## 3. Histogram
+
+Histogram plots the range of a set of numerical values.
+
+Plot a histrogram showing the range of `height`. For a histogram, we use `geom_histogram()` as the geometry type.
+
+```{r}
+ggplot(data = clinical) + aes(x = height) + geom_histogram() + theme_bw()
+
+```
+
+Changing the number of bins: `bins=10`
+
+```{r}
+ggplot(data = clinical) + aes(x = height) + geom_histogram(bins=50) + theme_bw()
+
+```
+
+Changing the width of the bins: `binwidth=10`
+
+```{r}
+ggplot(data = clinical) + aes(x = height) + geom_histogram(binwidth=5) + theme_bw()
+
+```
+
+## 3. Scatter plots
+
+Let's make a scatter plot to compare the number of cigarettes per day (`cigarettes_per_day` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
+
+```{r}
+ggplot(clinical) + aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations) + geom_point()
+```
+
+We can alter the coordinate range to show a specific region using `coord_cartesian(xlim = c(0, 10), ylim = c(0, 400))`
+
+```{r}
+ggplot(clinical) + 
+  aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations) + 
+  geom_point() + 
+  coord_cartesian(xlim = c(0,10), ylim = c(0, 400))
+```
+
+We can use pipes to remove NAs to clean the plot. Recall this from the piping lesson:
+
+```{r}
+clinical_noNA <- clinical %>%
+  select(barcode, cigarettes_per_day, count.ERCC2.signature.mutations) %>%
+  drop_na
+```
+
+This input can go directly into `data=`
+
+```{r}
+ggplot(data = clinical_noNA) + 
+  aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations) + 
+  geom_point() + 
+  coord_cartesian(xlim = c(0,10), ylim = c(0, 400))
+
+
+### Alternative
+#ggplot(data = clinical %>%
+#  select(barcode, cigarettes_per_day, count.ERCC2.signature.mutations) %>%
+#  drop_na) + 
+#  aes(x = cigarettes_per_day, y = count.ERCC2.signature.mutations) + 
+#  geom_point() + 
+#  coord_cartesian(xlim = c(0,10), ylim = c(0, 400))
+```
+
+## 4. Box plots
+
+Let's make a scatter plot to compare `Current smoker` and `Lifetime Non-Smoker` (both in `Tobacco.smoking.history` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
+
+First let's filter the data to just our data of interest:
+
+```{r}
+clinical <- read_csv("clinical.csv", show_col_types = FALSE)
+
+barcode_TSH_ERCC2_count_data <- clinical %>% 
+  select(barcode, Tobacco.smoking.history, count.ERCC2.signature.mutations) %>% 
+  filter(!is.na(count.ERCC2.signature.mutations)) %>%  # remove NAs
+  filter(Tobacco.smoking.history %in% c("Current smoker", "Lifelong Non-smoker"))
+
+barcode_TSH_ERCC2_count_data
+```
+
+Plot the filtered dataset:
+
+```{r}
+ggplot(data = barcode_TSH_ERCC2_count_data) + 
+  aes(x = Tobacco.smoking.history , y = count.ERCC2.signature.mutations) + 
+  geom_boxplot(outlier.shape = NA) + 
+  coord_cartesian(ylim = c(0,125)) + 
+  geom_jitter(aes(color=Tobacco.smoking.history))
+
+#ggsave("boxplot_tabacco_history_vs_ERCC2_counts.png")
+```
+
+## Saving plots
+
+After creating your plot, use `ggsave` to save your plot.
+
+```         
+ggsave("my_plot.png")
+```
+
+```{r}
+
+```

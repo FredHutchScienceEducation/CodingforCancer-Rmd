@@ -1,0 +1,179 @@
+---
+title: "Intro to Plots"
+author: "Hanako and Matthew"
+date: "8/13/2024"
+output: html_document
+---
+
+# 12.1 Intro to Plot Exercises
+
+### load library/package
+
+```{r}
+library(tidyverse)
+```
+
+### import data
+
+```{r}
+clinical <- read_csv("clinical.csv")
+```
+
+### Recall
+
+The general formula for making plots is
+
+```         
+ggplot(data = dataframe) + aes(x = x_axis, y = y_axis) + geom_point() + theme()
+```
+
+## Part 1: Bar Plots!
+
+Let's make a bar plot of mutations in `ggplot`, we want to see how many of the samples in `clinical` that have a mutation in RB1, that do not have a mutation in RB1, and how many are NA.
+
+#### What is the x-axis
+
+```{r}
+
+```
+
+#### What is the geometry (the plot type)
+
+```{r}
+
+
+```
+
+#### Make the bar plot
+
+```{r}
+
+
+```
+
+## Part 2: Histograms
+
+Let's make a histogram of the distribution of `age_at_diagnosis` in the `clinical` dataset
+
+#### What is the x-axis
+
+```{r}
+
+```
+
+#### What is the geometry (the plot type)
+
+```{r}
+
+
+```
+
+#### Make the histogram plot
+
+```{r}
+
+
+```
+
+#### Make the histogram plot with 15 bins
+
+```{r}
+
+```
+
+#### Actually, let's set the bin width to be 365 so we see everything in groups of 365 days
+
+```{r}
+
+```
+
+## Part 3: Scatterplots
+
+Let's make a scatter plot looking at the `number of cigarettes per day` and the `total number of single nucleotide variants`
+
+#### Specify aesthetics: Let the x axis be `cigarettes_per_day` and the y axis be `total.number.Single.Nucleotide.Variants`
+
+```{r}
+
+```
+
+#### What is the geometry type?
+
+```{r}
+
+```
+
+#### Make the scatter plot
+
+```{r}
+
+```
+
+#### Restrict the x axis from 0 to 10 and the y axis from 0 to 4500
+
+```{r}
+
+```
+
+## Part 4: Box plots
+
+Now we are going to make a box plot of ERCC2 mutations and compare them across current smokers and lifelong non-smokers.
+
+### Refresher:Let's start with cleaning our data.
+
+Use piping to: 1. Subset the `clinical` data frame to include the columns: `barcode`, `Tobacco.smoking.history`, `total.number.Single.Nucleotide.Variants`. 2. remove NAs in `total.number.Single.Nucleotide.Variants` 3. filter rows to keep only `Current smoker` and `Lifelong Non-smoker` 4. Call this `barcode_TSH_SNV_count_data`
+
+```{r}
+
+```
+
+#### Specify aesthetics: What is the x-axis? What is the y-axis?
+
+```{r}
+
+```
+
+#### What is the geometry type?
+
+```{r}
+
+```
+
+#### Make the box plot
+
+```{r}
+
+  
+```
+
+#### \#### Remove the outlier points.
+
+```{r}
+
+
+
+
+```
+
+#### Add the jittered datapoints. Color the points a color of your choice.
+
+```{r}
+
+
+
+
+```
+
+#### Restrict the y axis to 0 to 450
+
+```{r}
+
+
+
+```
+
+## Exit Ticket
+
+Turn in your plot from today for the Exit Ticket!
+
+Here is the link to today's Exit Ticket: <https://forms.gle/YhqfA47wB3Ghk26s8>
