@@ -5,7 +5,7 @@ date: "8/13/2024"
 output: html_document
 ---
 
-# 12.1 Intro to Plot Exercises
+# 10.1 Intro to Plot Exercises
 
 ### load library/package
 
@@ -121,7 +121,12 @@ Now we are going to make a box plot of ERCC2 mutations and compare them across c
 
 ### Refresher:Let's start with cleaning our data.
 
-Use piping to: 1. Subset the `clinical` data frame to include the columns: `barcode`, `Tobacco.smoking.history`, `total.number.Single.Nucleotide.Variants`. 2. remove NAs in `total.number.Single.Nucleotide.Variants` 3. filter rows to keep only `Current smoker` and `Lifelong Non-smoker` 4. Call this `barcode_TSH_SNV_count_data`
+Use piping to: 
+
+1. Subset the `clinical` data frame to include the columns: `barcode`, `Tobacco.smoking.history`, `total.number.Single.Nucleotide.Variants`. 
+2. remove NAs in `total.number.Single.Nucleotide.Variants` 
+3. filter rows to keep only `Current smoker` and `Lifelong Non-smoker` 
+4. Call this `barcode_TSH_SNV_count_data`
 
 ```{r}
 
@@ -146,7 +151,7 @@ Use piping to: 1. Subset the `clinical` data frame to include the columns: `barc
   
 ```
 
-#### \#### Remove the outlier points.
+#### Remove the outlier points.
 
 ```{r}
 

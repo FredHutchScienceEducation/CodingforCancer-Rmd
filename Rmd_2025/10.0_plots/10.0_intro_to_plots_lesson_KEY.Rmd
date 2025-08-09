@@ -1,11 +1,4 @@
----
-title: "Intro to Plots"
-author: "Matthew Chan"
-date: "8/13/20224"
-output: html_document
----
-
-# 12.0 Intro to plots
+# 10.0 Intro to plots
 
 We will start with a fresh, clean environment. The code chunk below clears your environment if you want to reset your work in interactive mode. Or use the broom button on the top right corner.
 
@@ -21,7 +14,7 @@ penguins <- penguins
 
 ```
 
-### Recap: `filter`, `select`, `mutate`, `group_by`, `summarise` all with piping `%>%`
+### Recap: `filter`, `select`, `mutate`, `group_by`, `summarie` all with piping `%>%`
 
 ```{r}
 adelie_body_mass_by_island <- penguins %>%
@@ -129,7 +122,7 @@ ggplot(data = clinical) + aes(x = height) + geom_histogram(binwidth=5) + theme_b
 
 ```
 
-## 3. Scatter plots
+## 4. Scatter plots
 
 Let's make a scatter plot to compare the number of cigarettes per day (`cigarettes_per_day` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
 
@@ -172,7 +165,7 @@ ggplot(data = clinical_noNA) +
 #  coord_cartesian(xlim = c(0,10), ylim = c(0, 400))
 ```
 
-## 4. Box plots
+## 5. Box plots
 
 Let's make a scatter plot to compare `Current smoker` and `Lifetime Non-Smoker` (both in `Tobacco.smoking.history` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
 
