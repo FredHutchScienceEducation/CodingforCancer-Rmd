@@ -5,7 +5,7 @@ date: "8/13/2024"
 output: html_document
 ---
 
-# 10.1 Intro to Plot Exercises
+# 11.1 Intro to Plot Exercises
 
 ### load library/package
 
@@ -177,8 +177,4 @@ Use piping to:
 
 ```
 
-## Exit Ticket
 
-Turn in your plot from today for the Exit Ticket!
-
-Here is the link to today's Exit Ticket: <https://forms.gle/YhqfA47wB3Ghk26s8>
