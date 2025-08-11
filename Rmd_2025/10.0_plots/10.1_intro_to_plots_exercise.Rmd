@@ -16,7 +16,7 @@ library(tidyverse)
 ### import data
 
 ```{r}
-clinical <- read_csv("clinical.csv")
+clinical <- read_csv("data/clinical.csv")
 ```
 
 ### Recall
