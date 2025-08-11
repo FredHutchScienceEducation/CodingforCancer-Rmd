@@ -143,7 +143,7 @@ This input can go directly into `data=`
 
 ## 5. Box plots
 
-Let's make a scatter plot to compare `Current smoker` and `Lifetime Non-Smoker` (both in `Tobacco.smoking.history` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
+Let's make a scatter plot to compare `Current smoker` and `Lifelong Non-smoker` (both in `Tobacco.smoking.history` column) with the number of ERCC2 mutations (`count.ERCC2.signature.mutations` column.)
 
 First let's filter the data to just our data of interest:
 
