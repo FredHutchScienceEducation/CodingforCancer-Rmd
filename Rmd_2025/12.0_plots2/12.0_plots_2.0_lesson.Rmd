@@ -44,12 +44,7 @@ We can add text labels to the existing ggplot formula:
 -   For axis labels use `labs(y = "y_axis_name", x = "x_axis_name")`
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter(aes(color=Tobacco.smoking.history)) + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history")
+
 ```
 
 ### Removing legends
@@ -57,13 +52,7 @@ ggplot(data = barcode_TSH_ERCC2_count_data) +
 To remove legends, we can specify **`theme(legend.position = “none”)`**
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter(aes(color=Tobacco.smoking.history)) + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none")
+
 
 ```
 
@@ -78,14 +67,7 @@ Then we can set custom colors using `scale_color_manual` with either:
 -   hexidecimal code (hex code, <https://htmlcolorcodes.com/>). Example: `"#fdae61"` , "**`#C625A1"`**, `"#535549"`
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter(aes(color=Tobacco.smoking.history)) + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none") + 
-  scale_color_manual(values = c("#fdae61", "#15BADC"))
+
 
 
 ```
@@ -99,14 +81,7 @@ Generally, **`fill`** defines for shapes to be filled. **`color`** defines outli
 For filling shapes, we will use `fill = Tobacco.smoking.history` in the aesthetics and set the fill colors with `scale_fill_manual(values = c("#fdae61", "#C625A1"))`
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations, fill = Tobacco.smoking.history) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter() + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none") + 
-  scale_color_manual(values = c("#fdae61", "#15BADC"))
+
 ```
 
 ### Transparency
@@ -114,14 +89,7 @@ ggplot(data = barcode_TSH_ERCC2_count_data) +
 We can change the transparency of `fill` or `color` by adding `alpha=0.5` in the aesthetics. Alpha can be values from 0 to 1.
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations, fill = Tobacco.smoking.history, alpha=0.2) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter() + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none") + 
-  scale_color_manual(values = c("#fdae61", "#15BADC"))
+
 ```
 
 ### Modifying text color and size
@@ -138,18 +106,7 @@ We can change the text color and size of the axis and labels with
 Similarly, `color` can accept hex code colors, and the `angle` can be set. `hjust=1` stands for horizontal adjustment to make text align at the top (`=1`). `hjust=0` aligns the text at the bottom.
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations, fill = Tobacco.smoking.history, alpha=0.2) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter() + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none") + 
-  scale_color_manual(values = c("#fdae61", "#15BADC")) + 
-   theme(axis.text.y = element_text(color = "blue", size = 10),
-        axis.text.x = element_text(color = "blue", size = 10, angle = 45, hjust = 1),
-        axis.title.y = element_text(color = "blue", size = 12),
-        axis.title.x = element_text(color = "blue", size = 12))
+
 ```
 
 ### Adding gridlines
@@ -159,19 +116,7 @@ We can add gridlines by altering the `theme` with **`theme(panel.grid.major = el
 See the `ggplot theme` documentation (<https://ggplot2.tidyverse.org/reference/theme.html>) for more ways to modify plots.
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, y = count.ERCC2.signature.mutations, fill = Tobacco.smoking.history, alpha=0.2) + 
-  geom_boxplot(outlier.shape = NA) + coord_cartesian(ylim = c(0, 125)) +
-  geom_jitter() + 
-  ggtitle("Tobacco smoking history vs ERCC2 mutation counts") + 
-  labs(y = "ERCC2 mutation counts", x = "Tobacco smoking history") + 
-  theme(legend.position = "none") + 
-  scale_color_manual(values = c("#fdae61", "#15BADC")) + 
-   theme(axis.text.y = element_text(color = "blue", size = 10),
-        axis.text.x = element_text(color = "blue", size = 10, angle = 45, hjust = 1),
-        axis.title.y = element_text(color = "blue", size = 12),
-        axis.title.x = element_text(color = "blue", size = 12)) + 
-  theme(panel.grid.major = element_line(color = "black", linetype="dashed", linewidth=0.25))
+
 ```
 
 ## Plot specific changes (and some more general additions)
@@ -193,25 +138,19 @@ geom_bar(width = 0.2, color = "red", fill = "orange")
 ```
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(y = ajcc_pathologic_stage) + 
-  geom_bar(width = 0.6, color = "red", fill = "orange")
+
 ```
 
 We can add additional variables to go in the plots by assigning `fill` to another variable. Let's try coloring the bars based on **`tissue_or_organ_of_origin`**.
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(y = ajcc_pathologic_stage, fill= tissue_or_organ_of_origin) + 
-  geom_bar()
+
 ```
 
 Alternatively, stacked bars can be hard to read, so bars side-by-side is another approach to visualize bar charts. To have side-by-side bars, add `position="dodge"` in the `geom_bar()` geometry.
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(y = ajcc_pathologic_stage, fill= tissue_or_organ_of_origin) + 
-  geom_bar(position="dodge")
+
 ```
 
 ### Histogram
@@ -231,17 +170,13 @@ geom_histogram(bins=20, fill = "white", color = "black")
 ```
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height) + 
-  geom_histogram(bins=20, fill = "white", color="black")
+
 ```
 
 We also can use the `fill` to display an additional element of data. In this case, let's try `fill=gender` in the aesthetics `aes(x = height, fill = gender)`.
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, fill = gender) + 
-  geom_histogram(bins=20)
+
 ```
 
 To avoid stacked histograms, we add `position="identity"` in `geom_histogram()`. This makes the histograms overlap. Don't forget to alter the transparency to see the overlaps!
@@ -251,9 +186,7 @@ geom_histogram(bins=20, position="identity")
 ```
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, fill = gender, alpha=0.5) + 
-  geom_histogram(bins=20, position="identity")
+
 ```
 
 
@@ -263,10 +196,7 @@ ggplot(data = clinical) +
 An alternative method to display different groups is to use `facet_wrap()`. If we can to group histograms by `gender`, we can add it the `ggplot` formula like this: `+ facet_wrap(~gender)`. Note: `facet_wrap()` can be used for any plot type, not just histograms.
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, fill = gender) + 
-  facet_wrap(~gender) + 
-  geom_histogram(bins=20)
+
 ```
 
 You can group any number of categories using `facet_wrap()`. Seperate the groups using the `~` symbol, like this: `facet_wrap(group1~group2)`. Try grouping `gender` with one of the following:
@@ -289,10 +219,7 @@ facet_wrap(mutation.in.TP53~gender, ncol=2, labeller = "label_both")
 
 ```{r}
 
-ggplot(data = clinical) + 
-  aes(x = height, fill = gender) + 
-  facet_wrap(mutation.in.TP53~gender, ncol=2, labeller = "label_both") +
-  geom_histogram(bins=20)
+
 ```
 
 Lastly, we can add vertical (or horizontal) lines to indicate key statistics like mean or median. One way to accomplish this is group the data with `group_by`, then introduce a new column with `mutate` of the statistic.
@@ -305,14 +232,7 @@ Lastly, we can add vertical (or horizontal) lines to indicate key statistics lik
 ```
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, fill = gender) + 
-  facet_wrap(mutation.in.TP53~gender, ncol=2, labeller = "label_both") +
-  geom_histogram(bins=20) + 
-  geom_vline(data = clinical %>% 
-                      group_by(mutation.in.TP53, gender) %>% 
-                      mutate(mean_height = mean(height, na.rm = TRUE)), 
-             aes(xintercept = mean_height), color="blue", linetype = "dashed")
+
 ```
 
 ### Scatterplots
@@ -331,18 +251,13 @@ Similar to other plots, we can change the color of the points using `geom_point(
 We can add a trend line using `+ geom_smooth()`
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, y = bmi) +
-  geom_point() + 
-  geom_smooth()
+
 ```
 
 We can use shapes as points as an additional dimension and a great alternative for colorblind accessibility.
 
 ```{r}
-ggplot(data = clinical) + 
-  aes(x = height, y = bmi, shape=gender, color=gender) +
-  geom_point()
+
 ```
 
 ### Box plots and violin plots
@@ -364,16 +279,5 @@ ggplot(data = barcode_TSH_ERCC2_count_data) +
 ```
 
 ```{r}
-ggplot(data = barcode_TSH_ERCC2_count_data) + 
-  aes(x = Tobacco.smoking.history, 
-      y = count.ERCC2.signature.mutations,
-      fill = Tobacco.smoking.history) + 
-  geom_violin() + 
-  coord_cartesian(ylim = c(0, 125)) +
-  ggtitle("Number of ERCC2 mutations vs. Tobacco smoking history") + 
-  labs(y = "Number of ERCC2 mutations", 
-       x = "Tobacco smoking history") + 
-  scale_fill_manual(values = c("#fdae61", "#C625A1"))
 
-ggsave("violin_plot.png")
 ```
