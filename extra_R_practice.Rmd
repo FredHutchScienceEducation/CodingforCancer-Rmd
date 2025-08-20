@@ -26,3 +26,8 @@ install.packages("tidyverse")
 ```
 
 
+## Practicing with more tidy data
+
+[#tidytuesday GitHub](https://github.com/rfordatascience/tidytuesday)
+
+[DSC 385](https://wilkelab.org/DSC385/schedule.html)
