@@ -1,0 +1,28 @@
+---
+title: "Continued learning in R"
+output: pdf_document
+author: Mackenzie Johnson
+date: "2025-08-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Welcome to the R community!
+
+In just 4 weeks, you have learned to code in R and built a great foundation for future coding endeavors. 
+
+## Using R on your computer or in the Posit Cloud
+
+R is an open source language which is free to download and use. We have worked entirely on the Cloud for easy code sharing and to not require any software installation. Going forward, you may prefer to have R installed locally on your computer so you can work offline. Installing R on your computer is a bit more complicated than using the Posit Cloud. Below are some resources with instructions for installing R and RStudio Desktop. As a rule of thumb, you will always want to install binaries (vs source) as these are pre-compiled and ready to go. Pick the versions that match your Operating System (Windows vs Mac).
+
+[Posit Cloud (Free account)](https://posit.cloud/plans)
+[Installing R and RStudio](https://posit.co/download/rstudio-desktop/)
+
+Wherever you choose to run R, you will need to install the tidyverse package to get access to the functions we've learned about including `ggplot()`.
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+
