@@ -1,6 +1,6 @@
 ---
 title: "Continued learning in R"
-output: pdf_document
+output: html_document
 author: Mackenzie Johnson
 date: "2025-08-20"
 ---
@@ -11,23 +11,83 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Welcome to the R community!
 
-In just 4 weeks, you have learned to code in R and built a great foundation for future coding endeavors. 
+In just 4 weeks, you have learned to code in R and built a great foundation for future coding endeavors! If you are excited to continue on your coding journey, we've provided some resources below for getting set-up with R, continuing to practice with more tidy data, and links to additional resources. Happy coding!
 
 ## Using R on your computer or in the Posit Cloud
 
-R is an open source language which is free to download and use. We have worked entirely on the Cloud for easy code sharing and to not require any software installation. Going forward, you may prefer to have R installed locally on your computer so you can work offline. Installing R on your computer is a bit more complicated than using the Posit Cloud. Below are some resources with instructions for installing R and RStudio Desktop. As a rule of thumb, you will always want to install binaries (vs source) as these are pre-compiled and ready to go. Pick the versions that match your Operating System (Windows vs Mac).
+R is an open source language which is free to download and use. We have worked entirely in the Cloud for easy code sharing and to not require any software installation. You will lose access to your Coding For Cancer accounts on Posit Cloud within a few weeks of program closing. To continue using Posit Cloud, you will just need to sign up for a new free account.
 
 [Posit Cloud (Free account)](https://posit.cloud/plans)
+
+Going forward, you may prefer to have R installed locally on your computer so you can work offline. RStudio Desktop is a free IDE that mirrors the Posit Cloud layout. Installing R and R packages on your computer is a bit more complicated than using the Posit Cloud. Below are instructions for installing R and RStudio Desktop. Pick the versions that match your Operating System (Windows vs Mac).
+
 [Installing R and RStudio](https://posit.co/download/rstudio-desktop/)
+
+You can still run `install.packages()` in RStudio Desktop to download the necessary packages. For some packages, you may get a prompt in your Console that says something like:
+
+>There are binary versions available but the source versions are later. Do you want to install from sources the package which needs compilation?
+
+As a rule of thumb, you will always want to install binaries (rather than installing from source) as these are pre-compiled and ready to go. Type no and hint enter to finish the install.
+
+## Expanding on the tidyverse
 
 Wherever you choose to run R, you will need to install the tidyverse package to get access to the functions we've learned about including `ggplot()`.
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
+The creators of the tidyverse have worked hard to develop a lot of online documentation, blogs, and even books. All these materials are freely available to the public. Visit [tidyverse.org](https://www.tidyverse.org/) for endless resources. The [ggplot2()](https://ggplot2.tidyverse.org/index.html) page will be especially helpful for visualizations.
 
-## Practicing with more tidy data
+## Debugging or resolving coding errors
 
-[#tidytuesday GitHub](https://github.com/rfordatascience/tidytuesday)
+Google is your best friend when it comes to debugging your code! Generally, I will copy an error message directly into Google and look for similar issues already posted online. I specifically look for links from [stackoverflow.com](https://stackoverflow.com/questions), [Posit](https://forum.posit.co/), or [GitHub](https://github.com/tidyverse). All these sites are trusted resources with reliable and knowledgeable coders. You can often solve your own errors by checking out the provided answers.
 
-[DSC 385](https://wilkelab.org/DSC385/schedule.html)
+If you cannot find an answer to your issue, you can also create your own post on these platforms! One tidyverse package called [reprex](https://reprex.tidyverse.org/) was specifically designed to help users easily share problematic code chunks. It's most helpful is you can produce small, reproducible code chunks so that others can encounter and resolve the same error.
+
+In rare cases, you might encounter an error that is a bug in the codebase. You'll know when you've hit one of these because there might be open issue on GitHub that's tagged by the R package authors as a bug. Developers will then need to update their package and will eventually release an updated package version. In the meantime, they may provide a workaround. As an example, here are current [open issues in ggplot2()](https://github.com/tidyverse/ggplot2/issues)- not all of these issues are bugs that user encounter. Packages are constantly evolving to keep pace with the latest updates!
+
+## More practice with tidy data
+
+#### Sources of data
+
+In this program, you've worked with many pre-tidied data frames like `penguins` and `clinical.csv`. Most data generated from experiments is messy and requires a lot of processing code before analysis and plotting is possible. You are already familiar with a lot of the tools need to complete this process. As you learn new skills and master current ones, it's great to work with publicly available tidy data. 
+
+We have utilized data from the [#tidytuesday GitHub](https://github.com/rfordatascience/tidytuesday) in this program. This is a fantastic resource for data sets with new ones released every week. Folks in the online data science community share the visualizations they've made from the data (along with their code), so it's a great opportunity to learn from others and see different approaches.
+
+After you've found a data set of interest, you can load it directly into R with only a few lines of code. Below is an example using the `palmtrees` data set from [2025-03-18](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-03-18) you may have worked with in class. 
+
+To load in Posit Cloud:
+```{r, eval=FALSE}
+library(tidyverse)
+palmtrees <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-18/palmtrees.csv')
+```
+
+To load in RStudio Desktop:
+```{r, eval=FALSE}
+# Using R
+library(tidyverse)
+# Option 1: tidytuesdayR R package 
+## install.packages("tidytuesdayR")
+
+tuesdata <- tidytuesdayR::tt_load('2025-03-18')
+## OR
+tuesdata <- tidytuesdayR::tt_load(2025, week = 11)
+
+palmtrees <- tuesdata$palmtrees
+
+# Option 2: Read directly from GitHub
+
+palmtrees <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-18/palmtrees.csv')
+```
+
+
+#### Additional practice on tidyverse and advanced visualizations
+There are a lot of great online course for you to continue to advance your R knowledge! Some are general while others are more designed for specific fields like biology. 
+
+Mackenzie helped develop a R course for an online Masters in Data Science program with her PhD advisor, Dr. Claus Wilke, who is one of the authors for `ggplot2` and other `tidyverse` packages. Each lesson has slides and an accompanying worksheet for practice just like we had in this program. Below is a link to the course description and its contents.
+
+[UT Austin DSC 385: Data Exploration, Visualization, and Foundations of Unsupervised Learning](https://wilkelab.org/DSC385/)
+[DSC 385: Content](https://wilkelab.org/DSC385/schedule.html)
+
+Lessons 1-11 cover a lot of the packages and functions you've already learned, and lessons 12-18 build on the `tidyverse` base you developed this summer! The second half of the course content in relies on statistical knowledge that you have not yet learned so you can ignore those lessons (or browse through them to see what sort of advanced analyses and visualizations are possible in R).
+
