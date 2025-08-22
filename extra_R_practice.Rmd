@@ -44,7 +44,7 @@ Google is your best friend when it comes to debugging your code! Generally, I wi
 
 If you cannot find an answer to your issue, you can also create your own post on these platforms! One tidyverse package called [reprex](https://reprex.tidyverse.org/) was specifically designed to help users easily share problematic code chunks. It's most helpful is you can produce small, reproducible code chunks so that others can encounter and resolve the same error.
 
-In rare cases, you might encounter an error that is a bug in the codebase. You'll know when you've hit one of these because there might be open issue on GitHub that's tagged by the R package authors as a bug. Developers will then need to update their package and will eventually release an updated package version. In the meantime, they may provide a workaround. As an example, here are current [open issues in ggplot2()](https://github.com/tidyverse/ggplot2/issues)- not all of these issues are bugs that user encounter. Packages are constantly evolving to keep pace with the latest updates!
+In rare cases, you might encounter an error that is a bug in the codebase. You'll know when you've hit one of these because there might be open issue on GitHub that's tagged by the R package authors as a bug. Developers will then need to update their package and will eventually release an updated package version. In the meantime, they may provide a workaround. As an example, here are current [open issues in ggplot2()](https://github.com/tidyverse/ggplot2/issues) - not all of these issues are bugs that user encounter. Packages are constantly evolving to keep pace with the latest updates!
 
 ## More practice with tidy data
 
@@ -87,6 +87,7 @@ There are a lot of great online course for you to continue to advance your R kno
 Mackenzie helped develop a R course for an online Masters in Data Science program with her PhD advisor, Dr. Claus Wilke, who is one of the authors for `ggplot2` and other `tidyverse` packages. Each lesson has slides and an accompanying worksheet for practice just like we had in this program. Below is a link to the course description and its contents.
 
 [UT Austin DSC 385: Data Exploration, Visualization, and Foundations of Unsupervised Learning](https://wilkelab.org/DSC385/)
+
 [DSC 385: Content](https://wilkelab.org/DSC385/schedule.html)
 
 Lessons 1-11 cover a lot of the packages and functions you've already learned, and lessons 12-18 build on the `tidyverse` base you developed this summer! The second half of the course content in relies on statistical knowledge that you have not yet learned so you can ignore those lessons (or browse through them to see what sort of advanced analyses and visualizations are possible in R).
